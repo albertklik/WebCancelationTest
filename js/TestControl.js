@@ -1,8 +1,17 @@
 
+/**
+ * @escope
+ * 
+ */
+this.CancelationTest = this.CancelationTest || {}
+
+
 (function () {
     
     /**
-     * @class CancelationTest
+     * @class TestControl
+     * 
+     * 
      * @constructor
      * 
      * central control of the cancelation test. has the all instances that manages
@@ -10,23 +19,22 @@
      */
     
     //constructor
-    function CancelationTest(time_seconds, n_goals, n_distractors) 
+    function TestControl(time_seconds, n_goals, n_distractors) 
     {
         //public properties
 
 
         //private properties
         
-        this._time_seconds = time_seconds || 20000;
-
-        this._n_goals = n_goals || 3;
-
-        this._n_distractors = n_distractors || 10;
+        var _time_seconds = time_seconds || 20000,
+        _n_goals = n_goals || 3,
+        _n_distractors = n_distractors || 10;
+        this.cells = new Array(9).fill(new Cell(20,10,3,10,GOAL_TYPES[0],GOAL_TYPES.slice(1,12)));
 
     }
 
     //static readonly properties
-    CancelationTest.GOAL_TYPES = [
+    TestControl.GOAL_TYPES = [
         { id : 1, name : "carro" },
         { id : 2, name : "casa" },
         { id : 3, name : "arvore" },
