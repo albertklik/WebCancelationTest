@@ -5,9 +5,6 @@
  */
 this.CancelationTest = this.CancelationTest || {}
 
-
-(function () {
-    
     /**
      * @class TestControl
      * 
@@ -17,24 +14,12 @@ this.CancelationTest = this.CancelationTest || {}
      * central control of the cancelation test. has the all instances that manages
      * the test and store the result in the end of defined time
      */
-    
-    //constructor
+
+     //constructor
     function TestControl(time_seconds, n_goals, n_distractors) 
     {
-        //public properties
-
-
-        //private properties
-        
-        var _time_seconds = time_seconds || 20000,
-        _n_goals = n_goals || 3,
-        _n_distractors = n_distractors || 10;
-        this.cells = new Array(9).fill(new Cell(20,10,3,10,GOAL_TYPES[0],GOAL_TYPES.slice(1,12)));
-
-    }
-
-    //static readonly properties
-    TestControl.GOAL_TYPES = [
+    //public properties
+    this.GOAL_TYPES = [
         { id : 1, name : "carro" },
         { id : 2, name : "casa" },
         { id : 3, name : "arvore" },
@@ -50,7 +35,39 @@ this.CancelationTest = this.CancelationTest || {}
         { id : 13, name : "barco" }
     ];
 
-}
+        //private properties
+        
+        var _time_seconds = time_seconds || 20000,
+        _n_goals = n_goals || 3,
+        _n_distractors = n_distractors || 10;
+        this.cells =  Array(3).fill().map(() => Array(3).fill()); 
+        this.render;
+        
+        this.init  =  function() {
+            this.cells.forEach((element,i) => {
+                element.forEach((item,j) => {
+                    this.cells[i][j] = new Cell(15,7,3,35,this.GOAL_TYPES[0],this.GOAL_TYPES.slice(1,12));
+                });
+            });
+
+            
+
+            //this.cells = Array(3).fill().map(() => Array(3).fill(new Cell(15,7,3,20,this.GOAL_TYPES[0],this.GOAL_TYPES.slice(1,12))));
+            this.render = new Render(this.cells);
+        }
+
+        this.resize = function (width,heigt) {
+            this.render.resize(width,heigt);
+        }
 
 
-)();
+        
+    }
+
+    
+
+    
+
+
+    
+
