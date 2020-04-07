@@ -30,8 +30,24 @@ this.CancelationTest = this.CancelationTest || {}
         var _cell_height = _board_height/3;
         var _block_width = (_cell_width)/_board[0][0].width;
         var _block_height = (_cell_height)/_board[0][0].height;
+        var _spriteSheet;
+
+        var startImageIcons = function () {
+            let iconSheet = new Image(); 
+            //iconSheet.onload = handleImageLoad;
+            iconSheet.src = "assets/spritesheet_icons.png";
+            let data = {
+                images: [iconSheet],
+                frames: {width: 80, height: 80},
+                animations: {trash: 0, male: 1, wait: 2, library: 3, female: 4, hanger: 5, stairs: 6, noparking: 7}
+            }
+            _spriteSheet = new createjs.SpriteSheet(data);
+            
+        };
+        
         
         this.start = function () {
+            startImageIcons();
             _stage.removeAllChildren();
             _stage.update();
             _board.forEach((line,a) => {
@@ -45,9 +61,17 @@ this.CancelationTest = this.CancelationTest || {}
                     colunm.cell_map.forEach((element,i) => {
                         element.forEach((item,j) => {
                             if (item) {
-                                let shape = new createjs.Shape();
-                                shape.graphics.beginFill(item.id == _board[0][0].goal.id ? 'red' : 'black').drawRect(start_pos_x+((_block_width)*i),start_pos_y+((_block_height)*j), _block_width, _block_height);
-                                _stage.addChild(shape);
+                                // let shape = new createjs.Shape();
+                                // shape.graphics.beginFill(item.id == _board[0][0].goal.id ? 'red' : 'black').drawRect(start_pos_x+((_block_width)*i),start_pos_y+((_block_height)*j), _block_width, _block_height);
+                                let icon = new createjs.Sprite(_spriteSheet);
+                                icon.x = (start_pos_x+((_block_width)*i));
+                                icon.y = (start_pos_y+((_block_height)*j));
+                                icon.width = _block_width;
+                                icon.height = _block_height;
+                                icon.scaleX = _block_width/80;
+                                icon.scaleY = _block_height/80; 
+                                icon.gotoAndStop(item.id);
+                                _stage.addChild(icon);
                                 _stage.update();
                             }
                         })

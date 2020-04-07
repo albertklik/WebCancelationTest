@@ -27,12 +27,12 @@ this.CancelationTest = this.CancelationTest || {}
         { id : 5, name : "sol" },
         { id : 6, name : "galinha" },
         { id : 7, name : "coelho" },
-        { id : 8, name : "gato" },
-        { id : 9, name : "flor" },
-        { id : 10, name : "peixe" },
-        { id : 11, name : "estrela" },
-        { id : 12, name : "aviao" },
-        { id : 13, name : "barco" }
+        { id : 8, name : "gato" }
+        //{ id : 9, name : "flor" },
+        //{ id : 10, name : "peixe" },
+        //{ id : 11, name : "estrela" },
+        //{ id : 12, name : "aviao" },
+        //{ id : 13, name : "barco" }
     ];
 
         //private properties
