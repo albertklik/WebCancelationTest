@@ -19,6 +19,7 @@ this.CancelationTest = this.CancelationTest || {}
     function TestControl(time_seconds, n_goals, n_distractors) 
     {
     //public properties
+    this.IMG_PATH = "assets/icons/";
     this.GOAL_TYPES = [
         { id : 1, name : "carro" },
         { id : 2, name : "casa" },
@@ -27,12 +28,12 @@ this.CancelationTest = this.CancelationTest || {}
         { id : 5, name : "sol" },
         { id : 6, name : "galinha" },
         { id : 7, name : "coelho" },
-        { id : 8, name : "gato" }
-        //{ id : 9, name : "flor" },
-        //{ id : 10, name : "peixe" },
-        //{ id : 11, name : "estrela" },
-        //{ id : 12, name : "aviao" },
-        //{ id : 13, name : "barco" }
+        { id : 8, name : "gato" },
+        { id : 9, name : "flor" },
+        { id : 10, name : "peixe" },
+        { id : 11, name : "estrela" },
+        { id : 12, name : "aviao" },
+        { id : 13, name : "barco" }
     ];
 
         //private properties
@@ -44,6 +45,7 @@ this.CancelationTest = this.CancelationTest || {}
         this.render;
         
         this.init  =  function() {
+            //inicia as 9 celulas com parametros estabelecidos
             this.cells.forEach((element,i) => {
                 element.forEach((item,j) => {
                     this.cells[i][j] = new Cell(15,7,3,35,this.GOAL_TYPES[0],this.GOAL_TYPES.slice(1,12));
@@ -52,10 +54,11 @@ this.CancelationTest = this.CancelationTest || {}
 
             
 
-            //this.cells = Array(3).fill().map(() => Array(3).fill(new Cell(15,7,3,20,this.GOAL_TYPES[0],this.GOAL_TYPES.slice(1,12))));
-            this.render = new Render(this.cells);
+            //renderiza na tela
+            this.render = new Render(this.cells,this.IMG_PATH);
         }
 
+        //reajusta o tamanho da tela
         this.resize = function (width,heigt) {
             this.render.resize(width,heigt);
         }
