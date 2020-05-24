@@ -15,7 +15,7 @@ this.CancelationTest = this.CancelationTest || {}
      */
     
     //constructor
-    function Render(board,img_path) 
+    function Render(board,img_path,img_data) 
     {
         //public properties
 
@@ -31,8 +31,18 @@ this.CancelationTest = this.CancelationTest || {}
         var _cell_height = _board_height/3;
         var _block_width = (_cell_width)/_board[0][0].width;
         var _block_height = (_cell_height)/_board[0][0].height;
+        var _img_data = img_data;
+        var _imgLoaded = false;
         
         this.start = function () {
+            if (!_imgLoaded) {
+                _img_data.forEach(element => {
+                    element.img = new Image();
+                    element.img.src = _imgPath + element.name + ".png";
+                });
+                _imgLoaded = true;
+            }
+
             _stage.removeAllChildren();
             _stage.update();
             _board.forEach((line,a) => {
@@ -46,7 +56,7 @@ this.CancelationTest = this.CancelationTest || {}
                     colunm.cell_map.forEach((element,i) => {
                         element.forEach((item,j) => {
                             if (item) {
-                                let icon = new Icon(_stage,_imgPath,item,(start_pos_x+((_block_width)*i)),(start_pos_y+((_block_height)*j)),_block_width,_block_height);
+                                let icon = new Icon(_stage,item,(start_pos_x+((_block_width)*i)),(start_pos_y+((_block_height)*j)),_block_width,_block_height);
                                 icon.init();
                             }
                         })

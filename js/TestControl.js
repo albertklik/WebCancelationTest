@@ -55,7 +55,7 @@ this.CancelationTest = this.CancelationTest || {}
             
 
             //renderiza na tela
-            this.render = new Render(this.cells,this.IMG_PATH);
+            this.render = new Render(this.cells,this.IMG_PATH,this.GOAL_TYPES);
         }
 
         //reajusta o tamanho da tela
