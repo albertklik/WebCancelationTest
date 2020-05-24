@@ -39,6 +39,9 @@ this.CancelationTest = this.CancelationTest || {}
                 _img_data.forEach(element => {
                     element.img = new Image();
                     element.img.src = _imgPath + element.name + ".png";
+                    element.img.onload = function() {
+                        _stage.update();
+                    }
                 });
                 _imgLoaded = true;
             }
