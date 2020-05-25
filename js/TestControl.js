@@ -36,13 +36,29 @@ this.CancelationTest = this.CancelationTest || {}
         { id : 13, name : "barco" }
     ];
 
+    var _goal_types = this.GOAL_TYPES; 
+    var _clicks = [];
+    var _startTime;
+
         //private properties
         
         var _time_seconds = time_seconds || 20000,
         _n_goals = n_goals || 3,
         _n_distractors = n_distractors || 10;
         this.cells =  Array(3).fill().map(() => Array(3).fill()); 
+        _cells = this.cells;
         this.render;
+
+        this.onClick = function (item,event) {
+            var time = (new Date()).getTime();
+            _clicks.push({ 
+                time : time, 
+                x :event.stageX, 
+                y : event.stageY, 
+                item : item, 
+                hit : item.id == _goal_types[0].id ? 1 : 0 
+            });
+        }
         
         this.init  =  function() {
             //inicia as 9 celulas com parametros estabelecidos
@@ -55,7 +71,16 @@ this.CancelationTest = this.CancelationTest || {}
             
 
             //renderiza na tela
-            this.render = new Render(this.cells,this.IMG_PATH,this.GOAL_TYPES);
+            this.render = new Render(this.cells,this.IMG_PATH,this.GOAL_TYPES,this.onClick);
+            _startTime = (new Date()).getTime();
+            createjs.Ticker.addEventListener("tick", tick);
+            function tick(){
+                if (((new Date()).getTime() - _startTime)/1000 >=60) {
+                    alert("test finished");
+                    alert("test: " + JSON.stringify(_cells))
+                    alert("result: " + JSON.stringify(_clicks));
+                }
+            }
         }
 
         //reajusta o tamanho da tela

@@ -15,7 +15,7 @@ this.CancelationTest = this.CancelationTest || {}
      */
     
     //constructor
-    function Icon(stage,icon,x,y,width,height) 
+    function Icon(onclick,stage,icon,x,y,width,height) 
     {
         var _stage = stage,
             _icon = icon,
@@ -23,6 +23,7 @@ this.CancelationTest = this.CancelationTest || {}
             _y = y,
             _width = width,
             _height = height;
+            _onclick = onclick;
 
         this.init = function() {
            this.bitmap = new createjs.Bitmap(_icon.img);
@@ -32,6 +33,9 @@ this.CancelationTest = this.CancelationTest || {}
            this.bitmap.height = _height;
            this.bitmap.scaleX = _width/150;
            this.bitmap.scaleY = _height/150;
+           this.bitmap.on("click", function(evt) {
+              _onclick(_icon,evt);
+           });
            _stage.addChild(this.bitmap);
            _stage.update();
             

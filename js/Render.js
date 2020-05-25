@@ -15,7 +15,7 @@ this.CancelationTest = this.CancelationTest || {}
      */
     
     //constructor
-    function Render(board,img_path,img_data) 
+    function Render(board,img_path,img_data,onclickEvent) 
     {
         //public properties
 
@@ -32,6 +32,7 @@ this.CancelationTest = this.CancelationTest || {}
         var _block_width = (_cell_width)/_board[0][0].width;
         var _block_height = (_cell_height)/_board[0][0].height;
         var _img_data = img_data;
+        var _onClickEvent = onclickEvent;
         var _imgLoaded = false;
         
         this.start = function () {
@@ -59,7 +60,7 @@ this.CancelationTest = this.CancelationTest || {}
                     colunm.cell_map.forEach((element,i) => {
                         element.forEach((item,j) => {
                             if (item) {
-                                let icon = new Icon(_stage,item,(start_pos_x+((_block_width)*i)),(start_pos_y+((_block_height)*j)),_block_width,_block_height);
+                                let icon = new Icon(_onClickEvent,_stage,item,(start_pos_x+((_block_width)*i)),(start_pos_y+((_block_height)*j)),_block_width,_block_height);
                                 icon.init();
                             }
                         })
