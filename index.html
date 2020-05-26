@@ -12,22 +12,34 @@
           border: 0;
           display: block;  /* No floating content on sides */
         }
+
+        canvas {
+            width: 90%;
+            height: 90%;
+            margin-left: 5%;
+            margin-right: 5%;
+            margin-top: 2%;
+            position: relative;
+            align-self: center;
+        }
         </style>
 </head>
 
 <body>
-    <canvas id="table" width="2000" height="1000"></canvas>
+    <canvas class="canvas" id="table" width="2000" height="1000"></canvas>
 
     <footer>
     
     </footer>
 
     <script type="Text/Javascript">
-    var control = new TestControl();
+    var control = new TestControl({
+               resolution : {width : 3840, height: 2160}
+           });
     (function() {
    // your page initialization code here
    // the DOM will be available here
-        control.init();
+        
 
         var
         // Obtain a reference to the canvas element using its id.
@@ -41,7 +53,8 @@
        function initialize() {
            // Register an event listener to call the resizeCanvas() function 
            // each time the window is resized.
-           window.addEventListener('resize', resizeCanvas, false);
+           control.init();
+           //window.addEventListener('resize', resizeCanvas, false);
            // Draw canvas border for the first time.
            //resizeCanvas();
         }

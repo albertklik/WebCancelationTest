@@ -15,7 +15,7 @@ this.CancelationTest = this.CancelationTest || {}
      */
     
     //constructor
-    function Render(board,img_path,img_data,onclickEvent) 
+    function Render(resolution,board,img_path,img_data,onclickEvent) 
     {
         //public properties
 
@@ -25,8 +25,8 @@ this.CancelationTest = this.CancelationTest || {}
         
         var _stage = new createjs.Stage('table');
         var _imgPath = img_path;
-        var _board_width = 2000;
-        var _board_height = 1000;
+        var _board_width = resolution.width;
+        var _board_height = resolution.height;
         var _cell_width = _board_width/3;
         var _cell_height = _board_height/3;
         var _block_width = (_cell_width)/_board[0][0].width;
@@ -34,8 +34,10 @@ this.CancelationTest = this.CancelationTest || {}
         var _img_data = img_data;
         var _onClickEvent = onclickEvent;
         var _imgLoaded = false;
+        _stage.canvas.width = resolution.width;
+        _stage.canvas.height = resolution.height;
         
-        this.start = function () {
+        this.startTest = function () {
             if (!_imgLoaded) {
                 _img_data.forEach(element => {
                     element.img = new Image();
@@ -70,6 +72,10 @@ this.CancelationTest = this.CancelationTest || {}
             _stage.update();
         }
 
+        this.finishTest = function() {
+
+        }
+
         this.update = function(board,width,height) {
             _board = board || _board;
             _board_width = width || _board_width;
@@ -78,7 +84,7 @@ this.CancelationTest = this.CancelationTest || {}
             _cell_height = _board_height/3;
             _block_width = (_cell_width)/_board[0][0].width;
             _block_height = (_cell_height)/_board[0][0].height;
-            this.start();
+            this.startTest();
         };
 
         this.resize = function(width,height) {
@@ -88,9 +94,9 @@ this.CancelationTest = this.CancelationTest || {}
             _cell_height = _board_height/3;
             _block_width = (_cell_width)/_board[0][0].width;
             _block_height = (_cell_height)/_board[0][0].height;
-            this.start();
+            this.startTest();
         }
 
-        this.start();
+        this.startTest();
     }
 

@@ -16,7 +16,7 @@ this.CancelationTest = this.CancelationTest || {}
      */
 
      //constructor
-    function TestControl(time_seconds, n_goals, n_distractors) 
+    function TestControl(data,time_seconds, n_goals, n_distractors) 
     {
     //public properties
     this.IMG_PATH = "assets/icons/";
@@ -39,6 +39,7 @@ this.CancelationTest = this.CancelationTest || {}
     var _goal_types = this.GOAL_TYPES; 
     var _clicks = [];
     var _startTime;
+    var _data = data;
 
         //private properties
         
@@ -71,7 +72,7 @@ this.CancelationTest = this.CancelationTest || {}
             
 
             //renderiza na tela
-            this.render = new Render(this.cells,this.IMG_PATH,this.GOAL_TYPES,this.onClick);
+            this.render = new Render(_data.resolution,this.cells,this.IMG_PATH,this.GOAL_TYPES,this.onClick);
             _startTime = (new Date()).getTime();
             createjs.Ticker.addEventListener("tick", tick);
             function tick(){
