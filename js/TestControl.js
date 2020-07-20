@@ -65,7 +65,8 @@ this.CancelationTest = this.CancelationTest || {}
             //inicia as 9 celulas com parametros estabelecidos
             this.cells.forEach((element,i) => {
                 element.forEach((item,j) => {
-                    this.cells[i][j] = new Cell(15,7,3,35,this.GOAL_TYPES[0],this.GOAL_TYPES.slice(1,12));
+                    this.cells[i][j] = new RandomGrid(_data.resolution,3,35,this.GOAL_TYPES[0],this.GOAL_TYPES.slice(1,12));
+                    this.cells[i][j].name = "celula " + i +" " + j;
                 });
             });
 
@@ -74,7 +75,7 @@ this.CancelationTest = this.CancelationTest || {}
             //renderiza na tela
             this.render = new Render(_data.resolution,this.cells,this.IMG_PATH,this.GOAL_TYPES,this.onClick);
             _startTime = (new Date()).getTime();
-            createjs.Ticker.addEventListener("tick", tick);
+            //createjs.Ticker.addEventListener("tick", tick);
             function tick(){
                 if (((new Date()).getTime() - _startTime)/1000 >=60) {
                     alert("test finished");

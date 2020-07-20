@@ -29,8 +29,8 @@ this.CancelationTest = this.CancelationTest || {}
         var _board_height = resolution.height;
         var _cell_width = _board_width/3;
         var _cell_height = _board_height/3;
-        var _block_width = (_cell_width)/_board[0][0].width;
-        var _block_height = (_cell_height)/_board[0][0].height;
+        var _block_width = (_cell_width)/_board[0][0].cell_width;
+        var _block_height = (_cell_height)/_board[0][0].cell_height;
         var _img_data = img_data;
         var _onClickEvent = onclickEvent;
         var _imgLoaded = false;
@@ -51,19 +51,21 @@ this.CancelationTest = this.CancelationTest || {}
 
             _stage.removeAllChildren();
             _stage.update();
-            _board.forEach((line,a) => {
-                line.forEach((colunm,b) => {
+            _board.forEach((colunm,a) => {
+                colunm.forEach((line,b) => {
                     let start_pos_x = _cell_width * a;
                     let start_pos_y = _cell_height * b;
                     let shape = new createjs.Shape();
                     shape.graphics.beginStroke('grey')
                     .setStrokeStyle(1).drawRect(((_cell_width)*a),((_cell_height)*b), _cell_width-1, _cell_height-1);
                     _stage.addChild(shape);
-                    colunm.cell_map.forEach((element,i) => {
+                    line.cell_map.forEach((element,i) => {
                         element.forEach((item,j) => {
                             if (item) {
                                 let icon = new Icon(_onClickEvent,_stage,item,(start_pos_x+((_block_width)*i)),(start_pos_y+((_block_height)*j)),_block_width,_block_height);
                                 icon.init();
+                                let icon2 = new Icon(_onClickEvent,_stage,item,start_pos_x+item.x,start_pos_y+item.y,item.width,item.height);
+                                icon2.init();
                             }
                         })
                     });
@@ -82,8 +84,8 @@ this.CancelationTest = this.CancelationTest || {}
             _board_height = height || _board_height;
             _cell_width = _board_width/3;
             _cell_height = _board_height/3;
-            _block_width = (_cell_width)/_board[0][0].width;
-            _block_height = (_cell_height)/_board[0][0].height;
+            _block_width = (_cell_width)/_board[0][0].cell_width;
+            _block_height = (_cell_height)/_board[0][0].cell_height;
             this.startTest();
         };
 
@@ -92,8 +94,8 @@ this.CancelationTest = this.CancelationTest || {}
             _board_height = height || 1000;
             _cell_width = _board_width/3;
             _cell_height = _board_height/3;
-            _block_width = (_cell_width)/_board[0][0].width;
-            _block_height = (_cell_height)/_board[0][0].height;
+            _block_width = (_cell_width)/_board[0][0].cell_width;
+            _block_height = (_cell_height)/_board[0][0].cell+height;
             this.startTest();
         }
 
