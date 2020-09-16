@@ -36,36 +36,52 @@ this.CancelationTest = this.CancelationTest || {}
         { id : 13, name : "barco" }
     ];
 
-    var _goal_types = this.GOAL_TYPES; 
-    var _clicks = [];
-    var _startTime;
-    var _data = data;
+    this.clicks = [];
+    this.startTime;
+    this.data = data;
+    this.time_seconds = time_seconds || 20000,
+    this.n_goals = n_goals || 3,
+    this.n_distractors = n_distractors || 10;
+    this.alinhado = false;
 
-        //private properties
-        
-        var _time_seconds = time_seconds || 20000,
-        _n_goals = n_goals || 3,
-        _n_distractors = n_distractors || 10;
-        this.cells =  Array(3).fill().map(() => Array(3).fill()); 
-        _cells = this.cells;
-        this.render;
+    
+    this.cells = this.cells;
+    this.render;
 
-        this.onClick = function (item,event) {
+    this.cells =  [
+        [new RandomGrid(this.data.resolution,3,null,this.GOAL_TYPES[0],this.GOAL_TYPES.slice(1,12),this.alinhado).start(),
+     new RandomGrid(this.data.resolution,3,null,this.GOAL_TYPES[0],this.GOAL_TYPES.slice(1,12),this.alinhado).start(), 
+      new RandomGrid(this.data.resolution,3,null,this.GOAL_TYPES[0],this.GOAL_TYPES.slice(1,12),this.alinhado).start()
+    ],
+    [
+      new RandomGrid(this.data.resolution,3,null,this.GOAL_TYPES[0],this.GOAL_TYPES.slice(1,12),this.alinhado).start(),
+       new RandomGrid(this.data.resolution,3,null,this.GOAL_TYPES[0],this.GOAL_TYPES.slice(1,12),this.alinhado).start(), 
+       new RandomGrid(this.data.resolution,3,null,this.GOAL_TYPES[0],this.GOAL_TYPES.slice(1,12),this.alinhado).start()
+    ],
+    [
+       new RandomGrid(this.data.resolution,3,null,this.GOAL_TYPES[0],this.GOAL_TYPES.slice(1,12),this.alinhado).start(), 
+       new RandomGrid(this.data.resolution,3,null,this.GOAL_TYPES[0],this.GOAL_TYPES.slice(1,12),this.alinhado).start(), 
+       new RandomGrid(this.data.resolution,3,null,this.GOAL_TYPES[0],this.GOAL_TYPES.slice(1,12),this.alinhado).start() 
+    ]];
+    }
+
+    TestControl.prototype = {
+        onClick: function (item,event) {
             var time = (new Date()).getTime();
-            _clicks.push({ 
+            this.clicks.push({ 
                 time : time, 
                 x :event.stageX, 
                 y : event.stageY, 
                 item : item, 
                 hit : item.id == _goal_types[0].id ? 1 : 0 
             });
-        }
+        },
         
-        this.init  =  function() {
+        init:  function() {
             //inicia as 9 celulas com parametros estabelecidos
             this.cells.forEach((element,i) => {
                 element.forEach((item,j) => {
-                    this.cells[i][j] = new RandomGrid(_data.resolution,3,35,this.GOAL_TYPES[0],this.GOAL_TYPES.slice(1,12));
+                    //this.cells[i][j] = ;
                     this.cells[i][j].name = "celula " + i +" " + j;
                 });
             });
@@ -73,25 +89,22 @@ this.CancelationTest = this.CancelationTest || {}
             
 
             //renderiza na tela
-            this.render = new Render(_data.resolution,this.cells,this.IMG_PATH,this.GOAL_TYPES,this.onClick);
-            _startTime = (new Date()).getTime();
-            //createjs.Ticker.addEventListener("tick", tick);
+            this.render = new Render(this.data.resolution,this.cells,this.IMG_PATH,this.GOAL_TYPES,this.onClick);
+            this.startTime = (new Date()).getTime();
+            createjs.Ticker.addEventListener("tick", tick);
             function tick(){
-                if (((new Date()).getTime() - _startTime)/1000 >=60) {
+                if (((new Date()).getTime() - this.startTime)/1000 >=60) {
                     alert("test finished");
-                    alert("test: " + JSON.stringify(_cells))
-                    alert("result: " + JSON.stringify(_clicks));
+                    alert("test: " + JSON.stringify(this.cells))
+                    alert("result: " + JSON.stringify(this.clicks));
                 }
             }
-        }
+        },
 
         //reajusta o tamanho da tela
-        this.resize = function (width,heigt) {
+        resize: function (width,heigt) {
             this.render.resize(width,heigt);
         }
-
-
-        
     }
 
     

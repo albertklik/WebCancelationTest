@@ -21,7 +21,7 @@ this.CancelationTest = this.CancelationTest || {}
 
 
         //private properties
-        var _board = board || Array(3).fill().map(() => Array(3).fill(new Cell()));
+        var _board = board || Array(3).fill().map(() => Array(3).fill(new Cell().iniciar()));
         
         var _stage = new createjs.Stage('table');
         var _imgPath = img_path;
@@ -56,15 +56,14 @@ this.CancelationTest = this.CancelationTest || {}
                     let start_pos_x = _cell_width * a;
                     let start_pos_y = _cell_height * b;
                     let shape = new createjs.Shape();
-                    shape.graphics.beginStroke('grey')
-                    .setStrokeStyle(1).drawRect(((_cell_width)*a),((_cell_height)*b), _cell_width-1, _cell_height-1);
+                    //shape.graphics.beginStroke('grey')
+                    //.setStrokeStyle(1).drawRect(((_cell_width)*a),((_cell_height)*b), _cell_width-1, _cell_height-1);
                     _stage.addChild(shape);
                     line.cell_map.forEach((element,i) => {
                         element.forEach((item,j) => {
                             if (item) {
-                                let icon = new Icon(_onClickEvent,_stage,item,(start_pos_x+((_block_width)*i)),(start_pos_y+((_block_height)*j)),_block_width,_block_height);
-                                icon.init();
                                 let icon2 = new Icon(_onClickEvent,_stage,item,start_pos_x+item.x,start_pos_y+item.y,item.width,item.height);
+                                //shape.graphics.beginStroke('grey').setStrokeStyle(2).drawRect(start_pos_x + item.x, start_pos_y + item.y,item.width,item.height);
                                 icon2.init();
                             }
                         })

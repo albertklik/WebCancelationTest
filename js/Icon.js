@@ -26,7 +26,7 @@ this.CancelationTest = this.CancelationTest || {}
             _onclick = onclick;
 
         this.init = function() {
-           this.bitmap = new createjs.Bitmap(_icon.img);
+           this.bitmap = new createjs.Bitmap(_icon.item.img);
            this.bitmap.x = _x;
            this.bitmap.y = _y;
            this.bitmap.width = _width;
