@@ -17,52 +17,47 @@ this.CancelationTest = this.CancelationTest || {}
     //constructor
     function Render(resolution,board,img_path,img_data,onclickEvent) 
     {
-        //public properties
+        this.board = board || Array(3).fill().map(() => Array(3).fill(new Cell().iniciar()));
+        this.stage = new createjs.Stage('table');
+        this.imgPath = img_path;
+        this.board_width = resolution.width;
+        this.board_height = resolution.height;
+        this.cell_width = this.board_width/3;
+        this.cell_height = this.board_height/3;
+        this.block_width = (this.cell_width)/this.board[0][0].cell_width;
+        this.block_height = (this.cell_height)/this.board[0][0].cell_height;
+        this.img_data = img_data;
+        this.onClickEvent = onclickEvent;
+        this.imgLoaded = false;
+        this.stage.canvas.width = resolution.width;
+        this.stage.canvas.height = resolution.height;
+    }
 
-
-        //private properties
-        var _board = board || Array(3).fill().map(() => Array(3).fill(new Cell().iniciar()));
-        
-        var _stage = new createjs.Stage('table');
-        var _imgPath = img_path;
-        var _board_width = resolution.width;
-        var _board_height = resolution.height;
-        var _cell_width = _board_width/3;
-        var _cell_height = _board_height/3;
-        var _block_width = (_cell_width)/_board[0][0].cell_width;
-        var _block_height = (_cell_height)/_board[0][0].cell_height;
-        var _img_data = img_data;
-        var _onClickEvent = onclickEvent;
-        var _imgLoaded = false;
-        _stage.canvas.width = resolution.width;
-        _stage.canvas.height = resolution.height;
-        
-        this.startTest = function () {
-            if (!_imgLoaded) {
-                _img_data.forEach(element => {
+    Render.prototype = {
+        startTest : function () {
+            if (!this.imgLoaded) {
+                this.img_data.forEach(element => {
                     element.img = new Image();
-                    element.img.src = _imgPath + element.name + ".png";
-                    element.img.onload = function() {
-                        _stage.update();
-                    }
+                    element.img.src = this.imgPath + element.name + ".png";
+                    element.img.onload = this.updateStage();
                 });
-                _imgLoaded = true;
+                this.imgLoaded = true;
             }
 
-            _stage.removeAllChildren();
-            _stage.update();
-            _board.forEach((colunm,a) => {
+            this.stage.removeAllChildren();
+            this.stage.update();
+            this.board.forEach((colunm,a) => {
                 colunm.forEach((line,b) => {
-                    let start_pos_x = _cell_width * a;
-                    let start_pos_y = _cell_height * b;
-                    let shape = new createjs.Shape();
+                    let start_pos_x = this.cell_width * a;
+                    let start_pos_y = this.cell_height * b;
+                    //let shape = new createjs.Shape();
                     //shape.graphics.beginStroke('grey')
                     //.setStrokeStyle(1).drawRect(((_cell_width)*a),((_cell_height)*b), _cell_width-1, _cell_height-1);
-                    _stage.addChild(shape);
+                    //this.stage.addChild(shape);
                     line.cell_map.forEach((element,i) => {
                         element.forEach((item,j) => {
                             if (item) {
-                                let icon2 = new Icon(_onClickEvent,_stage,item,start_pos_x+item.x,start_pos_y+item.y,item.width,item.height);
+                                let icon2 = new Icon(this.onClickEvent,this.stage,item,start_pos_x+item.x,start_pos_y+item.y,item.width,item.height);
                                 //shape.graphics.beginStroke('grey').setStrokeStyle(2).drawRect(start_pos_x + item.x, start_pos_y + item.y,item.width,item.height);
                                 icon2.init();
                             }
@@ -70,34 +65,37 @@ this.CancelationTest = this.CancelationTest || {}
                     });
                 })
             })
-            _stage.update();
-        }
+            this.stage.update();
+        },
 
-        this.finishTest = function() {
+        finishTest: function() {
 
-        }
+        },
 
-        this.update = function(board,width,height) {
-            _board = board || _board;
-            _board_width = width || _board_width;
-            _board_height = height || _board_height;
-            _cell_width = _board_width/3;
-            _cell_height = _board_height/3;
-            _block_width = (_cell_width)/_board[0][0].cell_width;
-            _block_height = (_cell_height)/_board[0][0].cell_height;
+        updateStage: function() {
+            this.stage.update();
+        },
+
+        update: function(board,width,height) {
+            this.board = board || this.board;
+            this.board_width = width || this.board_width;
+            this.board_height = height || this.board_height;
+            this.cell_width = this.board_width/3;
+            this.cell_height = this.board_height/3;
+            this.block_width = (this.cell_width)/this.board[0][0].cell_width;
+            this.block_height = (this.cell_height)/this.board[0][0].cell_height;
             this.startTest();
-        };
+        },
 
-        this.resize = function(width,height) {
-            _board_width = width || 2000;
-            _board_height = height || 1000;
-            _cell_width = _board_width/3;
-            _cell_height = _board_height/3;
-            _block_width = (_cell_width)/_board[0][0].cell_width;
-            _block_height = (_cell_height)/_board[0][0].cell+height;
+        resize: function(width,height) {
+            this.board_width = width || 2000;
+            this.board_height = height || 1000;
+            this.ell_width = this.board_width/3;
+            this.cell_height = this.board_height/3;
+            this.block_width = (this.cell_width)/this.board[0][0].cell_width;
+            this.block_height = (this.cell_height)/this.board[0][0].cell+height;
             this.startTest();
         }
 
-        this.startTest();
     }
 

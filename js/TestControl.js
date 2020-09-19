@@ -43,9 +43,6 @@ this.CancelationTest = this.CancelationTest || {}
     this.n_goals = n_goals || 3,
     this.n_distractors = n_distractors || 10;
     this.alinhado = false;
-
-    
-    this.cells = this.cells;
     this.render;
 
     this.cells =  [
@@ -73,7 +70,7 @@ this.CancelationTest = this.CancelationTest || {}
                 x :event.stageX, 
                 y : event.stageY, 
                 item : item, 
-                hit : item.id == _goal_types[0].id ? 1 : 0 
+                hit : item.id == this.goal_types[0].id ? 1 : 0 
             });
         },
         
@@ -90,14 +87,19 @@ this.CancelationTest = this.CancelationTest || {}
 
             //renderiza na tela
             this.render = new Render(this.data.resolution,this.cells,this.IMG_PATH,this.GOAL_TYPES,this.onClick);
+            this.render.startTest();
             this.startTime = (new Date()).getTime();
-            createjs.Ticker.addEventListener("tick", tick);
+            createjs.Ticker.addEventListener("tick", this.tick);
             function tick(){
-                if (((new Date()).getTime() - this.startTime)/1000 >=60) {
-                    alert("test finished");
-                    alert("test: " + JSON.stringify(this.cells))
-                    alert("result: " + JSON.stringify(this.clicks));
-                }
+                
+            }
+        },
+
+        tick: function () {
+            if (((new Date()).getTime() - this.startTime)/1000 >=10) {
+                alert("test finished");
+                alert("test: " + JSON.stringify(this.cells))
+                alert("result: " + JSON.stringify(this.clicks));
             }
         },
 
