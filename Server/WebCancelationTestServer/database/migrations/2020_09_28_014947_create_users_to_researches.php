@@ -13,12 +13,12 @@ class CreateUsersToResearches extends Migration
      */
     public function up()
     {
-        Schema::table('researches', function (Blueprint $table) {
-            $table->foreignId("users_id")
-                    ->constrained()
-                    ->cascadeOnDelete();
-        });
-    }
+    //     Schema::table('researches', function (Blueprint $table) {
+    //         $table->foreignId("users_id")
+    //                 ->constrained()
+    //                 ->cascadeOnDelete();
+    //     });
+     }
 
     /**
      * Reverse the migrations.
@@ -27,8 +27,8 @@ class CreateUsersToResearches extends Migration
      */
     public function down()
     {
-        Schema::table('researches', function (Blueprint $table) {
-            $table->dropForeign(["users_id"]);
-        });
+        // Schema::table('researches', function (Blueprint $table) {
+        //     $table->dropForeign(["users_id"]);
+        // });
     }
 }

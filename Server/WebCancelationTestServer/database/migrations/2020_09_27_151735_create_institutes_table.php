@@ -13,12 +13,12 @@ class CreateInstitutesTable extends Migration
      */
     public function up()
     {
-        Schema::create('institutes', function (Blueprint $table) {
-            $table->id();
-            $table->string("name");
-            $table->string("short_name");
-            $table->timestamps();
-        });
+        // Schema::create('institutes', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->string("name");
+        //     $table->string("short_name");
+        //     $table->timestamps();
+        // });
     }
 
     /**
@@ -28,6 +28,6 @@ class CreateInstitutesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('institutes');
+        // Schema::dropIfExists('institutes');
     }
 }

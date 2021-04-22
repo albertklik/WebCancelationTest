@@ -14,11 +14,11 @@ class CreateInstitutesToUsers extends Migration
 
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->foreignId("institutes_id")
-                    ->constrained()
-                    ->cascadeOnDelete();
-        });
+        // Schema::table('users', function (Blueprint $table) {
+        //     $table->foreignId("institutes_id")
+        //             ->constrained()
+        //             ->cascadeOnDelete();
+        // });
     }
 
     /**
@@ -28,8 +28,8 @@ class CreateInstitutesToUsers extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropForeign(["institutes_id"]);
-        });
+        // Schema::table('users', function (Blueprint $table) {
+        //     $table->dropForeign(["institutes_id"]);
+        // });
     }
 }

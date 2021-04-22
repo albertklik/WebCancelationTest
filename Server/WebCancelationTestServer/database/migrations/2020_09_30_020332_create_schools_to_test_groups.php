@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateResearchesToSchools extends Migration
+class CreateSchoolsToTestGroups extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class CreateResearchesToSchools extends Migration
      */
     public function up()
     {
-        // Schema::table('schools', function (Blueprint $table) {
-        //     $table->foreignId("researches_id")
+        // Schema::table('test_groups', function (Blueprint $table) {
+        //     $table->foreignId("schools_id")
         //             ->constrained()
         //             ->cascadeOnDelete();
         // });
@@ -27,8 +27,8 @@ class CreateResearchesToSchools extends Migration
      */
     public function down()
     {
-        // Schema::table('schools', function (Blueprint $table) {
-        //     $table->dropForeign(["researches_id"]);
+        // Schema::table('test_groups', function (Blueprint $table) {
+        //     $table->dropForeign(["schools_id"]);
         // });
     }
 }

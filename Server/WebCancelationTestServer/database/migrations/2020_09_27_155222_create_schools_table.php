@@ -13,13 +13,13 @@ class CreateSchoolsTable extends Migration
      */
     public function up()
     {
-        Schema::create('schools', function (Blueprint $table) {
-            $table->id();
-            $table->string("name");
-            $table->string("director_name");
-            $table->string("phone");
-            $table->timestamps();
-        });
+        // Schema::create('schools', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->string("name");
+        //     $table->string("director_name");
+        //     $table->string("phone");
+        //     $table->timestamps();
+        // });
     }
 
     /**
@@ -29,6 +29,6 @@ class CreateSchoolsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('schools');
+        // Schema::dropIfExists('schools');
     }
 }

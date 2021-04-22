@@ -13,14 +13,14 @@ class CreateResearchesTable extends Migration
      */
     public function up()
     {
-        Schema::create('researches', function (Blueprint $table) {
-            $table->id();
-            $table->string("title");
-            $table->text("description")->nullable();
-            $table->string("keywords");
-            $table->string("instructor_name");
-            $table->timestamps();
-        });
+        // Schema::create('researches', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->string("title");
+        //     $table->text("description")->nullable();
+        //     $table->string("keywords");
+        //     $table->string("instructor_name");
+        //     $table->timestamps();
+        // });
     }
 
     /**
@@ -30,6 +30,6 @@ class CreateResearchesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('researches');
+        // Schema::dropIfExists('researches');
     }
 }
