@@ -3,36 +3,33 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Tests;
+use App\Models\Test;
+use App\Http\Requests\TestSaveRequest;
 class TestsController extends Controller
 {
     public function index() 
     {
-        $tests = Tests::all();
+        $tests = Test::all();
         return response()->json($tests);
     }
 
     public function show($id) 
     {
-        return Tests::findOrFail($id);
+        return Test::findOrFail($id);
     }
 
-    public function store(Request $request) 
+    public function store(TestSaveRequest $request) 
     {
-        $validated = $request->validate(Tests::getValidationArray());
-        
-        $test = new Tests();
+        $test = new Test();
         $test->fill($request->all());
         $test->save();
 
         return response()->json($test, 201);
     }
 
-    public function update(Request $request, $id) {
+    public function update(TestSaveRequest $request, $id) {
 
-        $test = Tests::findOrFail($id);
-
-        $validated = $request->validate(Tests::getValidationArray());
+        $test = Test::findOrFail($id);
 
         $test->fill($request->all());
         $test->save();
@@ -42,7 +39,7 @@ class TestsController extends Controller
 
     public function destroy($id) 
     {
-        $test = Tests::findOrFail($id);
+        $test = Test::findOrFail($id);
 
         if ($test->delete()) 
         {

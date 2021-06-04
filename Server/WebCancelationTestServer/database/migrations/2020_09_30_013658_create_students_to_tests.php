@@ -14,7 +14,7 @@ class CreateStudentsToTests extends Migration
     public function up()
     {
         Schema::table('tests', function (Blueprint $table) {
-            $table->foreignId("students_id")
+            $table->foreignId("student_id")
                     ->constrained()
                     ->cascadeOnDelete();
         });
@@ -28,7 +28,7 @@ class CreateStudentsToTests extends Migration
     public function down()
     {
         Schema::table('tests', function (Blueprint $table) {
-            $table->dropForeign(["students_id"]);
+            $table->dropForeign(["student_id"]);
         });
     }
 }

@@ -14,7 +14,7 @@ class CreateTestGroupsToTests extends Migration
     public function up()
     {
         Schema::table('tests', function (Blueprint $table) {
-            $table->foreignId("test_groups_id")
+            $table->foreignId("test_group_id")
                     ->constrained()
                     ->cascadeOnDelete();
         });
@@ -28,7 +28,7 @@ class CreateTestGroupsToTests extends Migration
     public function down()
     {
         Schema::table('tests', function (Blueprint $table) {
-            $table->dropForeign(["test_groups_id"]);
+            $table->dropForeign(["test_group_id"]);
         });
     }
 }

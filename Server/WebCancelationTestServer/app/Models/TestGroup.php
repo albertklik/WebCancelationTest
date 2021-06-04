@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class TestGroups extends Model
+class TestGroup extends Model
 {
     use HasFactory;
 
@@ -18,9 +18,8 @@ class TestGroups extends Model
         'target_id',
     ];
 
-    public function tests()
-    {
-        return $this->hasMany(Tests::class);
+    public function tests() {
+        return $this->hasMany('App\Models\Tests');
     }
     
 }
