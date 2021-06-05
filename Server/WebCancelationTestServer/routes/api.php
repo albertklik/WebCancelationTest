@@ -1,6 +1,8 @@
 <?php
 
-use App\Http\Controllers\TestsController;
+use App\Http\Controllers\TestController;
+use App\Http\Controllers\TestGroupController;
+use App\Http\Controllers\StudentController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -19,4 +21,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::apiResource('/tests', TestsController::class);
+Route::get('/tests/list/', [TestController::class,'list'])->name('test.list');
+Route::apiResource('/test', TestController::class);
+
+Route::apiResource('/testGroup', TestGroupController::class);
+
+Route::apiResource('/student', StudentController::class);
