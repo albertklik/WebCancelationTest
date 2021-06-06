@@ -26,4 +26,5 @@ Route::apiResource('/test', TestController::class);
 
 Route::apiResource('/testGroup', TestGroupController::class);
 
+Route::post('/student/search/', [StudentController::class,'search'])->name('student.search');
 Route::apiResource('/student', StudentController::class);

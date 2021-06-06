@@ -25,11 +25,11 @@ class TestSaveRequest extends FormRequest
     {
         return [
             'result' => 'required|json',
-            'seconds' => 'required|numeric',
-            'hits' => 'required|numeric',
-            'misses' => 'required|numeric',
-            'student_id' => 'required|numeric',
-            'test_group_id' => 'required|numeric'
+            'seconds' => 'required|numeric|min:0',
+            'hits' => 'required|numeric|min:0',
+            'misses' => 'required|numeric|min:0',
+            'student_id' => 'required|numeric|min:0',
+            'test_group_id' => 'required|numeric|min:0'
         ];
     }
 

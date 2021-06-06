@@ -15,3 +15,5 @@ use App\Http\Controllers\ViewController;
 */
 
 Route::get('/', [ViewController::class,'index']);
+Route::get('/login', [ViewController::class,'index']);
+Route::get('/cancellationTest', [ViewController::class,'test']);

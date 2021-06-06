@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StudentSaveRequest;
+use App\Http\Requests\StudentSearchRequest;
 use App\Models\Student;
 
 class StudentController extends Controller
@@ -16,6 +17,11 @@ class StudentController extends Controller
     public function show($id) 
     {
         return Student::findOrFail($id);
+    }
+
+    public function search(StudentSearchRequest $request) {
+       $students = Student::where('name','LIKE','%'.$request->input('name').'%')->get();
+       return response()->json($students);
     }
 
     public function store(StudentSaveRequest $request) 
