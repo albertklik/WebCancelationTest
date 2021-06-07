@@ -1,10 +1,14 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
 <head>
+<meta charset="utf-8">
     <script src="https://code.createjs.com/1.0.0/easeljs.min.js"></script>
     <script src="js/Cell.js"></script>
     <script src="js/fillingMethod/RandomGrid.js"></script>
     <script src="js/Icon.js"></script>
     <script src="js/Render.js"></script>
     <script src="js/TestControl.js"></script>
+	
     <style>
         html, body {
           width: 100%;
@@ -34,31 +38,31 @@
     </footer>
 
     <script type="Text/Javascript">
-    var control = new TestControl({
-               resolution : {width : 3840, height: 2160}
-           });
+    //var control = ;
     (function() {
    // your page initialization code here
    // the DOM will be available here
-        
+        new TestControl({
+               resolution : {width : 3840, height: 2160}
+           },'table')
 
-        var
+        //var
         // Obtain a reference to the canvas element using its id.
-        htmlCanvas = document.getElementById('table');
+        //htmlCanvas = document.getElementById('table');
         // Obtain a graphics context on the canvas element for drawing.
         //context = htmlCanvas.getContext('2d');
 
        // Start listening to resize events and draw canvas.
-       initialize();
+       //initialize();
 
-       function initialize() {
+       //function initialize() {
            // Register an event listener to call the resizeCanvas() function 
            // each time the window is resized.
-           control.init();
+           //control.init();
            //window.addEventListener('resize', resizeCanvas, false);
            // Draw canvas border for the first time.
            //resizeCanvas();
-        }
+        //}
 
 
         // Runs each time the DOM window resize event fires.
@@ -74,3 +78,4 @@
 
     </script>
 </body>
+</html>

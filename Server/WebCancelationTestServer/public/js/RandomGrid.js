@@ -138,6 +138,7 @@ RandomGrid.prototype = {
     this.cell_map = Array(this.cell_width).fill().map(() => Array(this.cell_height).fill());
     this.putObjects();
     this.setObjPosition();
+    return this;
   }
 
 }

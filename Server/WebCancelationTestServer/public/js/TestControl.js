@@ -31,10 +31,11 @@ var baseData = {
     this.canvasId = canvasId;
     this.time_seconds = data.time_seconds || 20000;
     this.n_goals = data.n_goals || 3;
-    this.n_distractors = data.n_distractors || 10;
+    this.n_distractors = data.n_distractors || 0;
+    this.goal = data.goal || baseData.goalTypes[0];
     this.alinhado = false;
     this.render;
-    this.board = new Board(3,this.resolution);
+    this.board = new Board(3,this.n_goals,this.n_distractors,this.goal,this.resolution);
 
     this.setup();
     }
@@ -81,10 +82,13 @@ var baseData = {
     //     }
     // }
 
-    function Board(size,resolution,alinhado) {
+    function Board(size,n_goals,n_distractors,goal,resolution,alinhado) {
 
         this.size = size;
         this.resolution = resolution;
+        this.n_goals = n_goals;
+        this.n_distractors = n_distractors;
+        this.goal = goal;
         this.alinhado = alinhado || false;
         this.cells = [];
         this.setup();
@@ -103,7 +107,7 @@ var baseData = {
     Board.prototype.generateRandom = function() {
         for (let i = 0; i < 3; i++) {
             for (let j = 0; j < 3; j++) {
-                this.cells[i][j] = new RandomGrid(this.resolution,3,null,baseData.goalTypes[0],baseData.goalTypes.slice(1,12),this.alinhado);
+                this.cells[i][j] = new RandomGrid(this.resolution,this.n_goals,this.n_distractors,this.goal,baseData.goalTypes.slice(1,12),this.alinhado);
                 this.cells[i][j].name = "celula " + i +" " + j;
             }
         }

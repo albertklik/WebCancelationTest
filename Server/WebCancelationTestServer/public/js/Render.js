@@ -35,11 +35,14 @@ this.CancelationTest = this.CancelationTest || {}
 
     Render.prototype = {
         startTest : function () {
+            self = this;
             if (!this.imgLoaded) {
                 this.img_data.forEach(element => {
                     element.img = new Image();
                     element.img.src = this.imgPath + element.name + ".png";
-                    element.img.onload = this.updateStage();
+                    element.img.onload = function() {
+                        self.updateStage();
+                    };
                 });
                 this.imgLoaded = true;
             }
@@ -50,19 +53,19 @@ this.CancelationTest = this.CancelationTest || {}
                 colunm.forEach((line,b) => {
                     let start_pos_x = this.cell_width * a;
                     let start_pos_y = this.cell_height * b;
-                    let shape = new createjs.Shape();
+                    //let shape = new createjs.Shape();
                     //shape.graphics.beginStroke('grey')
                     //.setStrokeStyle(1).drawRect(((_cell_width)*a),((_cell_height)*b), _cell_width-1, _cell_height-1);
                     //this.stage.addChild(shape);
                     line.cell_map.forEach((element,i) => {
                         element.forEach((item,j) => {
-                            //if (item) {
+                            if (item) {
                                 new Icon(this.onClickEvent,this.stage,item,start_pos_x+item.x,start_pos_y+item.y,item.width,item.height);
-                                let shape = new createjs.Shape();
-                                shape.graphics.beginStroke('grey').setStrokeStyle(2).drawRect(start_pos_x + item.x, start_pos_y + item.y,item.width,item.height);
-                                this.stage.addChild(shape);
+                                //let shape = new createjs.Shape();
+                                //shape.graphics.beginStroke('grey').setStrokeStyle(2).drawRect(start_pos_x + item.x, start_pos_y + item.y,item.width,item.height);
+                                //this.stage.addChild(shape);
                                 //icon2.init();
-                            //}
+                            }
                         })
                     });
                 })
