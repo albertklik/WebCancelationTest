@@ -226,6 +226,7 @@
                 </div>
             </div>
 
+            <!-- finish message -->
             <div id="showResult" class="d-none row">
                 <div class="col" style="margin-top: 5em">
                     <div class="row" style="padding: 2em">

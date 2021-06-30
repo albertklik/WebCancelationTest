@@ -113,14 +113,13 @@ function TestControl(data,canvasId,debug) {
             return;
         var seconds = ((new Date()).getTime() - this.startTime)/1000;
         if (seconds >= this.time_limit) {
+            this.testEnabled = false;
            this.callbacks.testFinished({
-            result : this.clicks,
-            seconds : seconds,
-            hits : this.hits,
-            misses : this.misses,
-            student_id : testData.student.id,
-        });
-        this.testEnabled = false;
+                result : this.clicks,
+                seconds : seconds,
+                hits : this.hits,
+                misses : this.misses
+            });
         baseData.log({
             message : "test finished",
             seconds : seconds,

@@ -136,31 +136,34 @@ function showSimbols() {
     showDiv('#showFigures',true);
 }
 
+function showresultTest() {
+    showDiv('#formInsertName',false);
+    showDiv('#formStudent',false);
+    showDiv('#showFigures',false);
+    showDiv('#showResult',true);
+}
+
 function startTest() {
   testControl.startTest();
 }
 
-function finishTest(result) {
-    
-    console.log(result);
-    return;
+function finishTest(data) {
     showTestPanel(false);
     loading(true);
     saveTest({
-      result : result.testResult,
-      seconds : result.seconds,
-      hits : result.hits,
-      misses : result.misses,
+      result : data.result,
+      seconds : data.seconds,
+      hits : data.hits,
+      misses : data.misses,
       student_id : testData.student.id,
       test_group_id : testData.testGroup.id
     }, function() {
-
+      showresultTest();
+    }, function(data) {
+        message(data);
     }, function() {
-
-    }, function() {
-
+      loading(false);
     });
-
 }
 
 function loading(state) {
