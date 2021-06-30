@@ -9,7 +9,7 @@ this.CancelationTest = this.CancelationTest || {}
 function RandomGrid(resolution, nGoals, nDistractors, goal, distractors, aligned) {
     
    //private methods
-   this.distractors = distractors || [{id : 2},{ id : 3},{ id : 4},{ id: 5}],
+   this.distractors = distractors || [{id : 2},{id : 3},{ id : 4},{ id: 5}],
    this.nGoal = nGoals || 3,
    this.nDistractors = nDistractors || 0;
    
@@ -102,7 +102,7 @@ RandomGrid.prototype = {
   this.cell_map.forEach((element,i) => {
     element.forEach((item,j) => {
         if (item) {
-        console.log("item coluna " + i + " linha " + j + " objeto " + item.name);
+        //console.log("item coluna " + i + " linha " + j + " objeto " + item.name);
           item.width = objWidth/2;
           item.height = objHeight/2;
 

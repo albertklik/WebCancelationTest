@@ -9,8 +9,12 @@
         <script src="{{ asset('js/Icon.js') }}"></script>
         <script src="{{ asset('js/Render.js') }}"></script>
         <script src="{{ asset('js/TestControl.js') }}"></script>
-        <script src="{{ asset('js/app.js') }}" defer></script>
-        <script src="{{ asset('js/cancellationTest.js') }}" defer></script>
+        <script src="{{ asset('js/app.js') }}" ></script>
+        <script src="{{ asset('js/cancellationTest.js') }}"></script>
+        <script>
+            setTestGroupData({!! json_encode($testGroup) !!});
+            console.log(testData.testGroup);
+        </script>
         
         <!-- Styles -->
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -27,7 +31,7 @@
              canvas {
                 cursor: pointer;
                 width: 90%;
-                height: 90%;
+                height:  90%;
                 margin-left: 5%;
                 margin-right: 5%;
                 margin-top: 2%;
@@ -68,16 +72,15 @@
                 <p>< WEBCANCELLATION TEST ></p>
             </div>
         </div>
+        <!-- logo -->
+        <div id="loaderSpinner" class="d-none">
+          <div  class="d-flex justify-content-center">
+              <div class="spinner-border" style="width: 5rem; height: 5rem; margin-top: 5em" role="status">
+              <span class="sr-only">Loading...</span>
+              </div>
+          </div>
+        </div>
         <div id="formContent" class="d-block container body-content">
-            
-            <!-- logo -->
-            <div id="loaderSpinner" class="d-none justify-content-center">
-                <div class="spinner-border" style="width: 5rem; height: 5rem; margin-top: 5em" role="status">
-                <span class="sr-only">Loading...</span>
-                </div>
-            </div>
-
-
             <!-- insert name -->
             <div id="formInsertName" class="d-none row align-items-center">
                 <div class="col" style="margin-top: 5em">
@@ -104,18 +107,17 @@
             <div id="formStudent" class="d-none row align-items-center">
                 <div class="col" style="margin-top: 5em">
                     <div class="row" style="padding: 2em">
-                        <p class="h1" style="font-size: 60px;">Parece que você é novo por aqui.</p>
+                        <p class="h1" style="font-size: 60px;">Oi <span id="nameText"></span>, parece que você é novo(a) por aqui.</p>
                     </div>
                     <div class="row" style="padding-top: 2em">
                         <div class="col">
                             <form>
                                 <div class="mb-3">
-                                    <label class="form-label" style="font-size: 30px" for="studentName">Insira o seu nome</label>
-                                    <input readonly class="form-control-plaintext" style="font-size: 30px" id="studentName" value="Luiz da silva">
+                                    <input hidden readonly class="form-control-plaintext" style="font-size: 30px" id="studentName" >
                                 </div>
                                 <div class="mb-3">
-                                    <label class="form-label" style="font-size: 30px" for="studentDateOfBirth">Insira a sua data de nascimento</label>
-                                    <input class="form-control" type="date" style="font-size: 30px" id="studentDateOfBirth" placeholder="01/06/1970">
+                                    <label class="form-label" style="font-size: 30px" for="studentDateOfBirth">Em que dia você nasceu?</label>
+                                    <input class="form-control" type="date" style="font-size: 30px" id="studentBirthDate" placeholder="01/06/1970">
                                 </div>
                             </form>
                         </div>
@@ -235,5 +237,8 @@
 
         </div>
         <canvas class="d-none canvas" id="testCanvas" width="600" height="500"></canvas>
+
+
+        
     </body>
 </html>

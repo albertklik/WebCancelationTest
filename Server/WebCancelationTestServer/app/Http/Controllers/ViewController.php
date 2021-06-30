@@ -14,6 +14,6 @@ class ViewController extends Controller
 
     public function test(CancellationTestRequest $request) {
         $testGroup = TestGroup::findOrFail($request->input('id'));
-        return view('cancellationTest',['testGroup' => $request]);
+        return view('cancellationTest',['testGroup' => $testGroup]);
     }
 }
