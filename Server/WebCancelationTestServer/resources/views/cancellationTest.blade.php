@@ -11,6 +11,7 @@
         <script src="{{ asset('js/TestControl.js') }}"></script>
         <script src="{{ asset('js/app.js') }}" ></script>
         <script src="{{ asset('js/cancellationTest.js') }}"></script>
+        <script src="{{ asset('js/BoardGenerator.js') }}"></script>
         <script>
             setTestGroupData({!! json_encode($testGroup) !!});
             console.log(testData.testGroup);

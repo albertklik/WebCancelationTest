@@ -539,7 +539,3 @@ Tile.prototype.updatePosition = function (position) {
   this.x = position.x;
   this.y = position.y;
 };
-
-
-
-Resources1× 0.5× 0.25×Rerun

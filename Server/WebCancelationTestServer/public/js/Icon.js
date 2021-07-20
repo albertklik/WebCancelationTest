@@ -15,22 +15,24 @@ this.CancelationTest = this.CancelationTest || {}
      */
     
     //constructor
-    function Icon(onclick,stage,icon,x,y,width,height) 
+    function Icon(onclick,stage,item,x,y,width,height,img_data) 
     {
-        this.stage = stage;
-        this.onClickEvent = onclick;
-        this.icon = icon;
-        this.x = x;
-        this.y = y;
-        this.width = width;
-        this.height = height;
+        this.stage          = stage;
+        this.onClickEvent   = onclick;
+        this.item           = item;
+        this.x              = x;
+        this.y              = y;
+        this.width          = width;
+        this.height         = height;
+        this.img_data       = img_data;
         
 
         this.setup();
     }
 
     Icon.prototype.setup = function() {
-        this.bitmap = new createjs.Bitmap(this.icon.item.img);
+        var img = this.img_data.find(e => e.id == this.item.id).img || this.img_data.fist().img;
+        this.bitmap = new createjs.Bitmap(img);
         this.bitmap.x = this.x;
         this.bitmap.y = this.y;
         this.bitmap.width = this.width;
@@ -39,7 +41,7 @@ this.CancelationTest = this.CancelationTest || {}
         this.bitmap.scaleY = this.height/150;
         var self = this;
         this.bitmap.on("click", function(evt) {
-           self.onClickEvent(self.icon,evt);
+           self.onClickEvent(self.item,evt);
         });
         this.stage.addChild(this.bitmap);
         this.stage.update();

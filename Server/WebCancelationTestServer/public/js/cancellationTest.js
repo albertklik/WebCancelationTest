@@ -14,6 +14,9 @@ $(function(){
         });
     });
 
+    testData.board = JSON.stringify(new Board(3,3,0,{id:1},{width : 1920, height: 1080},true).generateRandom());
+    console.log(testData.board);
+
     showDiv('#formInsertName',true);
 
     $('#checkNameButton').on('click', function() {
@@ -62,6 +65,7 @@ $(function(){
         aligned : testData.testGroup.aligned,
         goal_id : testData.testGroup.target_id,
         time_limit : testData.testGroup.time_limit,
+        board : JSON.parse(testData.board),
         callbacks : {
             testFinished : function (result) {
               finishTest(result);
@@ -150,8 +154,9 @@ function startTest() {
 function finishTest(data) {
     showTestPanel(false);
     loading(true);
+    alert();
     saveTest({
-      result : data.result,
+      result : JSON.stringify(data.result),
       seconds : data.seconds,
       hits : data.hits,
       misses : data.misses,
