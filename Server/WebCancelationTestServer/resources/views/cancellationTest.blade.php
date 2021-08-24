@@ -40,28 +40,28 @@
                 align-self: center;
             } 
             .carousel-control-prev-icon,
-.carousel-control-next-icon {
-  height: 100px;
-  width: 100px;
-  outline: black;
-  background-size: 100%, 100%;
-  border-radius: 50%;
-  border: 2px solid black;
-  background-image: none;
-}
+            .carousel-control-next-icon {
+              height: 100px;
+              width: 100px;
+              outline: black;
+              background-size: 100%, 100%;
+              border-radius: 50%;
+              border: 2px solid black;
+              background-image: none;
+            }
 
-.carousel-control-next-icon:after
-{
-  content: '>';
-  font-size: 55px;
-  color: black;
-}
+            .carousel-control-next-icon:after
+            {
+              content: '>';
+              font-size: 55px;
+              color: black;
+            }
 
-.carousel-control-prev-icon:after {
-  content: '<';
-  font-size: 55px;
-  color: black;
-}
+            .carousel-control-prev-icon:after {
+              content: '<';
+              font-size: 55px;
+              color: black;
+            }
             </style>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -86,11 +86,11 @@
             <div id="formInsertName" class="d-none row align-items-center">
                 <div class="col" style="margin-top: 5em">
                     <div class="row" style="padding: 2em">
-                        <p class="h1" style="font-size: 60px;">Olá, <br> Qual o seu nome?</p>
+                        <p class="h1" style="font-size: 60px;">{{__("test.formName")}}</p>
                     </div>
                     <div class="row">
                         <div class="col">
-                        <input class="form-control" style="font-size: 30px" list="nomeListOptions" id="nomeDataList" placeholder="Escreva o seu nome...">
+                        <input class="form-control" style="font-size: 30px" list="nomeListOptions" id="nomeDataList" placeholder="{{__("test.tooltipName")}}">
                         <datalist id="nomeListOptions">
                             <option value="">
                         </datalist>
@@ -98,7 +98,7 @@
                     </div>
                     <div class="row">
                         <div class="col">
-                            <button id="checkNameButton" style="margin-top: 2em" class="btn btn-lg btn-outline-primary" type="button">Continuar </button>
+                            <button id="checkNameButton" style="margin-top: 5em" class="btn btn-lg btn-outline-primary pull-right" type="button">{{__("test.btnNext")}} </button>
                         </div>
                     </div>
                 </div>
@@ -108,7 +108,7 @@
             <div id="formStudent" class="d-none row align-items-center">
                 <div class="col" style="margin-top: 5em">
                     <div class="row" style="padding: 2em">
-                        <p class="h1" style="font-size: 60px;">Oi <span id="nameText"></span>, parece que você é novo(a) por aqui.</p>
+                        <p class="h1" style="font-size: 60px;">{{__("test.formJoin")}}</p>
                     </div>
                     <div class="row" style="padding-top: 2em">
                         <div class="col">
@@ -117,7 +117,7 @@
                                     <input hidden readonly class="form-control-plaintext" style="font-size: 30px" id="studentName" >
                                 </div>
                                 <div class="mb-3">
-                                    <label class="form-label" style="font-size: 30px" for="studentDateOfBirth">Em que dia você nasceu?</label>
+                                    <label class="form-label" style="font-size: 30px" for="studentDateOfBirth">{{__("test.formDateOfBirth")}}</label>
                                     <input class="form-control" type="date" style="font-size: 30px" id="studentBirthDate" placeholder="01/06/1970">
                                 </div>
                             </form>
@@ -125,18 +125,17 @@
                     </div>
                     <div class="row">
                         <div class="col">
-                            <button id="saveStudentButton" style="margin-top: 2em" class="btn btn-lg btn-outline-primary" type="button">Tudo pronto!</button>
+                            <button id="saveStudentButton" style="margin-top: 2em" class="btn btn-lg btn-outline-primary pull-right" type="button">{{__("test.btnReady")}}</button>
                         </div>
                     </div>
                 </div>
             </div>
 
-
             <!-- presenting figures -->
             <div id="showFigures" class="d-none row">
                 <div class="col" style="margin-top: 5em">
                     <div class="row" style="padding: 2em">
-                        <p class="h1" style="font-size: 60px;">Esses são os objetos que serão mostrados no teste.</p>
+                        <p class="h1" style="font-size: 60px;">{{__("test.formIcons")}}</p>
                     </div>
                     <div class="row" style="padding-top: 2em">
                         <div class="col">
@@ -221,7 +220,7 @@
                     </div>
                     <div class="row">
                         <div class="col">
-                            <button id="startTest" style="margin-top: 2em" class="btn btn-lg btn-outline-primary" type="button">Entendi</button>
+                            <button id="startTest" style="margin-top: 2em" class="btn btn-lg btn-outline-primary pull-right" type="button">{{__("test.btnUnderstood")}}</button>
                         </div>
                     </div>
                 </div>
@@ -230,17 +229,15 @@
             <!-- finish message -->
             <div id="showResult" class="d-none row">
                 <div class="col" style="margin-top: 5em">
-                    <div class="row" style="padding: 2em">
-                        <p class="h1" style="font-size: 60px;">Obrigado Por Realizar o teste!</p>
+                    <div class="row" style="padding: 2em;">
+                        <p class="h1" style="font-size: 60px;">{{__("test.endMessage")}}</p>
                     </div>
                 </div>
             </div>
 
-
+            <div id="messages" >
+            </div>
         </div>
         <canvas class="d-none canvas" id="testCanvas" width="600" height="500"></canvas>
-
-
-        
     </body>
 </html>

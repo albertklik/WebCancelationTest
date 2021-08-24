@@ -22,6 +22,7 @@ class CreateTestGroupsTable extends Migration
             $table->boolean("aligned");
             $table->integer("target_id");
             $table->integer("time_limit");
+            $table->json('board')->nullable();
             $table->timestamps();
         });
     }

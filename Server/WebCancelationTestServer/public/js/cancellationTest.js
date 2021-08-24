@@ -14,15 +14,13 @@ $(function(){
         });
     });
 
-    testData.board = JSON.stringify(new Board(3,3,0,{id:1},{width : 1920, height: 1080},true).generateRandom());
+    testData.board = JSON.stringify(new Board(3,3,0,{id:1},{width : 1920, height: 1080},false).generateRandom());
     console.log(testData.board);
 
     showDiv('#formInsertName',true);
 
     $('#checkNameButton').on('click', function() {
         var value = $('#nomeDataList').val();
-        if (value.length == 0)
-            return;
         loading(true);
         findStudentByName(value,
             function(data) {
@@ -198,6 +196,11 @@ function updateDataOptionsName(data) {
          .append($("<option></option>")
                     .attr("value", value.name).attr("student-id",value.id));
      });
+}
+
+function showMessage(type,message) {
+    $('#messages').empty();
+    $('#messages').append($("div").addClass("alert " + type).attr("role","alert").text(message));
 }
 
 function message(msg) {
