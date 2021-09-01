@@ -21,6 +21,8 @@ return [
     'students' => 'Students',
     'tests' => 'Tests',
     'login' => 'Login',
+
+    //texts
     'welcoming' => 'Hello, :name',
     'testGroups' => 'Test Groups',
     'testGroupsDescription' => 'Groups of tests with its configurations',
@@ -28,6 +30,22 @@ return [
     'testsDescription' => 'Tests realized',
     'students' => 'Students',
     'studentsDescription' => 'Students that aplied for this test group',
+    'yes' => 'Yes',
+    'no' => 'No',
+    'goals' => 'Goals',
+    'distractors' => 'Distractors',
+    'goalSymbol' => 'Goal symbol',
+    'timeDesc' => 'Time limit (in seconds)',
+    'align' => 'Symbol alignment',
+
+    //buttons 
+    'btnNewTestGroup' => 'New Test Group',
+    'btnEdit' => 'Edit',
+    'btnErase' => 'Erase'
+    
+
+
+
 
 
 
