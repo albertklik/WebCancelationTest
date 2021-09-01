@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\TestGroupFilterRequest;
 use App\Http\Requests\TestGroupSaveRequest;
 use App\Models\TestGroup;
 
@@ -11,6 +12,15 @@ class TestGroupController extends Controller
     {
         $testGroups = TestGroup::all();
         return response()->json($testGroups);
+    }
+
+    public function list(TestGroupFilterRequest $request) {
+        $ifRequest = array();
+        if ($request->has('research_id')) {
+            $ifRequest[] = ['research_id','=',$request->input('research_id')];
+        }
+        $tests = TestGroup::where($ifRequest)->paginate($request->input('elements_per_pag'));
+        return response()->json($tests);
     }
 
     public function show($id) 
