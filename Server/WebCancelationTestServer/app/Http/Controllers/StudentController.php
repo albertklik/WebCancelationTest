@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\studentExistsRequest;
 use App\Http\Requests\StudentSaveRequest;
 use App\Http\Requests\StudentSearchRequest;
 use App\Models\Student;
@@ -20,8 +21,21 @@ class StudentController extends Controller
     }
 
     public function search(StudentSearchRequest $request) {
-       $students = Student::where('name','LIKE','%'.$request->input('name').'%')->get();
+       $term = strtolower($request->input('name'));
+       $students = Student::select('name')->whereRaw('lower(name) like (?)',["%{$term}%"])->take(10)->get();
        return response()->json($students);
+    }
+
+    public function exists(studentExistsRequest $request) {
+        $term = strtolower($request->input('name'));
+        $student = Student::whereRaw('lower(name) = (?)',[$term])->first();
+        if ($student) {
+            return response()->json([ 'exists' => true,
+            'student' => $student
+            ]);
+        }
+        return response()->json([ 'exists' => false,
+        ]);
     }
 
     public function store(StudentSaveRequest $request) 

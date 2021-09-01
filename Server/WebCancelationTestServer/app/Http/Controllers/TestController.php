@@ -37,7 +37,7 @@ class TestController extends Controller
         $test->fill($request->all());
         $test->save();
 
-        return response()->json($test, 201);
+        return response()->json($test);
     }
 
     public function update(TestSaveRequest $request, $id) {

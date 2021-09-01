@@ -21,10 +21,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/tests/list/', [TestController::class,'list'])->name('test.list');
+Route::get('/tests/list', [TestController::class,'list'])->name('test.list');
 Route::apiResource('/test', TestController::class);
 
 Route::apiResource('/testGroup', TestGroupController::class);
 
-Route::post('/student/search/', [StudentController::class,'search'])->name('student.search');
+Route::post('/student/exists', [StudentController::class,'exists'])->name('student.exists');
+Route::post('/student/search', [StudentController::class,'search'])->name('student.search');
 Route::apiResource('/student', StudentController::class);
