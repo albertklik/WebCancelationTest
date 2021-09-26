@@ -1,7 +1,7 @@
 <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" >
     <ul class="nav nav-pills flex-column mb-auto">
       <li class="nav-item">
-        <a href="#" class="nav-link active" aria-current="page">
+        <a href="home" class="nav-link active" aria-current="page">
             <i class="fas fa-phone me-3"></i>
           Home
         </a>

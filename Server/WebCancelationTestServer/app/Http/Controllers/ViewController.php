@@ -14,7 +14,6 @@ class ViewController extends Controller
     }
 
     public function test(CancellationTestRequest $request) {
-        App::setLocale('fr');
         $testGroup = TestGroup::findOrFail($request->input('id'));
         return view('cancellationTest',['testGroup' => $testGroup]);
     }
@@ -24,12 +23,15 @@ class ViewController extends Controller
     }
 
     public function home() {
-       App::setLocale('pt');
-       return view('testGroups');
+       return view('home');
     }
 
     public function publicHome() {
+        return view('publicHome');
+    }
 
+    public function testGroups() {
+        return view('testGroups');
     }
 
     public function searches() {

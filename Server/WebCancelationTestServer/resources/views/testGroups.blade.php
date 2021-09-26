@@ -26,7 +26,8 @@
             </div>
             <br>
 
-            <div class="content">
+
+            <div id="content-model">
                 <div class="card">
                     <div class="card-header">
                       #ADF34GT
@@ -65,9 +66,49 @@
                     </div>
                 </div>
             </div>
+            <div id="content">
+                
+
+
+
+
+            </div>
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+
+// $(function() {
+//  getData();
+// });
+
+
+// function getData() {
+//     getTestGroups({
+//        pag: 1,
+//        elements_per_pag: 10
+//     }, function(data) {
+//         console.log(data);
+//     }, function(error) {
+//         console.log(error);
+//     }, function() {
+//         console.log("request complete");
+//     });
+// }
+
+// function getTestGroups(data,success,error,complete) {
+//     $.ajax({
+//         type: "GET",
+//         url: "api/testGroup/list",
+//         data: data,
+//         success: success,
+//         error: error,
+//         complete: complete
+//     });
+// }
+
+</script>
 
 
 
