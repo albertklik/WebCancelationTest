@@ -22,12 +22,12 @@ class ViewController extends Controller
 
     }
 
-    public function home() {
-       return view('home');
+    public function publicHome() {
+       return view('publicHome');
     }
 
-    public function publicHome() {
-        return view('publicHome');
+    public function home() {
+       return view('home');
     }
 
     public function testGroups() {

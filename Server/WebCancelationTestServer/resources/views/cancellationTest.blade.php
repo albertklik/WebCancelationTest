@@ -4,14 +4,14 @@
         <!-- Scripts -->
         
         <script src="https://code.createjs.com/1.0.0/easeljs.min.js"></script>
-        <script src="{{ asset('js/Cell.js') }}"></script>
-        <script src="{{ asset('js/RandomGrid.js') }}"></script>
-        <script src="{{ asset('js/Icon.js') }}"></script>
-        <script src="{{ asset('js/Render.js') }}"></script>
-        <script src="{{ asset('js/TestControl.js') }}"></script>
+        <script src="{{ asset('js/cell.js') }}"></script>
+        <script src="{{ asset('js/randomGrid.js') }}"></script>
+        <script src="{{ asset('js/icon.js') }}"></script>
+        <script src="{{ asset('js/render.js') }}"></script>
+        <script src="{{ asset('js/testControl.js') }}"></script>
         <script src="{{ asset('js/app.js') }}" ></script>
         <script src="{{ asset('js/cancellationTest.js') }}"></script>
-        <script src="{{ asset('js/BoardGenerator.js') }}"></script>
+        <script src="{{ asset('js/boardGenerator.js') }}"></script>
         <script>
             setTestGroupData({!! json_encode($testGroup) !!});
             console.log(testData.testGroup);

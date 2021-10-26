@@ -15,7 +15,7 @@ use App\Http\Controllers\ViewController;
 |
 */
 
-Route::get('/', [ViewController::class,'index']);
+Route::get('/', [ViewController::class,'home']);
 Route::get('/login', [ViewController::class,'index'])->name('login');
 Route::get('/cancellationTest', [ViewController::class,'test'])->name('doTheTest');
 Route::get('/home', [ViewController::class,'home'])->name('home');

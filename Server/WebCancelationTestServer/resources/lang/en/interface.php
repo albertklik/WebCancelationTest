@@ -24,6 +24,7 @@ return [
 
     //texts
     'welcoming' => 'Hello, :name',
+    'welcomingDesc' => 'welcome to the authenticated area',
     'testGroups' => 'Test Groups',
     'testGroupsDescription' => 'Groups of tests with its configurations',
     'tests' => 'Tests',

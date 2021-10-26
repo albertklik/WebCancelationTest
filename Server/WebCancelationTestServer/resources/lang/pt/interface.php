@@ -22,6 +22,7 @@ return [
     'tests' => 'Testes',
     'login' => 'Entrar',
     'welcoming' => 'Olá, :name',
+    'welcomingDesc' => 'Bem vindo a área do pesquisador autenticado',
     'testGroups' => 'Grupos de Teste',
     'testGroupsDescription' => 'Grupos de teste configurados',
     'tests' => 'Testes',

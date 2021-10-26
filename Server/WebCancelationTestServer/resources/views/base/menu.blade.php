@@ -17,9 +17,9 @@
           {{__("interface.language")}}
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item {{ session()->get('locale') == 'en' ? 'selected' : '' }}" href="{{ route('changeLang',['lang' => 'en']) }}">{{__("interface.english")}}</a>
-          <a class="dropdown-item {{ session()->get('locale') == 'pt' ? 'selected' : '' }}" href="{{ route('changeLang',['lang' => 'pt']) }}">{{__("interface.portuguese")}}</a>
-          <a class="dropdown-item {{ session()->get('locale') == 'fr' ? 'selected' : '' }}" href="{{ route('changeLang',['lang' => 'fr']) }}">{{__("interface.french")}}</a>
+          <a class="dropdown-item {{ session()->get('locale') == 'en' ? 'active' : '' }}" href="{{ route('changeLang',['lang' => 'en']) }}">{{__("interface.english")}}</a>
+          <a class="dropdown-item {{ session()->get('locale') == 'pt' ? 'active' : '' }}" href="{{ route('changeLang',['lang' => 'pt']) }}">{{__("interface.portuguese")}}</a>
+          <a class="dropdown-item {{ session()->get('locale') == 'fr' ? 'active' : '' }}" href="{{ route('changeLang',['lang' => 'fr']) }}">{{__("interface.french")}}</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#">Something else here</a>
         </div>
