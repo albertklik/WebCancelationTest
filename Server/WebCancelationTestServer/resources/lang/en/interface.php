@@ -38,11 +38,14 @@ return [
     'goalSymbol' => 'Goal symbol',
     'timeDesc' => 'Time limit (in seconds)',
     'align' => 'Symbol alignment',
+    'loading' => 'Loading',
 
     //buttons 
     'btnNewTestGroup' => 'New Test Group',
     'btnEdit' => 'Edit',
-    'btnErase' => 'Erase'
+    'btnErase' => 'Erase',
+    'btnSave' => 'Save',
+    'btnCancel' => 'cancel',
     
 
 

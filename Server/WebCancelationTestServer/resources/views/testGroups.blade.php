@@ -79,9 +79,10 @@
 
 <script type="text/javascript">
 
-// $(function() {
+ $(function() {
 //  getData();
-// });
+    //loading(true);
+ });
 
 
 // function getData() {

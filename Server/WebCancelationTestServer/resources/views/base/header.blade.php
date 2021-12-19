@@ -4,6 +4,7 @@
         <!-- Scripts -->
         <script src="https://code.createjs.com/1.0.0/easeljs.min.js"></script>
         <script src="{{ asset('js/app.js') }}" ></script>
+        <script src="{{ asset('js/baseFunctions.js') }}" ></script>
         <script src="{{ asset('js/htmlBuilderHelper.js') }}" ></script>
         
         <!-- Styles -->
