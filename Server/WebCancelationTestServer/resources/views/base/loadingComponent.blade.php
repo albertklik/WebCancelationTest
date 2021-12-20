@@ -13,7 +13,7 @@
             <span class="sr-only">Loading...</span>
             </div>
             <br/>
-            <p>{{_('loading')}}...</p>
+            <p>{{ __('interface.loading') }}...</p>
             </div>
         </div>
     </div>

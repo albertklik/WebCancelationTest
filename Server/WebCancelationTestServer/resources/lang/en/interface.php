@@ -34,11 +34,16 @@ return [
     'yes' => 'Yes',
     'no' => 'No',
     'goals' => 'Goals',
+    'goalType' => 'Goal type',
     'distractors' => 'Distractors',
     'goalSymbol' => 'Goal symbol',
     'timeDesc' => 'Time limit (in seconds)',
     'align' => 'Symbol alignment',
     'loading' => 'Loading',
+    'name' => 'Name',
+    'aligned' => 'Aligned',
+    'timeLimit' => 'Time Limit (Seconds)',
+
 
     //buttons 
     'btnNewTestGroup' => 'New Test Group',

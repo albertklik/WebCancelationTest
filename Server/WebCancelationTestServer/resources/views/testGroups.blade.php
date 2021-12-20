@@ -20,7 +20,7 @@
             <div class="content">
                 <div class="card">
                     <div class="card-body">
-                        <a href="#" class="btn btn-success"><i class="fas fa-plus"></i> {{__("interface.btnNewTestGroup")}}</a>
+                        <button class="btn btn-success" onclick="modal(true,'insertEditTestGroupsModal')" ><i class="fas fa-plus"></i> {{__("interface.btnNewTestGroup")}}</a>
                     </div>
                 </div>
             </div>
@@ -115,5 +115,5 @@
 
 <!-- content  -->
 
-
+{{ view('insertEditTestGroupsModal') }}
 {{ view('base.footer') }}
