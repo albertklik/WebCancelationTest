@@ -43,6 +43,20 @@ return [
     'name' => 'Name',
     'aligned' => 'Aligned',
     'timeLimit' => 'Time Limit (Seconds)',
+    'car' => 'Car',
+    'house' => 'House',
+    'tree' => 'Tree',
+    'teapot' => 'Teapot',
+    'sun' => 'Sun',
+    'chicken' => 'Chicken',
+    'rabbit' => 'Rabbit',
+    'cat' => 'Cat',
+    'flower' => 'Flower',
+    'fish' => 'Fish',
+    'star' => 'Star',
+    'airplane' => 'Airplane',
+    'boat' => 'Boat',
+
 
 
     //buttons 

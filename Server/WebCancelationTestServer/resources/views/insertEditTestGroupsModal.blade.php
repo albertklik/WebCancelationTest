@@ -29,6 +29,20 @@
               <label for="name">{{__('interface.distractors')}}</label>
               <input type="number" maxlength="10" class="form-control" id="distractors">
             </div>
+            
+            <div class="form-group">
+              <label for="target_id">{{__('interface.goalType')}}</label>
+              <select title="Select your surfboard" name="target_id" id="target_id" class="form-control selectpicker">
+                <option>Select...</option>
+                <option value="1">{{__('interface.car')}}</option>
+                <option data-thumbnail="{{ asset('assets/icons/casa.png') }}">{{__('interface.house')}}</option>
+                <option data-thumbnail="{{ asset('assets/icons/arvore.png') }}">{{__('interface.tree')}}</option>
+                <option data-thumbnail="{{ asset('assets/icons/bule.png') }}">{{__('interface.teapot')}}</option>
+                
+              </select>
+            </div>
+            
+            
             <fieldset class="form-group">
               <div class="row">
                 <legend class="col-form-label col-sm-2 pt-0">{{__('interface.goalType')}}</legend>

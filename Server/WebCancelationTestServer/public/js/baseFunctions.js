@@ -6,3 +6,14 @@ function modal(show, id) {
 function loading(value) {
     modal(value, 'loadingModal');
 }
+
+function lang_img(lang) {
+    switch (lang) {
+        case  'en' :
+         return '';
+        case  'pt' :
+         return '';
+        case 'fr' :
+         return '';     
+    }
+}
