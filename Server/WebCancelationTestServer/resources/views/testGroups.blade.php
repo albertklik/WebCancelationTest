@@ -82,8 +82,24 @@
  $(function() {
 //  getData();
     //loading(true);
-    $('#target_id').selectpicker();
+    
  });
+
+ function saveTestGroup() {
+    loading(true)
+     var data = serializeFormData('insertEditTestGroupsForm');
+     saveTestGroups(data,
+        function (data) {
+           console.log(data)
+        },
+        function (error) {
+           console.log(error)
+           $('#insertEditTestGroupsMsg').html(getMessageErrors(error.responseJSON));
+        },
+        function () {
+             loading(false)
+        });
+ }
 
 
 // function getData() {
@@ -99,16 +115,6 @@
 //     });
 // }
 
-// function getTestGroups(data,success,error,complete) {
-//     $.ajax({
-//         type: "GET",
-//         url: "api/testGroup/list",
-//         data: data,
-//         success: success,
-//         error: error,
-//         complete: complete
-//     });
-// }
 
 </script>
 

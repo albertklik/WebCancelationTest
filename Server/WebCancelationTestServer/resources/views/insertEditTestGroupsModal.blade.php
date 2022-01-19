@@ -8,26 +8,28 @@
           </button>
         </div>
         <div class="modal-body">
-          <form>
+          <div id="insertEditTestGroupsMsg">
+          </div>
+          <form id="insertEditTestGroupsForm">
             <div class="form-group">
               <label for="name">{{__('interface.name')}}</label>
-              <input type="text" maxlength="250" class="form-control" id="name">
+              <input type="text" maxlength="250" name="name" class="form-control" id="name">
             </div>
             <div class="form-group">
               <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="aligned">
+                <input class="form-check-input" type="checkbox" name="aligned" value="1" id="aligned">
                 <label class="form-check-label" for="aligned">
                   {{__('interface.aligned')}}
                 </label>
               </div>
             </div>
             <div class="form-group">
-              <label for="name">{{__('interface.goals')}}</label>
-              <input type="number" maxlength="10" class="form-control" id="distractors">
+              <label for="goals">{{__('interface.goals')}}</label>
+              <input type="number" maxlength="10" class="form-control" name="targets" id="goals">
             </div>
             <div class="form-group">
               <label for="name">{{__('interface.distractors')}}</label>
-              <input type="number" maxlength="10" class="form-control" id="distractors">
+              <input type="number" maxlength="10" class="form-control"  name="distractors" id="distractors">
             </div>
             
             <div class="form-group">
@@ -35,43 +37,24 @@
               <select title="Select your surfboard" name="target_id" id="target_id" class="form-control selectpicker">
                 <option>Select...</option>
                 <option value="1">{{__('interface.car')}}</option>
-                <option data-thumbnail="{{ asset('assets/icons/casa.png') }}">{{__('interface.house')}}</option>
-                <option data-thumbnail="{{ asset('assets/icons/arvore.png') }}">{{__('interface.tree')}}</option>
-                <option data-thumbnail="{{ asset('assets/icons/bule.png') }}">{{__('interface.teapot')}}</option>
-                
+                <option value="2">{{__('interface.house')}}</option>
+                <option value="3">{{__('interface.tree')}}</option>
+                <option value="4">{{__('interface.teapot')}}</option>
+                <option value="5">{{__('interface.sun')}}</option>
+                <option value="6">{{__('interface.chicken')}}</option>
+                <option value="7">{{__('interface.rabbit')}}</option>
+                <option value="8">{{__('interface.cat')}}</option>
+                <option value="9">{{__('interface.flower')}}</option>
+                <option value="10">{{__('interface.fish')}}</option>
+                <option value="11">{{__('interface.star')}}</option>
+                <option value="12">{{__('interface.airplane')}}</option>
+                <option value="13">{{__('interface.boat')}}</option>
               </select>
             </div>
-            
-            
-            <fieldset class="form-group">
-              <div class="row">
-                <legend class="col-form-label col-sm-2 pt-0">{{__('interface.goalType')}}</legend>
-                <div class="col-sm-8">
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="target_id" id="target1" value="1">
-                    <label class="form-check-label" for="target1">
-                      Car
-                    </label>
-                  </div>
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="target_id" id="target2" value="2">
-                    <label class="form-check-label" for="target2">
-                      House
-                    </label>
-                  </div>
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="target_id" id="target3" value="3">
-                    <label class="form-check-label" for="target3">
-                      Tree
-                    </label>
-                  </div>
-                </div>
-              </div>
-            </fieldset>
           </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary">{{ __('interface.btnSave') }}</button>
+          <button type="button" class="btn btn-primary" onclick="saveTestGroup()" >{{ __('interface.btnSave') }}</button>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('interface.btnCancel') }}</button>
         </div>
       </div>
