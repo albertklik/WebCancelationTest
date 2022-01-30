@@ -29,15 +29,4 @@ class TestGroupFilterRequest extends FormRequest
             'research_id' => 'numeric|min:0',
         ];
     }
-
-    public function messages()
-    {
-        return [
-            'pag.required' => 'Numero da página é obrigatório',
-            'pag.numeric' => 'O campo Numero da página precisa ser um número válido',
-            'elements_per_pag.required' => 'Elementos por página é obrigatório',
-            'elements_per_pag.numeric' => 'O campo elementos por página precisa ser um número válido',
-            'research_id.numeric' => 'O campo research_id precisa ser um número válido',
-        ];
-    }
 }

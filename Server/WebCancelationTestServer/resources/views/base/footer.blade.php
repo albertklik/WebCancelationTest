@@ -1,5 +1,5 @@
 <!-- loading component -->
-{{ view('base.loadingComponent') }}
+{{ view('base.loading') }}
 <!-- Footer -->
 <footer class="text-center text-lg-start bg-light text-muted">
     <!-- Section: Social media -->

@@ -56,8 +56,19 @@ return [
     'star' => 'Star',
     'airplane' => 'Airplane',
     'boat' => 'Boat',
-
-
+    'automatic' => 'Automatic',
+    'automaticHelpTxt' => 'Dispose distractors automatically on space',
+    'time_limit' => 'Test time limit',
+    'thirtySeconds' => 'Thirty seconds',
+    'oneMinute' => 'One minute',
+    'twoMinutes' => 'Two minute',
+    'threeMinutes' => 'Three minutes',
+    'fiveMinutes' => 'Five minutes',
+    'TenMinutes' => 'Ten minutes',
+    'thirtyMinutes' => 'Thirty minutes',
+    'oneHour' => 'One hour',
+    'successTitle' => 'Success',
+    'successMsg' => 'Operation requestred realized sucessfuly',
 
     //buttons 
     'btnNewTestGroup' => 'New Test Group',

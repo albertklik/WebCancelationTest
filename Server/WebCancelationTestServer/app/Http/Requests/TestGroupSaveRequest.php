@@ -25,11 +25,12 @@ class TestGroupSaveRequest extends FormRequest
     {
         return [
             'name' => 'required|unique:test_groups|string',
-            'aligned' => 'required|numeric|min:0|max:1',
-            'target_id' => 'required|numeric|min:0',
-            'targets' => 'required|numeric|min:0',
-            'distractors' => 'required|numeric|min:0',
-            'time_limit' => 'numeric|min:0'
+            'targets' => 'required|numeric|min:1',
+            'distractors' => 'numeric|min:1',
+            'aligned' => 'numeric|min:0|max:1',
+            'target_id' => 'required|numeric',
+            'time_limit' => 'numeric|min:1',
+            'board' => 'json'
         ];
     }
 }

@@ -16,10 +16,9 @@ class CreateTestGroupsTable extends Migration
         Schema::create('test_groups', function (Blueprint $table) {
             $table->id();
             $table->string("name");
-            $table->integer("blocks");
             $table->integer("targets");
             $table->integer("distractors")->nullable();
-            $table->boolean("aligned");
+            $table->boolean("aligned")->nullable();
             $table->integer("target_id");
             $table->integer("time_limit")->nullable();
             $table->json('board')->nullable();

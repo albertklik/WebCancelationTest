@@ -18,6 +18,8 @@
             </div>
 
             <div class="content">
+                <div id="msg">
+                </div>
                 <div class="card">
                     <div class="card-body">
                         <button class="btn btn-success" onclick="modal(true,'insertEditTestGroupsModal')" ><i class="fas fa-plus"></i> {{__("interface.btnNewTestGroup")}}</a>
@@ -82,38 +84,55 @@
  $(function() {
 //  getData();
     //loading(true);
-    
+    setupForm();
  });
 
+ function setupForm() {
+    $('#automaticDistractors').prop( "checked",true);
+    $('#distractors').prop( "disabled",true);
+
+    $('#automaticDistractors').change(function() {
+        $('#distractors').prop( "disabled",this.checked);
+        $('#automaticDistractors').val(this.checked);        
+    });
+ }
+
  function saveTestGroup() {
-    loading(true)
+    loadingModal(true,'insertEditTestGroupsModal');
      var data = serializeFormData('insertEditTestGroupsForm');
+     console.log(data);
      saveTestGroups(data,
         function (data) {
-           console.log(data)
+           console.log(data);
+           modal(false,'insertEditTestGroupsModal')
+           $('#msg').html(getMsg('success','{{__("interface.successTitle")}}','{{__("interface.successMsg")}}'))
         },
         function (error) {
-           console.log(error)
-           $('#insertEditTestGroupsMsg').html(getMessageErrors(error.responseJSON));
+           console.log(error);
+           if (error.status == 422) {
+                $('#insertEditTestGroupsMsg').html(getMessageErrors(error.responseJSON));
+           }
         },
         function () {
-             loading(false)
+            loadingModal(false,'insertEditTestGroupsModal');
         });
  }
 
 
-// function getData() {
-//     getTestGroups({
-//        pag: 1,
-//        elements_per_pag: 10
-//     }, function(data) {
-//         console.log(data);
-//     }, function(error) {
-//         console.log(error);
-//     }, function() {
-//         console.log("request complete");
-//     });
-// }
+ function loadTestGroups() {
+     loading(true);
+     getTestGroups({
+        pag: 1,
+        elements_per_pag: 10
+     }, function(data) {
+         console.log(data);
+     }, function(error) {
+         console.log(error);
+     }, function() {
+         console.log("request complete");
+         loading(false);
+     });
+}
 
 
 </script>
@@ -122,5 +141,5 @@
 
 <!-- content  -->
 
-{{ view('insertEditTestGroupsModal') }}
+{{ view('modal.insertEditTestGroupsModal') }}
 {{ view('base.footer') }}

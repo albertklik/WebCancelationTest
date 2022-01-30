@@ -9,6 +9,13 @@ use Illuminate\Support\Facades\App;
 
 class ViewController extends Controller
 {
+    public function __construct()
+    {
+        if (session()->get('locale') === null) {
+            session()->put('locale', 'en');
+        }
+    }
+
     public function index() {
         return view('welcome');
     }
