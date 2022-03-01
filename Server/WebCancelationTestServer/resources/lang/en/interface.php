@@ -69,6 +69,8 @@ return [
     'oneHour' => 'One hour',
     'successTitle' => 'Success',
     'successMsg' => 'Operation requestred realized sucessfuly',
+    'shareTestTitle' => 'Success',
+    'shareTestMsg' => 'Link copied to Clipboard to share',
 
     //buttons 
     'btnNewTestGroup' => 'New Test Group',

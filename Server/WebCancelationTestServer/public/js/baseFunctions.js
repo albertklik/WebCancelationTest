@@ -32,8 +32,80 @@ function getMsg(type,title,content) {
     return msgString;
 }
 
+function getPaginatorItem(data) {
+    var returnString = "";
+    returnString += '<nav aria-label="Page navigation example"><ul class="pagination">'
+    data.links.forEach( link => {
+        disabledStr = link.url === null ? 'disabled' : '';
+        activeStr = link.active ? 'active' : '';
+        page = link.url != null ? getUrlParameter(link.url,'page') : ''
+        returnString += '<li class="page-item '+ disabledStr + activeStr +'"><button onclick="loadTestGroups(\''+page+'\');" class="page-link" href="#">'+ link.label +'</a></li>';
+    });
+    return returnString
+}
+
+function getUrlParameter(sPageURL,sParam) {
+        var sURLVariables = sPageURL.split('?')[1].split('&'),
+        sParameterName,
+        i;
+
+    for (i = 0; i < sURLVariables.length; i++) {
+        sParameterName = sURLVariables[i].split('=');
+
+        if (sParameterName[0] === sParam) {
+            return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+        }
+    }
+    return false;
+}
+
 function getTestGroupItem(data) {
     var msgString = "";
+    msgString += '<div class="card"><div class="card-header"> #' + data.id + ' ' + data.name 
+    msgString += '<div class="float-right"><button onclick="editTestGroup(\''+data.id+'\');" class="btn btn-light btn-sm"> <i class="fas fa-edit"></i></button><button onclick="deleteTestGroup(\''+data.id+'\')" class="btn btn-danger btn-sm"> <i class="fas fa-trash"></i></button></div></div><div class="card-body">'
+    //msgString += '<div class="card-title"><b>'+data.name+'</b></div>'
+    msgString += '</div></div><br>'
+    return msgString;
+    
+    /**
+     *  <div class="card">
+                    <div class="card-header">
+                      #ADF34GT
+                      <div class="float-right">
+                        <a href="#" class="btn btn-light btn-sm"> <i class="fas fa-edit"></i></a>
+                        <a href="#" class="btn btn-danger btn-sm"> <i class="fas fa-trash"></i></a>
+                      </div>
+                    </div>
+                    <div class="card-body">
+                      <h5 class="card-title">Titulo do grupo de teste</h5>
+                      <p class="card-text">Descrição do grupo de teste</p>
+                      <table class="table table-borderless table-sm">
+                          <tbody>
+                            <tr>
+                                <th scope="row">{{__("interface.goals")}}</th>
+                                <td>3</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">{{__("interface.distractors")}}</th>
+                                <td>5</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">{{__("interface.goalSymbol")}}</td>
+                                <td>1</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">{{__("interface.timeDesc")}}</th>
+                                <td>60</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">{{__("interface.align")}}</th>
+                                <td>Desativado</td>
+                            </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                </div>
+     */
 }
 
 function serializeFormData(formId) {
@@ -87,3 +159,12 @@ function saveTestGroups(data,success,error,complete) {
         complete: complete
     });
 }
+
+function copyToClipboard(element) {
+    // var $temp = $("<input>");
+    // $("body").append($temp);
+    // $temp.val($(element).html()).select();
+    // document.execCommand("copy");
+    // $temp.remove();
+    navigator.clipboard.writeText(element);
+   }

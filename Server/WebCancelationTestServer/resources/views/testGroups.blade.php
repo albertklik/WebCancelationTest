@@ -32,15 +32,15 @@
             <div id="content-model">
                 <div class="card">
                     <div class="card-header">
-                      #ADF34GT
+                      #0
                       <div class="float-right">
                         <a href="#" class="btn btn-light btn-sm"> <i class="fas fa-edit"></i></a>
                         <a href="#" class="btn btn-danger btn-sm"> <i class="fas fa-trash"></i></a>
                       </div>
                     </div>
                     <div class="card-body">
-                      <h5 class="card-title">Titulo do grupo de teste</h5>
-                      <p class="card-text">Descrição do grupo de teste</p>
+                      <div class="card-title"><b>Titulo do grupo de teste</b></div>
+                      <small>
                       <table class="table table-borderless table-sm">
                           <tbody>
                             <tr>
@@ -64,16 +64,19 @@
                                 <td>Desativado</td>
                             </tr>
                         </tbody>
-                      </table>
+                      </table></small>
+                    </div>
+                    <div class="card-footer">
+                        <button onclick="" class="btn btn-primary btn-sm"> <i class="fas fa-list"></i> Listar Testes</button>
+                        <button onclick="playTest(1)" class="btn btn-secondary btn-sm"> <i class="fas fa-play"></i> Realizar teste</button>
+                        <button onclick="shareLink(1)" class="btn btn-secondary btn-sm"> <i class="fas fa-share"></i> compartilhar Link</button>
                     </div>
                 </div>
+                <br>
             </div>
             <div id="content">
-                
-
-
-
-
+            </div>
+            <div id="paginator">
             </div>
         </div>
     </div>
@@ -82,9 +85,8 @@
 <script type="text/javascript">
 
  $(function() {
-//  getData();
-    //loading(true);
     setupForm();
+    loadTestGroups();
  });
 
  function setupForm() {
@@ -104,8 +106,8 @@
      saveTestGroups(data,
         function (data) {
            console.log(data);
-           modal(false,'insertEditTestGroupsModal')
-           $('#msg').html(getMsg('success','{{__("interface.successTitle")}}','{{__("interface.successMsg")}}'))
+           modal(false,'insertEditTestGroupsModal');
+           $('#msg').html(getMsg('success','{{__("interface.successTitle")}}','{{__("interface.successMsg")}}'));
         },
         function (error) {
            console.log(error);
@@ -119,19 +121,47 @@
  }
 
 
- function loadTestGroups() {
+ function loadTestGroups(p = 1) {
      loading(true);
      getTestGroups({
-        pag: 1,
+        pag: p,
         elements_per_pag: 10
      }, function(data) {
          console.log(data);
+         $('#content').html('')
+         data.data.forEach(item => {
+            $('#content').append(getTestGroupItem(item));
+         });
+         $('#paginator').html('')
+         $('#paginator').append(getPaginatorItem(data))
      }, function(error) {
          console.log(error);
+         $('#msg').html(getMsg('danger','Error','Error on load test Groups list'));
      }, function() {
          console.log("request complete");
          loading(false);
      });
+}
+
+function editTestGroup(id) {
+
+}
+
+function deleteTestGroup(id) {
+    
+}
+
+function listTests(id) {
+
+}
+
+function playTest(id) {
+    window.open("{{ route('doTheTest') }}?id=" + id, '_blank');
+}
+
+function shareLink(id) {
+    copyToClipboard("{{ route('doTheTest') }}?id=" + id);
+    $('#msg').html(getMsg('success','{{__("interface.shareTestTitle")}}','{{__("interface.shareTestMsg")}}'));
 }
 
 
