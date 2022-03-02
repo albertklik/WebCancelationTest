@@ -67,17 +67,23 @@ return [
     'TenMinutes' => 'Ten minutes',
     'thirtyMinutes' => 'Thirty minutes',
     'oneHour' => 'One hour',
+
+
+    //messages or modals
     'successTitle' => 'Success',
     'successMsg' => 'Operation requestred realized sucessfuly',
     'shareTestTitle' => 'Success',
     'shareTestMsg' => 'Link copied to Clipboard to share',
+    'eraseTestGroupTitle' => 'Erase Test Group',
+    'eraseTestGroupMsg' => 'We need you confirmation to proceed the action. Are you sure?',
 
     //buttons 
     'btnNewTestGroup' => 'New Test Group',
     'btnEdit' => 'Edit',
     'btnErase' => 'Erase',
     'btnSave' => 'Save',
-    'btnCancel' => 'cancel',
+    'btnCancel' => 'Cancel',
+    'btnConfirm' => 'Confirm',
     
 
 

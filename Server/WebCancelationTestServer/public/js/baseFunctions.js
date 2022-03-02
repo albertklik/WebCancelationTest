@@ -19,6 +19,20 @@ function loadingModal(value,id) {
     }
 }
 
+function showConfirmationModal(title,message,callback) {
+    var title = $("#confirmationModal").find("#confirmationTitle"),
+        msg = $("#confirmationModal").find("#confirmationText"),
+        cancelBtn = $("#confirmationModal").find("#cancelBtn"),
+        confirmationBtn = $("#confirmationModal").find("#confirmationBtn");
+    title.html(title);
+    msg.html(message);
+    cancelBtn.on("click",function () {
+        modal(false,"confirmationModal");
+    });
+    confirmationBtn.on("click",callback);   
+    modal(true,"confirmationModal");
+}
+
 function getMsg(type,title,content) {
     var msgString = "";
     msgString += '<div class="alert alert-' + type + ' alert-dismissible fade show" role="alert">'
@@ -131,28 +145,42 @@ function getMessageErrors(error) {
     return msgString;
 }
 
-
+function copyToClipboard(element) {
+    navigator.clipboard.writeText(element);
+}
 
 
 /*
 * REQUESTS 
 */
 
-function getTestGroups(data,success,error,complete) {
-         $.ajax({
-             type: "GET",
-             url: "api/testGroup/list",
-             data: data,
-             success: success,
-             error: error,
-             complete: complete
-         });
-}
+var REQUEST_PARAM = []
+REQUEST_PARAM["testGroup.index"] = {type: "GET",url: "api/testGroup"};
+REQUEST_PARAM["testGroup.store"] = {type: "POST",url: "api/testGroup"};
+REQUEST_PARAM["testGroup.list"] = {type: "GET",url: "api/testGroup/list"};
+REQUEST_PARAM["testGroup.update"] = {type: "PUT",url: "api/testGroup"};
+REQUEST_PARAM["testGroup.destroy"] = {type: "DELETE",url: "api/testGroup"};
+REQUEST_PARAM["testGroup.show"] = {type: "GET",url: "api/testGroup"};
 
-function saveTestGroups(data,success,error,complete) {
+REQUEST_PARAM["student.store"] = {type: "POST",url: "api/student"};
+REQUEST_PARAM["student.index"] = {type: "GET",url: "api/student"};
+REQUEST_PARAM["student.exists"] = {type: "POST",url: "api/student/exists"};
+REQUEST_PARAM["student.search"] = {type: "POST",url: "api/student/search"};
+REQUEST_PARAM["student.update"] = {type: "POST",url: "api/student/search"};
+REQUEST_PARAM["student.show"] = {type: "POST",url: "api/student/search"};
+REQUEST_PARAM["student.destroy"] = {type: "POST",url: "api/student/search"};
+
+REQUEST_PARAM["test.index"] = {type: "POST",url: "api/test"};
+REQUEST_PARAM["test.store"] = {type: "POST",url: "api/test"};
+REQUEST_PARAM["test.destroy"] = {type: "POST",url: "api/test"};
+REQUEST_PARAM["test.update"] = {type: "POST",url: "api/test"};
+REQUEST_PARAM["test.show"] = {type: "POST",url: "api/test"};
+REQUEST_PARAM["test.list"] = {type: "POST",url: "api/test/list"};
+
+function executeAjaxRequest(requestName,data,success,error,complete) {
     $.ajax({
-        type: "POST",
-        url: "api/testGroup",
+        type: REQUEST_PARAM[requestName].type,
+        url: REQUEST_PARAM[requestName].url,
         data: data,
         success: success,
         error: error,
@@ -160,11 +188,20 @@ function saveTestGroups(data,success,error,complete) {
     });
 }
 
-function copyToClipboard(element) {
-    // var $temp = $("<input>");
-    // $("body").append($temp);
-    // $temp.val($(element).html()).select();
-    // document.execCommand("copy");
-    // $temp.remove();
-    navigator.clipboard.writeText(element);
-   }
+function getTestGroups(data,success,error,complete) {
+   executeAjaxRequest("testGroup.list",data,success,error,complete);
+}
+
+function saveTestGroups(data,success,error,complete) {
+    executeAjaxRequest("testGroup.store",data,success,error,complete);
+}
+
+function updateTestGroups(data,success,error,complete) {
+    executeAjaxRequest("testGroup.update",data,success,error,complete);
+}
+
+function deleteTestGroups(data,success,error,complete) {
+    executeAjaxRequest("testGroup.destroy",data,success,error,complete);
+}
+
+

@@ -132,8 +132,7 @@
          data.data.forEach(item => {
             $('#content').append(getTestGroupItem(item));
          });
-         $('#paginator').html('')
-         $('#paginator').append(getPaginatorItem(data))
+         $('#paginator').html(getPaginatorItem(data))
      }, function(error) {
          console.log(error);
          $('#msg').html(getMsg('danger','Error','Error on load test Groups list'));
@@ -143,12 +142,30 @@
      });
 }
 
-function editTestGroup(id) {
+function deleteTestGroup(id) {
+    loading(true);
+    deleteTestGroups({
+        id: id
+     }, function(data) {
+         loadTestGroups()
+     }, function(error) {
+         console.log(error);
+         $('#msg').html(getMsg('danger','Error','Error on erase test groups'));
+     }, function() {
+         console.log("request complete");
+         loading(false);
+     });
+}
 
+function editTestGroup(id) {
+    
 }
 
 function deleteTestGroup(id) {
-    
+    showConfirmationModal("{{ __('interface.eraseTestGroupTitle') }}", 
+        "{{ __('interface.eraseTestGroupMsg') }}", 
+        deleteTestGroup(id)
+    );
 }
 
 function listTests(id) {
