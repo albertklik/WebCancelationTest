@@ -24,7 +24,7 @@ class TestGroupSaveRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|unique:test_groups|string',
+            'name' => 'required|unique:test_groups,name,'.$this->id.',id',
             'targets' => 'required|numeric|min:1',
             'distractors' => 'numeric|min:1',
             'aligned' => 'numeric|min:0|max:1',

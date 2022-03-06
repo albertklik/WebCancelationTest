@@ -12,7 +12,6 @@ return [
     */
 
     //menu
-
     'home' => 'Home',
     'language' => 'Language',
     'portuguese' => 'Portuguese',
@@ -42,6 +41,7 @@ return [
     'loading' => 'Loading',
     'name' => 'Name',
     'aligned' => 'Aligned',
+    'notAligned' => 'Not Aligned',
     'timeLimit' => 'Time Limit (Seconds)',
     'car' => 'Car',
     'house' => 'House',
@@ -61,7 +61,7 @@ return [
     'time_limit' => 'Test time limit',
     'thirtySeconds' => 'Thirty seconds',
     'oneMinute' => 'One minute',
-    'twoMinutes' => 'Two minute',
+    'twoMinutes' => 'Two minutes',
     'threeMinutes' => 'Three minutes',
     'fiveMinutes' => 'Five minutes',
     'TenMinutes' => 'Ten minutes',
@@ -84,6 +84,10 @@ return [
     'btnSave' => 'Save',
     'btnCancel' => 'Cancel',
     'btnConfirm' => 'Confirm',
+    'btnListTests' => 'Tests List',
+    'btnDoTheTest' => 'Do the Test',
+    'btnShareLink' => 'Share Link',
+    'btnShowBoard' => 'Show Board',
     
 
 

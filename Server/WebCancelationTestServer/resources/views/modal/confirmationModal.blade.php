@@ -11,7 +11,7 @@
           <p id="confirmationText">Modal body text goes here.</p>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary">{{ __("interface.btnConfirm") }}</button>
+          <button type="button" id="confirmationBtn" class="btn btn-primary">{{ __("interface.btnConfirm") }}</button>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __("interface.btnCancel") }}</button>
         </div>
       </div>

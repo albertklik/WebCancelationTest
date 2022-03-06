@@ -13,6 +13,7 @@
             <div id="insertEditTestGroupsMsg">
             </div>
             <form id="insertEditTestGroupsForm">
+              <input type="hidden" maxlength="250" name="id" value="-1" class="form-control" id="id">
               <div class="form-group">
                 <label for="name">{{__('interface.name')}}</label>
                 <input type="text" maxlength="250" name="name" class="form-control" id="name">

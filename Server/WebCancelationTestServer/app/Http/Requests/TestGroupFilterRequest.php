@@ -24,7 +24,7 @@ class TestGroupFilterRequest extends FormRequest
     public function rules()
     {
         return [
-            'pag' => 'required|numeric|min:0',
+            'page' => 'required|numeric|min:0',
             'elements_per_pag' => 'required|numeric|min:0',
             'research_id' => 'numeric|min:0',
         ];
