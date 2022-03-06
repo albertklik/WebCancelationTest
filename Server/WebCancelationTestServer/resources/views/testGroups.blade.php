@@ -243,7 +243,7 @@ function deleteTestGroup(id) {
 }
 
 function listTests(id) {
-    
+    window.open("{{ route('tests') }}?testGroup_id=" + id);
 }
 
 function playTest(id) {

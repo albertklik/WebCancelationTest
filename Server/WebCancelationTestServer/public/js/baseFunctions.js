@@ -110,8 +110,10 @@ function getTestGroupItem(data, interfaceStr = [], iconImgsUrl = []) {
     return msgString;
 }
 
-function getTestItem(data) {
+function getTestItem(data, interfaceStr = [], iconImgsUrl = []) {
     var msgString = "";
+    msgString += '<tr><td>' + data.id + '</td><td>' + data.student_name + '</td><td>' + data.hits + '</td><td>' + data.misses + '</td><td>' + data.seconds + '</td><td>' + data.updated_at + '</td>'
+    msgString += '<td></td></tr>'
     return msgString;
 }
 
@@ -207,4 +209,14 @@ function getTestGroup(urlParams,success,error,complete) {
     executeAjaxRequest("testGroup.show",urlParams,{},success,error,complete);
 }
 
+function getTests(data,success,error,complete) {
+    executeAjaxRequest("test.list",[],data,success,error,complete);
+ }
 
+function deleteTest(urlParams,success,error,complete) {
+    executeAjaxRequest("test.destroy",urlParams,{},success,error,complete);
+}
+
+function getTest(urlParams,success,error,complete) {
+    executeAjaxRequest("test.show",urlParams,{},success,error,complete);
+}
