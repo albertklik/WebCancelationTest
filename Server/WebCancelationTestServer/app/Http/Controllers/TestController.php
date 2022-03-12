@@ -22,7 +22,7 @@ class TestController extends Controller
         if ($request->has('student_id')) {
             $ifRequest[] = ['student_id','=',$request->input('student_id')];
         }
-        $tests = Test::where($ifRequest)->orderByDesc('created_at')->paginate($request->input('elements_per_pag'));
+        $tests = Test::with('student')->where($ifRequest)->orderByDesc('created_at')->paginate($request->input('elements_per_pag'));
         return response()->json($tests);
     }
 

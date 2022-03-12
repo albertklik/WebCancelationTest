@@ -11,6 +11,6 @@ class Student extends Model
     use HasFactory;
 
     public function tests() {
-        return $this->hasMany('App\Models\Tests');
+        return $this->hasMany(Test::class);
     }
 }

@@ -19,7 +19,7 @@ class TestGroupController extends Controller
         if ($request->has('research_id')) {
             $ifRequest[] = ['research_id','=',$request->input('research_id')];
         }
-        $tests = TestGroup::where($ifRequest)->orderByDesc('created_at')->paginate($request->input('elements_per_pag'));
+        $tests = TestGroup::where($ifRequest)->withCount('tests')->orderByDesc('created_at')->paginate($request->input('elements_per_pag'));
         return response()->json($tests);
     }
 

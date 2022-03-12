@@ -112,8 +112,11 @@ function getTestGroupItem(data, interfaceStr = [], iconImgsUrl = []) {
 
 function getTestItem(data, interfaceStr = [], iconImgsUrl = []) {
     var msgString = "";
-    msgString += '<tr><td>' + data.id + '</td><td>' + data.student_name + '</td><td>' + data.hits + '</td><td>' + data.misses + '</td><td>' + data.seconds + '</td><td>' + data.updated_at + '</td>'
-    msgString += '<td></td></tr>'
+    msgString += '<tr><td>' + data.id + '</td><td>' + data.student.name + '</td><td>' + data.hits + '</td><td>' + data.misses + '</td><td>' + data.seconds + '</td><td>' + data.updated_at + '</td>'
+    msgString += '<td>'
+    msgString += '<button onclick="showResult('+ data.id +');" class="btn btn-primary btn-sm"> <i class="fas fa-poll"></i></button>'
+    msgString += '<button onclick="deleteTest('+ data.id +');" class="btn btn-danger btn-sm"> <i class="fas fa-trash"></i></button>'
+    msgString += '</td></tr>'
     return msgString;
 }
 

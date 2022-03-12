@@ -18,10 +18,10 @@ class Test extends Model
     use HasFactory;
 
     public function student() {
-        return $this->belongsTo('App\Models\Students');
+        return $this->belongsTo(Student::class);
     }
 
     public function testGroup() {
-        return $this->belongsTo('App\Models\TestGroups');
+        return $this->belongsTo(TestGroup::class);
     }
 }

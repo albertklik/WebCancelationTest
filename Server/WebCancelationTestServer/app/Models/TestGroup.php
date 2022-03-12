@@ -20,7 +20,7 @@ class TestGroup extends Model
     ];
 
     public function tests() {
-        return $this->hasMany('App\Models\Tests');
+        return $this->hasMany(Test::class);
     }
     
 }
