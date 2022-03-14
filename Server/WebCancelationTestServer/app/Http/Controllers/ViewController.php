@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CancellationTestRequest;
 use App\Models\TestGroup;
+use App\Models\Researches;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 
@@ -37,13 +38,18 @@ class ViewController extends Controller
        return view('home');
     }
 
-    public function testGroups() {
+    public function testGroups(Request $request) {
+        $Research = Researches::findOrFail($request->input('researches_id'));
         return view('testGroups');
     }
 
     public function tests(Request $request) {
         $testGroup = TestGroup::findOrFail($request->input('testGroup_id'));
         return view('tests',['testGroup' => $testGroup]);
+    }
+
+    public function researches() {
+        return view('researches');
     }
 
     public function searches() {

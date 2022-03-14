@@ -47,6 +47,7 @@ langStr["timeDesc"] = '{{__("interface.timeDesc")}}';
 langStr["align"] = '{{__("interface.align")}}';
 langStr["aligned"] = '{{__("interface.aligned")}}';
 langStr["notAligned"] = '{{__("interface.notAligned")}}';
+langStr["nTests"] = '{{__("interface.nTests")}}';
 
 
 var iconImgsUrl = [
@@ -256,6 +257,7 @@ function shareLink(id) {
 }
 
 function goToPage(page = 1) {
+    if (actualPage==page) return;
     actualPage = page;
     loadTestGroups();
 }

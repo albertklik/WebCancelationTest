@@ -13,11 +13,11 @@ class CreateResearchesToTestGroups extends Migration
      */
     public function up()
     {
-        // Schema::table('test_groups', function (Blueprint $table) {
-        //     $table->foreignId("researches_id")
-        //             ->constrained()
-        //             ->cascadeOnDelete();
-        // });
+        Schema::table('test_groups', function (Blueprint $table) {
+            $table->foreignId("researches_id")
+                    ->constrained()
+                    ->cascadeOnDelete();
+        });
     }
 
     /**
@@ -27,8 +27,8 @@ class CreateResearchesToTestGroups extends Migration
      */
     public function down()
     {
-        // Schema::table('test_groups', function (Blueprint $table) {
-        //     $table->dropForeign(["researches_id"]);
-        // });
+        Schema::table('test_groups', function (Blueprint $table) {
+            $table->dropForeign(["researches_id"]);
+        });
     }
 }

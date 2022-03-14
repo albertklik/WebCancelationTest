@@ -52,6 +52,8 @@
 
 var langStr = [];
 langStr["btnListTests"] = '{{__("interface.btnListTests")}}'; 
+langStr["eraseTestTitle"] = '{{__("interface.eraseTestTitle")}}'; 
+langStr["eraseTestMsg"] = '{{__("interface.eraseTestMsg")}}'; 
 
 
 var iconImgsUrl = [
@@ -147,12 +149,25 @@ function deleteTest(id) {
 }
 
 function showResult(id) {
+    loadTest(id,function(data) {
+        loadResult(data);
+        modal(true,'testResultModal');
+    });
+}
+
+function loadResult(data) {
 
 }
  
 
+function goToPage(page = 1) {
+    if (actualPage==page) return;
+    actualPage = page;
+    loadTests();
+}
+
 
 </script>
-
+{{ view('modal.testResultModal') }}
 {{ view('modal.confirmationModal') }}
 {{ view('base.footer') }}

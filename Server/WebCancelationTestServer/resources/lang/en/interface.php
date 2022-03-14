@@ -67,6 +67,7 @@ return [
     'TenMinutes' => 'Ten minutes',
     'thirtyMinutes' => 'Thirty minutes',
     'oneHour' => 'One hour',
+    'nTests' => 'Tests Realized',
 
 
     //messages or modals
@@ -76,6 +77,8 @@ return [
     'shareTestMsg' => 'Link copied to Clipboard to share',
     'eraseTestGroupTitle' => 'Erase Test Group',
     'eraseTestGroupMsg' => 'We need you confirmation to proceed the action. Are you sure?',
+    'eraseTestTitle' => 'Erase Test',
+    'eraseTestMsg' => 'We need you confirmation to proceed the action. Are you sure?',
 
     //buttons 
     'btnNewTestGroup' => 'New Test Group',

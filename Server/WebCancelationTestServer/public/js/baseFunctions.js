@@ -101,8 +101,9 @@ function getTestGroupItem(data, interfaceStr = [], iconImgsUrl = []) {
     msgString += '<tr><th scope="row">' + getLanguageStr(interfaceStr,'goalSymbol') + '</th><td>'+ getImgIconStr(data.target_id,iconImgsUrl) + '</td></tr>'
     msgString += '<tr><th scope="row">' + getLanguageStr(interfaceStr,'timeDesc') + '</th><td>'+ data.time_limit + '</td></tr>'
     msgString += '<tr><th scope="row">' + getLanguageStr(interfaceStr,'align') + '</th><td>'+ ((data.aligned != null && data.aligned == 1) ? getLanguageStr(interfaceStr,'aligned') : getLanguageStr(interfaceStr,'notAligned')) + '</td></tr>'
+    msgString += '<tr><th scope="row">' + getLanguageStr(interfaceStr,'nTests') + '</th><td>'+ data.tests_count + '</td></tr>'
     msgString += '</tbody></table></small></div>'
-    msgString += '<div class="card-footer"><button onclick="listTests(' + data.id + ')" class="btn btn-primary btn-sm mr-1"> <i class="fas fa-list"></i> ' + getLanguageStr(interfaceStr,'btnListTests') + '</button>'
+    msgString += '<div class="card-footer"><button ' + (data.tests_count > 0 ? '' : 'disabled') +' onclick="listTests(' + data.id + ')" class="btn btn-primary btn-sm mr-1"> <i class="fas fa-list"></i> ' + getLanguageStr(interfaceStr,'btnListTests') + '</button>'
     msgString += '<button onclick="playTest(' + data.id + ')" class="btn btn-secondary btn-sm mr-1"> <i class="fas fa-play"></i> ' + getLanguageStr(interfaceStr,'btnDoTheTest') + '</button>'
     msgString += '<button onclick="shareLink(' + data.id + ')" class="btn btn-secondary btn-sm mr-1"> <i class="fas fa-share"></i> ' + getLanguageStr(interfaceStr,'btnShareLink') + '</button>'
     //msgString += '<button onclick="showBoard(' + data.id + ')" class="btn btn-secondary btn-sm mr-1"> <i class="fas fa-table"></i> ' + getLanguageStr(interfaceStr,'btnShowBoard') + '</button>'
@@ -112,7 +113,7 @@ function getTestGroupItem(data, interfaceStr = [], iconImgsUrl = []) {
 
 function getTestItem(data, interfaceStr = [], iconImgsUrl = []) {
     var msgString = "";
-    msgString += '<tr><td>' + data.id + '</td><td>' + data.student.name + '</td><td>' + data.hits + '</td><td>' + data.misses + '</td><td>' + data.seconds + '</td><td>' + data.updated_at + '</td>'
+    msgString += '<tr><td>' + data.id + '</td><td>' + data.student.name + '</td><td>' + data.hits + '</td><td>' + data.misses + '</td><td>' + data.seconds + '</td><td>' + convertDatetime(data.updated_at) + '</td>'
     msgString += '<td>'
     msgString += '<button onclick="showResult('+ data.id +');" class="btn btn-primary btn-sm"> <i class="fas fa-poll"></i></button>'
     msgString += '<button onclick="deleteTest('+ data.id +');" class="btn btn-danger btn-sm"> <i class="fas fa-trash"></i></button>'
@@ -145,6 +146,13 @@ function getMessageErrors(error) {
 
 function copyToClipboard(element) {
     navigator.clipboard.writeText(element);
+}
+
+function convertDatetime(dateTime) {
+  var dateTimeSp = dateTime.split('T');
+  var date = dateTimeSp[0].split('-');
+  var time = dateTimeSp[1].split('.')[0].split(':')
+  return date[2] + '/' + date[1] + '/' + date[0] + ' às ' + time[0] + 'h:' + time[1] + 'min'
 }
 
 
