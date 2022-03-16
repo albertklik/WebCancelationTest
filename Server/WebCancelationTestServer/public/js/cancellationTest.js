@@ -79,8 +79,8 @@ function setupTest() {
             }
         }
     };
-    data.board = new Board(3,data.n_goals,data.n_distractors,data.goal_id,data.resolution,data.aligned).generateRandom();
-    console.log(testData.board);
+    data.board = JSON.parse(JSON.stringify(new Board(3,data.n_goals,data.n_distractors,data.goal_id,data.resolution,data.aligned).generateRandom()));
+    console.log(data.board);
     testControl = new TestControl(data,'testCanvas',true);
 }
 

@@ -238,6 +238,6 @@
             <div id="messages" >
             </div>
         </div>
-        <canvas class="d-none canvas" id="testCanvas" width="600" height="500"></canvas>
+        <canvas class="d-none canvas" id="testCanvas" width="1920" height="1080"></canvas>
     </body>
 </html>

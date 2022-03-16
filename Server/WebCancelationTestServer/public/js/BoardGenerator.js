@@ -1,5 +1,5 @@
 
-function Board(size,n_goals,n_distractors,goal,resolution,aligned) {
+function Board(size,n_goals,n_distractors,goal_id,resolution,aligned) {
     this.goalTypes = [
         { id : 1, name : "carro" },
         { id : 2, name : "casa" },
@@ -19,7 +19,7 @@ function Board(size,n_goals,n_distractors,goal,resolution,aligned) {
     this.resolution = resolution;
     this.n_goals = n_goals;
     this.n_distractors = n_distractors;
-    this.goal = goal || this.goalTypes.first();
+    this.goal = baseData.goalTypes.find(e => e.id == goal_id) || baseData.goalTypes.first();
     this.aligned = aligned || false;
     this.randomGridGenerator = new RandomGrid(this.size,this.resolution,this.n_goals,this.n_distractors,this.goal,this.goalTypes.filter(e => e.id != this.goal.id),this.aligned);
 }

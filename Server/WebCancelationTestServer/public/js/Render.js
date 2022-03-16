@@ -18,7 +18,7 @@ this.CancelationTest = this.CancelationTest || {}
     function Render(canvasId,resolution,board,img_path,item_data,onclickEvent) 
     {
         this.board = board || {}
-        this.stage = new createjs.Stage(canvasId);
+        this.canvasId = canvasId
         this.imgPath = img_path;
         this.board_width = resolution.width;
         this.board_height = resolution.height;
@@ -30,11 +30,13 @@ this.CancelationTest = this.CancelationTest || {}
         this.img_data = []
         this.onClickEvent = onclickEvent;
         this.imgLoaded = false;
-        //this.stage.canvas.width = resolution.width;
-        //this.stage.canvas.height = resolution.height;
+        this.resolution = resolution
     }
 
     Render.prototype.startTest = function () {
+        this.stage = new createjs.Stage(this.canvasId);
+        this.stage.canvas.width = this.resolution.width;
+        this.stage.canvas.height = this.resolution.height;
         this.loadImg();
         this.stage.removeAllChildren();
         //this.stage.update();
