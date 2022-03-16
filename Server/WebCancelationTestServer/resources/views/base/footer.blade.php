@@ -7,13 +7,13 @@
       class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom"
     >
       <!-- Left -->
-      <div class="me-5 d-none d-lg-block">
+      {{-- <div class="me-5 d-none d-lg-block">
         <span>Get connected with us on social networks:</span>
-      </div>
+      </div> --}}
       <!-- Left -->
   
       <!-- Right -->
-      <div>
+      {{-- <div>
         <a href="" class="me-4 text-reset">
           <i class="fab fa-facebook-f"></i>
         </a>
@@ -32,7 +32,7 @@
         <a href="" class="me-4 text-reset">
           <i class="fab fa-github"></i>
         </a>
-      </div>
+      </div> --}}
       <!-- Right -->
     </section>
     <!-- Section: Social media -->
@@ -46,11 +46,10 @@
           <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
             <!-- Content -->
             <h6 class="text-uppercase fw-bold mb-4">
-              <i class="fas fa-gem me-3"></i>Company name
+              <i class="fas fa-th"></i> WEB CANCELLATION TEST
             </h6>
             <p>
-              Here you can use rows and columns to organize your footer content. Lorem ipsum
-              dolor sit amet, consectetur adipisicing elit.
+              cancellation test website
             </p>
           </div>
           <!-- Grid column -->
@@ -62,22 +61,22 @@
               Products
             </h6>
             <p>
-              <a href="#!" class="text-reset">Angular</a>
+              <a href="#!" class="text-reset">Home</a>
             </p>
             <p>
-              <a href="#!" class="text-reset">React</a>
+              <a href="#!" class="text-reset">Lang</a>
             </p>
-            <p>
+            {{-- <p>
               <a href="#!" class="text-reset">Vue</a>
             </p>
             <p>
               <a href="#!" class="text-reset">Laravel</a>
-            </p>
+            </p> --}}
           </div>
           <!-- Grid column -->
   
           <!-- Grid column -->
-          <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+          {{-- <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
             <!-- Links -->
             <h6 class="text-uppercase fw-bold mb-4">
               Useful links
@@ -94,7 +93,7 @@
             <p>
               <a href="#!" class="text-reset">Help</a>
             </p>
-          </div>
+          </div> --}}
           <!-- Grid column -->
   
           <!-- Grid column -->
@@ -103,13 +102,13 @@
             <h6 class="text-uppercase fw-bold mb-4">
               Contact
             </h6>
-            <p><i class="fas fa-home me-3"></i> New York, NY 10012, US</p>
+            <p><i class="fas fa-home me-3"></i> BRAZIL, Belém-PA</p>
             <p>
               <i class="fas fa-envelope me-3"></i>
-              info@example.com
+              paulo.anfig@gmail.com
             </p>
-            <p><i class="fas fa-phone me-3"></i> + 01 234 567 88</p>
-            <p><i class="fas fa-print me-3"></i> + 01 234 567 89</p>
+            {{-- <p><i class="fas fa-phone me-3"></i> + 01 234 567 88</p>
+            <p><i class="fas fa-print me-3"></i> + 01 234 567 89</p> --}}
           </div>
           <!-- Grid column -->
         </div>
@@ -121,7 +120,7 @@
     <!-- Copyright -->
     <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
       © 2021 Copyright:
-      <a class="text-reset fw-bold" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+      <a class="text-reset fw-bold" >PFIGUEIRO</a>
     </div>
     <!-- Copyright -->
   </footer>

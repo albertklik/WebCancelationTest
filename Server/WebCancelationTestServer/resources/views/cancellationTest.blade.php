@@ -70,7 +70,7 @@
     <body>
         <div class="row text-center">
             <div class="col">
-                <p>< WEBCANCELLATION TEST ></p>
+              <img style="height: 50px" src="{{ asset('assets/web-imgs/logo.png') }}" />
             </div>
         </div>
         <!-- logo -->

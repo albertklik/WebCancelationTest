@@ -4,9 +4,9 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-md-auto">
+        {{-- <div class="col-md-auto">
             {{ view('base.sideMenu') }}
-        </div>
+        </div> --}}
         <div class="col">
 
             <div class="jumbotron junbotron-fluid">
