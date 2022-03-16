@@ -34,6 +34,6 @@ class Researches extends Model
 
     public function testGroups()
     {
-        return $this->hasMany(TestGroups::class);
+        return $this->hasMany(TestGroup::class);
     }
 }

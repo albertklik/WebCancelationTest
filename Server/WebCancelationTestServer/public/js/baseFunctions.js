@@ -111,7 +111,11 @@ function getTestGroupItem(data, interfaceStr = [], iconImgsUrl = []) {
     return msgString;
 }
 
-function getTestItem(data, interfaceStr = [], iconImgsUrl = []) {
+function getTestTable(interfaceStr = []) {
+
+}
+
+function getTestItem(data) {
     var msgString = "";
     msgString += '<tr><td>' + data.id + '</td><td>' + data.student.name + '</td><td>' + data.hits + '</td><td>' + data.misses + '</td><td>' + data.seconds + '</td><td>' + convertDatetime(data.updated_at) + '</td>'
     msgString += '<td>'
@@ -119,6 +123,10 @@ function getTestItem(data, interfaceStr = [], iconImgsUrl = []) {
     msgString += '<button onclick="deleteTest('+ data.id +');" class="btn btn-danger btn-sm"> <i class="fas fa-trash"></i></button>'
     msgString += '</td></tr>'
     return msgString;
+}
+
+function getResearchItem(data,interfaceStr = []) {
+    return '';
 }
 
 function serializeFormData(formId) {
@@ -176,6 +184,13 @@ REQUEST_PARAM["student.update"] = {type: "PUT",url: "api/student/"};
 REQUEST_PARAM["student.show"] = {type: "GET",url: "api/student/"};
 REQUEST_PARAM["student.destroy"] = {type: "DELETE",url: "api/student/"};
 
+REQUEST_PARAM["research.store"] = {type: "POST",url: "api/research"};
+REQUEST_PARAM["research.index"] = {type: "GET",url: "api/research"};
+REQUEST_PARAM["research.list"] = {type: "GET",url: "api/research/list"};
+REQUEST_PARAM["research.destroy"] = {type: "DELETE",url: "api/research/"};
+REQUEST_PARAM["research.show"] = {type: "GET",url: "api/research/"};
+REQUEST_PARAM["research.update"] = {type: "PUT",url: "api/research/"};
+
 REQUEST_PARAM["test.index"] = {type: "GET",url: "api/test"};
 REQUEST_PARAM["test.store"] = {type: "POST",url: "api/test"};
 REQUEST_PARAM["test.destroy"] = {type: "DELETE",url: "api/test/"};
@@ -231,3 +246,23 @@ function deleteTest(urlParams,success,error,complete) {
 function getTest(urlParams,success,error,complete) {
     executeAjaxRequest("test.show",urlParams,{},success,error,complete);
 }
+
+function getResearches(data,success,error,complete) {
+    executeAjaxRequest("research.list",[],data,success,error,complete);
+ }
+ 
+ function saveResearches(data,success,error,complete) {
+     executeAjaxRequest("research.store",[],data,success,error,complete);
+ }
+ 
+ function updateResearches(urlParams,data,success,error,complete) {
+     executeAjaxRequest("research.update",urlParams,data,success,error,complete);
+ }
+ 
+ function deleteResearches(urlParams,success,error,complete) {
+     executeAjaxRequest("research.destroy",urlParams,{},success,error,complete);
+ }
+ 
+ function getResearch(urlParams,success,error,complete) {
+     executeAjaxRequest("research.show",urlParams,{},success,error,complete);
+ }

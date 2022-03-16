@@ -16,9 +16,9 @@ class CreateResearchesTable extends Migration
         Schema::create('researches', function (Blueprint $table) {
             $table->id();
             $table->string("title");
-            $table->text("description")->nullable();
-            $table->string("keywords");
-            $table->string("instructor_name");
+            $table->text("description");
+            $table->string("keywords")->nullable();
+            $table->string("instructor_name")->nullable();
             $table->timestamps();
         });
     }

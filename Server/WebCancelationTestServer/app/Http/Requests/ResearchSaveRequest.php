@@ -24,10 +24,8 @@ class ResearchSaveRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|unique:researches,title,'.$this->id.',id|string',
-            'description' => 'string',
-            'keywords' => 'string',
-            'instructor_name' => 'string',
+            'title' => 'required|min:5|unique:researches,title,'.$this->id.',id|string',
+            'description' => 'required|min:5',
         ];
     }
 }
