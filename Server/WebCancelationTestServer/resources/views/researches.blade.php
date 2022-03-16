@@ -25,44 +25,7 @@
                 </div> 
             </div>
             <br>
-            <div class="row align-middle">
-                <div class="col-sm-3" style="margin-bottom: 1em">
-                    <div class="card">
-                        <div class="card-header" style="background-color: darkcyan">
-                            <div class="float-right">
-                                <button onclick="editResearch('+ data.id +');" class="btn btn-light btn-sm mr-1"> <i class="fas fa-edit"></i></button>
-                                <button onclick="deleteResearch(\''+data.id+'\')" class="btn btn-light btn-sm mr-1"> <i class="fas fa-trash"></i></button>
-                            </div>
-                            <div class="float-left" style="margin-bottom: -25px; margin-top: 25px">
-                                <img style="background-color: darkcyan; width:50px; height:50px; border-width:5px" alt="..." class="img-thumbnail rounded-circle">
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <h4 id="researchTitle">Titulo da pesquisa</h4>
-                            <p><b>Orientador da pesquisa</b></p>
-                            <small>Descrição da pesquisa, com todo o texto necessário</small>
-                            <small><p><b>Palavras, chave, separados, por, vírgula</b></p></small>
-                        </div>
-                        <div class="card-footer">
-                            <button class="btn fluid btn-success btn-sm btn-block" onclick="ListTestGroups(1)" ><i class="fas fa-document"></i>{{__("interface.btnGerenciarPesquisa")}}</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-3 align-middle">
-                    <div class="card">
-                        <div class="card-header" style="background-color: darkcyan">
-                            <br>
-                        </div>
-                        <div class="card-body">
-                            <button class="btn fluid btn-success btn-sm btn-block" onclick="newResearch()" ><i class="fas fa-plus"></i> Adicionar Novo</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-                
-            <div id="content">
-                
-
+            <div id="content" class="row">
             </div>
             <div id="paginator">
             </div>
@@ -76,6 +39,7 @@ var langStr = [];
 langStr["btnListTests"] = '{{__("interface.btnListTests")}}'; 
 langStr["eraseTestTitle"] = '{{__("interface.eraseTestTitle")}}'; 
 langStr["eraseTestMsg"] = '{{__("interface.eraseTestMsg")}}'; 
+langStr["btnManageResearch"] = '{{__("interface.btnManageResearch")}}';
 
 
 var actualPage = 1    
@@ -173,12 +137,12 @@ function saveResearch() {
         });
  }
 
-function sendDeleteTest(id) {
+function sendDeleteResearch(id) {
     loading(true);
-    deleteTest(
+    deleteResearch(
         [id],
         function(data) {
-         loadTests()
+         loadResearches()
      }, function(error) {
          console.log(error);
          showMsg('danger','Error','Error on erase test');
@@ -188,27 +152,19 @@ function sendDeleteTest(id) {
      });
 }
 
-function deleteTest(id) {
+function deleteResearch(id) {
     showConfirmationModal(
-        "{{ __('interface.eraseTestTitle') }}", 
-        "{{ __('interface.eraseTestMsg') }}",
+        "{{ __('interface.eraseResearchTitle') }}", 
+        "{{ __('interface.eraseResearchMsg') }}",
         function() { 
-            sendDeleteTest(id); 
+            sendDeleteResearch(id); 
         }
     );
 }
 
-function showResult(id) {
-    loadTest(id,function(data) {
-        loadResult(data);
-        modal(true,'testResultModal');
-    });
+function listTestGroups(id) {
+    goToUrl("{{route('testGroups')}}?research_id="+id);
 }
-
-function loadResult(data) {
-
-}
- 
 
 function goToPage(page = 1) {
     if (actualPage==page) return;

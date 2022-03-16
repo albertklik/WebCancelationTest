@@ -91,6 +91,7 @@ return [
     'btnDoTheTest' => 'Do the Test',
     'btnShareLink' => 'Share Link',
     'btnShowBoard' => 'Show Board',
+    'btnManageResearch'  => 'Manage Research'
     
 
 

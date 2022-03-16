@@ -86,6 +86,7 @@ var actualPage = 1
  function saveTestGroup() {
     loadingModal(true,'insertEditTestGroupsModal');
      var data = serializeFormData('insertEditTestGroupsForm');
+     data.researches_id = {{ $research->id ?? -1 }};
      console.log(data);
 
     if (data.id > 0) {

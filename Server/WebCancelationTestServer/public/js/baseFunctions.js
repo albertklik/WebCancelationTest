@@ -126,7 +126,18 @@ function getTestItem(data) {
 }
 
 function getResearchItem(data,interfaceStr = []) {
-    return '';
+    var msgString = "";
+    msgString += '<div class="col-sm-4" style="margin-bottom: 1em"><div class="card"><div class="card-header" style="background-color: darkcyan"><div class="float-right">'
+    msgString += '<button onclick="editResearch('+ data.id +')" class="btn btn-outline-light btn-sm mr-1"> <i class="fas fa-edit"></i></button>'
+    msgString += '<button onclick="deleteResearch(' + data.id + ')" class="btn btn-outline-light btn-sm mr-1"> <i class="fas fa-trash"></i></button>'
+    msgString += '</div><div class="float-left" style="margin-bottom: -25px; margin-top: 25px"><div style="background-color: darkcyan; width:50px; height:50px; border-width:5px" alt="img" class="img-thumbnail rounded-circle text-center" ><h3 style="color:white; "><b>' + data.title.substring(0,1).toUpperCase() + '</b></h3></div></div></div><div class="card-body">'
+    msgString += '<h4 id="researchTitle">' + data.title + '</h4>'
+    msgString += data.instructor_name != null ? '<p><b>' + data.instructor_name + '</b></p>' : ''
+    msgString += '<small>' + data.description + '</small>'
+    msgString += data.keywords != null ? '<small><p><b>' + data.keywords + '</b></p></small>' : ''
+    msgString += '</div><div class="card-footer">'
+    msgString += '<button class="btn fluid btn-success btn-sm btn-block" onclick="listTestGroups('+ data.id +')" ><i class="fas fa-tasks"></i> ' + getLanguageStr(interfaceStr,'btnManageResearch') + '</a>'
+    return msgString;
 }
 
 function serializeFormData(formId) {
@@ -161,6 +172,10 @@ function convertDatetime(dateTime) {
   var date = dateTimeSp[0].split('-');
   var time = dateTimeSp[1].split('.')[0].split(':')
   return date[2] + '/' + date[1] + '/' + date[0] + ' às ' + time[0] + 'h:' + time[1] + 'min'
+}
+
+function goToUrl(url) {
+    window.location.href = url;
 }
 
 

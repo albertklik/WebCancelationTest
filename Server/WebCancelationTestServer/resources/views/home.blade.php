@@ -22,7 +22,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <p><i class="fas fa-book"></i> 1 pesquisa</p>
-                                <a href="#">ver</a>
+                                <a href="{{ route('researches') }}">ver</a>
                             </div>
                         </div>
                     </div>

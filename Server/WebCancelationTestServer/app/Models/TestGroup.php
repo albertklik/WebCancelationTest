@@ -16,7 +16,8 @@ class TestGroup extends Model
         'distractors',
         'aligned',
         'target_id',
-        'time_limit'
+        'time_limit',
+        'researches_id'
     ];
 
     public function tests() {

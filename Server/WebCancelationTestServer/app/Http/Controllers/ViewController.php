@@ -39,8 +39,8 @@ class ViewController extends Controller
     }
 
     public function testGroups(Request $request) {
-        $Research = Researches::findOrFail($request->input('researches_id'));
-        return view('testGroups');
+        $research = Researches::findOrFail($request->input('research_id'));
+        return view('testGroups',['research' => $research]);
     }
 
     public function tests(Request $request) {
