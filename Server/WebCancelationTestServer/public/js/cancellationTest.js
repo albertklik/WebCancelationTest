@@ -14,9 +14,6 @@ $(function(){
         });
     });
 
-    testData.board = JSON.stringify(new Board(3,3,0,{id:1},{width : 1920, height: 1080},false).generateRandom());
-    console.log(testData.board);
-
     showDiv('#formInsertName',true);
 
     $('#checkNameButton').on('click', function() {
@@ -55,15 +52,24 @@ $(function(){
         showTestPanel(true);
         startTest();
      });
+});
 
-    testControl = new TestControl({
+function setTestGroupData(data) {
+    testData.testGroup = data
+    setupTest();
+}
+
+function setupTest() {
+    //testData.board = JSON.stringify(new Board(3,data.n_goals,data.n_distractors,data.goal_id,data.resolution,data.aligned).generateRandom());
+    console.log(testData.testGroup);
+    var data = {
         resolution : {width : 1920, height: 1080},
         n_goals : testData.testGroup.targets,
-        n_distractors : testData.testGroup.distractors,
-        aligned : testData.testGroup.aligned,
+        n_distractors : (testData.testGroup.distractors != null ? testData.testGroup.distractors : 0),
+        aligned : (testData.testGroup.aligned == 1),
         goal_id : testData.testGroup.target_id,
         time_limit : testData.testGroup.time_limit,
-        board : JSON.parse(testData.board),
+        //board : JSON.parse(testData.board),
         callbacks : {
             testFinished : function (result) {
               finishTest(result);
@@ -72,13 +78,10 @@ $(function(){
                 console.log(ex);
             }
         }
-    },
-    'testCanvas',
-    true);
-});
-
-function setTestGroupData(data) {
-    testData.testGroup = data
+    };
+    data.board = new Board(3,data.n_goals,data.n_distractors,data.goal_id,data.resolution,data.aligned).generateRandom();
+    console.log(testData.board);
+    testControl = new TestControl(data,'testCanvas',true);
 }
 
 function searchStudentsNames(val,success,error,complete) {

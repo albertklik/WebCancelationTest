@@ -26,7 +26,7 @@ var baseData = {
 }
 
 
-function TestControl(data,canvasId,debug,board) {
+function TestControl(data,canvasId,debug) {
     
     this.clicks = [];
     this.startTime = 0;
