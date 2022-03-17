@@ -12,6 +12,26 @@
           <div class="modalContent">
             <div id="testResultModalMsg">
             </div>
+
+            <div id="studentData">
+              
+
+            <div id="testResultTable">
+              <table class="table table-sm">
+                <thead>
+                  <tr>
+                    <th>Nº</th>
+                    <th>Tempo</th>
+                    <th>posição</th>
+                    <th>Icone</th>
+                    <th>Nome</th>
+                    <th>acerto</th>
+                  </tr>
+                </thead>
+                <tbody>
+                </tbody>
+              </table>
+            </div>
             
           </div>
         </div>
@@ -21,3 +41,4 @@
       </div>
     </div>
   </div>
+</div>

@@ -69,7 +69,7 @@
     </head>
     <body>
         <div class="row text-center">
-            <div class="col">
+            <div class="col" id="logo">
               <img style="height: 50px" src="{{ asset('assets/web-imgs/logo.png') }}" />
             </div>
         </div>

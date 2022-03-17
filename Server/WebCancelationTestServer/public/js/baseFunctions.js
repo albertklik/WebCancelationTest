@@ -125,6 +125,12 @@ function getTestItem(data) {
     return msgString;
 }
 
+function getResultDataRow(data,index) {
+    var msgString = "";
+    msgString += '<tr><td>' + (index+1) + '</td><td>' + timestampToDatetime(data.time) + '</td><td> (' + ~~data.x +','+ ~~data.y + ') </td><td>' + data.item.id + '</td><td>' + data.item.name + '</td><td>' + (data.hit ? '<i style="color:green" class="fas fa-check"></i>' : '<i style="color:red" class="fas fa-close"></i>') + '</td></tr>'
+    return msgString;
+}
+
 function getResearchItem(data,interfaceStr = []) {
     var msgString = "";
     msgString += '<div class="col-sm-4" style="margin-bottom: 1em"><div class="card"><div class="card-header" style="background-color: darkcyan"><div class="float-right">'
@@ -172,6 +178,12 @@ function convertDatetime(dateTime) {
   var date = dateTimeSp[0].split('-');
   var time = dateTimeSp[1].split('.')[0].split(':')
   return date[2] + '/' + date[1] + '/' + date[0] + ' às ' + time[0] + 'h:' + time[1] + 'min'
+}
+
+function timestampToDatetime(timestamp) {
+    var dt = eval(timestamp);
+    var myDate = new Date(dt);
+    return myDate.toLocaleString();
 }
 
 function goToUrl(url) {

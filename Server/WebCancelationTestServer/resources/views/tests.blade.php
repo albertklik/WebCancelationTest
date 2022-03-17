@@ -4,9 +4,9 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-md-auto">
+        {{-- <div class="col-md-auto">
             {{ view('base.sideMenu') }}
-        </div>
+        </div> --}}
         <div class="col">
             <div class="jumbotron junbotron-fluid">
                 <div class="container">
@@ -14,6 +14,15 @@
                     <p class="lead">{{__("interface.testsDescription")}}</p>
                 </div>
             </div>
+
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="{{ route('home') }}">{{__("interface.home")}}</a></li>
+                  <li class="breadcrumb-item"><a href="{{ route('researches') }}">{{__("interface.researches")}}</a></li>
+                  <li class="breadcrumb-item"><a href="{{ route('testGroups',['research_id' => $testGroup->researches_id ]) }}">{{__("interface.testGroups")}}</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">{{__("interface.testGroups")}}</li>
+                </ol>
+            </nav>
 
             <div class="content">
                 <div id="msg">
@@ -156,7 +165,12 @@ function showResult(id) {
 }
 
 function loadResult(data) {
-
+    console.log(data);
+    var resultData = JSON.parse(data.result)
+    $('#testResultTable').find('tbody').html('')
+    resultData.forEach( (item,i) => {
+        $('#testResultTable').find('tbody').append(getResultDataRow(item,i));
+    });
 }
  
 

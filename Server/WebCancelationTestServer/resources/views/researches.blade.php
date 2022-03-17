@@ -15,12 +15,19 @@
                 </div>
             </div>
 
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="{{ route('home') }}">{{__("interface.home")}}</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">{{__("interface.researches")}}</li>
+                </ol>
+            </nav>
+
             <div class="content">
                 <div id="msg">
                 </div>
                 <div class="card">
                     <div class="card-body">
-                        <button class="btn btn-success btn-sm" onclick="newResearch()" ><i class="fas fa-plus"></i>{{__("interface.btnNewResearch")}}</a>
+                        <button class="btn btn-success btn-sm" onclick="newResearch()" ><i class="fas fa-plus"></i> {{__("interface.btnNewResearch")}}</a>
                     </div>
                 </div> 
             </div>
@@ -60,6 +67,15 @@ var actualPage = 1
     $('input[name="title"]').val("");
     $('textarea[name="description"]').html("");
     $('input[name="instructor_name"]').val("");
+    $('input[name="keywords"]').val("");
+}
+
+function loadResearchOnForm(data) {
+    $('input[name="id"]').val(data.id);
+    $('input[name="title"]').val(data.title);
+    $('textarea[name="description"]').html(data.description);
+    $('input[name="instructor_name"]').val(data.instructor_name);
+    $('input[name="keywords"]').val(data.keywords);
 }
 
 function newResearch() {
@@ -88,7 +104,7 @@ function newResearch() {
      loading(true);
      getResearches({
         page: actualPage,
-        elements_per_pag: 10,
+        elements_per_pag: 9,
      }, function(data) {
          console.log(data);
          $('#content').html('');
@@ -114,10 +130,10 @@ function saveResearch() {
      var data = serializeFormData('insertEditResearchesForm');
      console.log(data);
 
-    // if (data.id > 0) {
-    //     updateTestGroup(data);
-    //     return;
-    // }
+    if (data.id > 0) {
+        updateResearch(data);
+        return;
+    }
     
      saveResearches(data,
         function (data) {
@@ -137,9 +153,30 @@ function saveResearch() {
         });
  }
 
+ function updateResearch(data) {
+     updateResearches(
+        [data.id],
+        data,
+        function (data) {
+           console.log(data);
+           modal(false,'insertEditResearchesModal');
+           loadResearches()
+           showMsg('success','{{__("interface.successTitle")}}','{{__("interface.successMsg")}}');
+        },
+        function (error) {
+           console.log(error);
+           if (error.status == 422) {
+                $('#insertEditResearchesModalMsg').html(getMessageErrors(error.responseJSON));
+           }
+        },
+        function () {
+            loadingModal(false,'insertEditResearchesModal');
+        });  
+ }
+
 function sendDeleteResearch(id) {
     loading(true);
-    deleteResearch(
+    deleteResearches(
         [id],
         function(data) {
          loadResearches()
@@ -160,6 +197,17 @@ function deleteResearch(id) {
             sendDeleteResearch(id); 
         }
     );
+}
+
+function editResearch(id) {
+    loadResearch(id,
+    function(data) {
+        console.log(data);
+        clearMsg('insertEditResearchesModalMsg');
+        loadResearchOnForm(data);
+        loadingModal(false,'insertEditResearchesModal');
+        modal(true,'insertEditResearchesModal');
+    });
 }
 
 function listTestGroups(id) {

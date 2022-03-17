@@ -68,6 +68,16 @@ return [
     'thirtyMinutes' => 'Thirty minutes',
     'oneHour' => 'One hour',
     'nTests' => 'Tests Realized',
+    'researches' => 'Researches',
+    'researchesDescription' => 'Researches management area',
+    'title' => 'Title',
+    'instructorName' => 'Instructor Name',
+    'description' => 'Description',
+    'researchDescriptionHelpTxt' => 'Here you can describe the objective and the main topics about the reseach',
+    'keywords' => 'Keywords',
+    'researchKeywordsHelpTxt' => 'Keywords separated by comma',
+    'testResult' => 'Test Result',
+
 
 
     //messages or modals
@@ -80,18 +90,21 @@ return [
     'eraseTestTitle' => 'Erase Test',
     'eraseTestMsg' => 'We need you confirmation to proceed the action. Are you sure?',
 
+
     //buttons 
     'btnNewTestGroup' => 'New Test Group',
     'btnEdit' => 'Edit',
     'btnErase' => 'Erase',
     'btnSave' => 'Save',
+    'btnClose' => 'Close',
     'btnCancel' => 'Cancel',
     'btnConfirm' => 'Confirm',
     'btnListTests' => 'Tests List',
     'btnDoTheTest' => 'Do the Test',
     'btnShareLink' => 'Share Link',
     'btnShowBoard' => 'Show Board',
-    'btnManageResearch'  => 'Manage Research'
+    'btnManageResearch'  => 'Manage Research',
+    'btnNewResearch'  => 'Create new Research'
     
 
 

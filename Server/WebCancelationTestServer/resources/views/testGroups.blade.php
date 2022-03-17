@@ -4,9 +4,9 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-md-auto">
+        {{-- <div class="col-md-auto">
             {{ view('base.sideMenu') }}
-        </div>
+        </div> --}}
         <div class="col">
             <div class="jumbotron junbotron-fluid">
                 <div class="container">
@@ -14,6 +14,14 @@
                     <p class="lead">{{__("interface.testGroupsDescription")}}</p>
                 </div>
             </div>
+
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="{{ route('home') }}">{{__("interface.home")}}</a></li>
+                  <li class="breadcrumb-item"><a href="{{ route('researches') }}">{{__("interface.researches")}}</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">{{__("interface.testGroups")}}</li>
+                </ol>
+            </nav>
 
             <div class="content">
                 <div id="msg">
@@ -138,7 +146,8 @@ var actualPage = 1
      loading(true);
      getTestGroups({
         page: actualPage,
-        elements_per_pag: 10
+        elements_per_pag: 10,
+        research_id: {{ $research->id ?? -1 }}
      }, function(data) {
          console.log(data);
          $('#content').html('')
@@ -245,7 +254,7 @@ function deleteTestGroup(id) {
 }
 
 function listTests(id) {
-    window.open("{{ route('tests') }}?testGroup_id=" + id);
+    goToUrl("{{ route('tests') }}?testGroup_id=" + id);
 }
 
 function playTest(id) {

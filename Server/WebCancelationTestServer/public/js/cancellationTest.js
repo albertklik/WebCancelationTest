@@ -50,13 +50,14 @@ $(function(){
 
      $('#startTest').on('click',function() {
         showTestPanel(true);
+        setupTest();
         startTest();
      });
 });
 
 function setTestGroupData(data) {
     testData.testGroup = data
-    setupTest();
+    //setupTest();
 }
 
 function setupTest() {
@@ -155,7 +156,6 @@ function startTest() {
 function finishTest(data) {
     showTestPanel(false);
     loading(true);
-    alert();
     saveTest({
       result : JSON.stringify(data.result),
       seconds : data.seconds,
@@ -188,6 +188,7 @@ function showDiv(divId,state) {
 }
 
 function showTestPanel(state) {
+    showDiv('#logo',!state)
     showDiv('#formContent',!state);
     showDiv('#testCanvas',state);
 }
