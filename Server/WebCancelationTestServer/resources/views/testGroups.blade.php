@@ -74,7 +74,8 @@ var iconImgsUrl = [
         { id : 13, url : "{{ asset('assets/icons/barco.png') }}" }
     ];
 
-var actualPage = 1    
+var actualPage = 1 
+var generatedBoard = ""   
 
 
  $(function() {
@@ -89,12 +90,17 @@ var actualPage = 1
         $('#distractors').prop( "disabled",this.checked);
         $('#automaticDistractors').val(this.checked);        
     });
+    // $('input').on('change', function () {
+    //     updateBoardInsertEdit();
+    // });
  }
 
  function saveTestGroup() {
     loadingModal(true,'insertEditTestGroupsModal');
      var data = serializeFormData('insertEditTestGroupsForm');
      data.researches_id = {{ $research->id ?? -1 }};
+     data.aligned = $('#aligned').is( ":checked" ) ? 1 : 0
+     data.distractors = $('#automaticDistractors').is( ":checked" ) ? 0 : data.distractors
      console.log(data);
 
     if (data.id > 0) {
@@ -273,7 +279,61 @@ function goToPage(page = 1) {
 }
 
 function showBoard(id) {
-    modal(true,'boardViewModal');
+    loadTestGroup(id,
+    function(data) {
+        modal(true,'boardViewModal');
+        setupBoard(data);
+    });
+}
+
+function updateBoardInsertEdit() {
+    var data = serializeFormData('insertEditTestGroupsForm');
+    data.aligned = $('#aligned').is( ":checked" ) ? 1 : 0
+    console.log(data);
+    
+    var bData = {
+        resolution : {width : 760, height: 500},
+        n_goals : data.targets,
+        n_distractors : (data.distractors != null ? data.distractors : 0),
+        aligned : (data.aligned == 1),
+        goal_id : data.target_id,
+        time_limit : data.time_limit,
+        board : null,
+        callbacks : {
+            testFinished : function (result) {
+            },
+            error : function (ex) {
+            }
+        }
+    };
+    console.log(bData);
+    generatedBoard = JSON.stringify(new Board(3,bData.n_goals,bData.n_distractors,bData.goal_id,bData.resolution,bData.aligned).generateRandom());
+    bData.board = JSON.parse(generatedBoard);
+    testControl = new TestControl(bData,'showBoardCanvasInsertEdit',true);
+}
+
+
+function setupBoard(data) {
+    var bData = {
+        resolution : {width : 760, height: 500},
+        n_goals : data.targets,
+        n_distractors : (data.distractors != null ? data.distractors : 0),
+        aligned : (data.aligned == 1),
+        goal_id : data.target_id,
+        time_limit : data.time_limit,
+        board : data.board,
+        callbacks : {
+            testFinished : function (result) {
+            },
+            error : function (ex) {
+            }
+        }
+    };
+    if (!data.board) {
+        bData.board = JSON.parse(JSON.stringify(new Board(3,bData.n_goals,bData.n_distractors,bData.goal_id,bData.resolution,bData.aligned).generateRandom()));
+    }
+    console.log(bData.board);
+    testControl = new TestControl(bData,'showBoardCanvas',true);
 }
 
 
@@ -283,7 +343,7 @@ function showBoard(id) {
 
 <!-- content  -->
 <div class="modal fade" id="boardViewModal" tabindex="-1" role="dialog" aria-labelledby="boardViewModalTitle" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="boardViewModalTitle">{{__('interface.board')}}</h5>
@@ -292,7 +352,7 @@ function showBoard(id) {
           </button>
         </div>
         <div class="modal-body">
-            <canvas class="d-none canvas" id="showBoardCanvas" width="600" height="500"></canvas>
+            <canvas id="showBoardCanvas" width="760" height="500"></canvas>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('interface.btnClose') }}</button>

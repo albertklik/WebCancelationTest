@@ -32,10 +32,10 @@ return [
     'studentsDescription' => 'Students that aplied for this test group',
     'yes' => 'Yes',
     'no' => 'No',
-    'goals' => 'Goals',
-    'goalType' => 'Goal type',
+    'goals' => 'Targets',
+    'goalType' => 'Target type',
     'distractors' => 'Distractors',
-    'goalSymbol' => 'Goal symbol',
+    'goalSymbol' => 'Target symbol',
     'timeDesc' => 'Time limit (in seconds)',
     'align' => 'Symbol alignment',
     'loading' => 'Loading',
@@ -77,6 +77,9 @@ return [
     'keywords' => 'Keywords',
     'researchKeywordsHelpTxt' => 'Keywords separated by comma',
     'testResult' => 'Test Result',
+    'researchesHomeTitle' => 'Last Created Researches',
+    'researchesHomeDescription' => 'These are the las Researches created, see the button below to see the full list and manage the researches',
+    'board' => 'Board',
 
 
 
@@ -93,6 +96,7 @@ return [
 
     //buttons 
     'btnNewTestGroup' => 'New Test Group',
+    'btnNewTest' => 'New Test',
     'btnEdit' => 'Edit',
     'btnErase' => 'Erase',
     'btnSave' => 'Save',
@@ -104,7 +108,8 @@ return [
     'btnShareLink' => 'Share Link',
     'btnShowBoard' => 'Show Board',
     'btnManageResearch'  => 'Manage Research',
-    'btnNewResearch'  => 'Create new Research'
+    'btnNewResearch'  => 'Create new Research',
+    'btnListResearch'  => 'See More Researches'
     
 
 

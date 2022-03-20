@@ -29,7 +29,8 @@
                 </div>
                 <div class="card">
                     <div class="card-body">
-                        <button disabled class="btn btn-success btn-sm" onclick="" ><i class="fas fa-plus"></i> new Test</a>
+                        <button disabled class="btn btn-success btn-sm" onclick="" ><i class="fas fa-plus"></i> {{ __('interface.btnNewTest') }}</button>
+                        <a class="btn btn-primary btn-sm" href="{{ route('doTheTest',['id' => $testGroup->id ]) }}" target="_blank" ><i class="fas fa-play"></i> {{ __('interface.btnDoTheTest') }}</a>
                     </div>
                 </div> 
             </div>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CancellationTestRequest;
 use App\Models\TestGroup;
 use App\Models\Researches;
+use App\Models\Test;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 
@@ -35,7 +36,11 @@ class ViewController extends Controller
     }
 
     public function home() {
-       return view('home');
+        $counts = array();
+        $counts['researches'] = Researches::count();
+        $counts['testGroups'] = TestGroup::count();
+        $counts['tests'] = Test::count();
+       return view('home',['counts' => $counts]);
     }
 
     public function testGroups(Request $request) {

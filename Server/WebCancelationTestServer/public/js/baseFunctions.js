@@ -106,7 +106,7 @@ function getTestGroupItem(data, interfaceStr = [], iconImgsUrl = []) {
     msgString += '<div class="card-footer"><button ' + (data.tests_count > 0 ? '' : 'disabled') +' onclick="listTests(' + data.id + ')" class="btn btn-primary btn-sm mr-1"> <i class="fas fa-list"></i> ' + getLanguageStr(interfaceStr,'btnListTests') + '</button>'
     msgString += '<button onclick="playTest(' + data.id + ')" class="btn btn-secondary btn-sm mr-1"> <i class="fas fa-play"></i> ' + getLanguageStr(interfaceStr,'btnDoTheTest') + '</button>'
     msgString += '<button onclick="shareLink(' + data.id + ')" class="btn btn-secondary btn-sm mr-1"> <i class="fas fa-share"></i> ' + getLanguageStr(interfaceStr,'btnShareLink') + '</button>'
-    //msgString += '<button onclick="showBoard(' + data.id + ')" class="btn btn-secondary btn-sm mr-1"> <i class="fas fa-table"></i> ' + getLanguageStr(interfaceStr,'btnShowBoard') + '</button>'
+    msgString += '<button onclick="showBoard(' + data.id + ')" class="btn btn-secondary btn-sm mr-1"> <i class="fas fa-table"></i> ' + getLanguageStr(interfaceStr,'btnShowBoard') + '</button>'
     msgString += '</div></div><br>'
     return msgString;
 }
@@ -131,13 +131,15 @@ function getResultDataRow(data,index) {
     return msgString;
 }
 
-function getResearchItem(data,interfaceStr = []) {
+function getResearchItem(data,interfaceStr = [],resumed = false) {
     var msgString = "";
     msgString += '<div class="col-sm-4" style="margin-bottom: 1em"><div class="card"><div class="card-header" style="background-color: darkcyan"><div class="float-right">'
-    msgString += '<button onclick="editResearch('+ data.id +')" class="btn btn-outline-light btn-sm mr-1"> <i class="fas fa-edit"></i></button>'
-    msgString += '<button onclick="deleteResearch(' + data.id + ')" class="btn btn-outline-light btn-sm mr-1"> <i class="fas fa-trash"></i></button>'
+    if (!resumed) {
+        msgString += '<button onclick="editResearch('+ data.id +')" class="btn btn-outline-light btn-sm mr-1"> <i class="fas fa-edit"></i></button>'
+        msgString += '<button onclick="deleteResearch(' + data.id + ')" class="btn btn-outline-light btn-sm mr-1"> <i class="fas fa-trash"></i></button>'
+    }
     msgString += '</div><div class="float-left" style="margin-bottom: -25px; margin-top: 25px"><div style="background-color: darkcyan; width:50px; height:50px; border-width:5px" alt="img" class="img-thumbnail rounded-circle text-center" ><h3 style="color:white; "><b>' + data.title.substring(0,1).toUpperCase() + '</b></h3></div></div></div><div class="card-body">'
-    msgString += '<h4 id="researchTitle">' + data.title + '</h4>'
+    msgString += '<h5 id="researchTitle">' + data.title + '</h5>'
     msgString += data.instructor_name != null ? '<p><b>' + data.instructor_name + '</b></p>' : ''
     msgString += '<small>' + data.description + '</small>'
     msgString += data.keywords != null ? '<small><p><b>' + data.keywords + '</b></p></small>' : ''

@@ -1,5 +1,5 @@
 <div class="modal fade" id="insertEditTestGroupsModal" tabindex="-1" role="dialog" aria-labelledby="insertEditTestGroupsModalTitle" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="insertEditTestGroupsModalTitle">{{__('interface.testGroups')}}</h5>
@@ -20,7 +20,7 @@
               </div>
               <div class="form-group">
                 <div class="form-check">
-                  <input class="form-check-input" type="checkbox" name="aligned" value="1" id="aligned">
+                  <input class="form-check-input" type="checkbox" name="aligned" id="aligned">
                   <label class="form-check-label" for="aligned">
                     {{__('interface.aligned')}}
                   </label>
@@ -79,6 +79,21 @@
                 </select>
               </div>
             </form>
+
+            <!-- show board -->
+            {{-- <p>
+            <a class="btn btn-secondary" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">{{ __('interface.btnPreVisualizeBoard')}}</a>
+            </p> --}}
+            <div class="row">
+              <div class="col">
+                {{-- <div class="collapse multi-collapse" id="multiCollapseExample1"> --}}
+                  <div class="card card-body">
+                    <canvas id="showBoardCanvasInsertEdit" width="760" height="500"></canvas>
+                  </div>
+                {{-- </div> --}}
+              </div>
+            </div>
+
           </div>
         </div>
         <div class="modal-footer">

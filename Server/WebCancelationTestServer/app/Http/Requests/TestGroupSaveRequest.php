@@ -26,7 +26,7 @@ class TestGroupSaveRequest extends FormRequest
         return [
             'name' => 'required|unique:test_groups,name,'.$this->id.',id',
             'targets' => 'required|numeric|min:1',
-            'distractors' => 'numeric|min:1',
+            'distractors' => 'numeric|min:0',
             'aligned' => 'numeric|min:0|max:1',
             'target_id' => 'required|numeric',
             'time_limit' => 'numeric|min:1',
