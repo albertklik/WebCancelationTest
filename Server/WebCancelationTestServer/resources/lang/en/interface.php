@@ -79,7 +79,14 @@ return [
     'testResult' => 'Test Result',
     'researchesHomeTitle' => 'Last Created Researches',
     'researchesHomeDescription' => 'These are the las Researches created, see the button below to see the full list and manage the researches',
-    'board' => 'Board',
+    'researchesNumberHomeTitle' => 'Number of Researches created',
+    'researchesNumberHomeDesc' => 'Researches are the amout of data bout the objective of the tests',
+    'testGroupsNumberHomeTitle' => 'Number of Test Groups Created',
+    'testGroupsNumberHomeDesc' => 'Test Groups contains the settings of the tests realization',
+    'testsNumberHomeTitle' => 'Number of tests Realized',
+    'testsNumberHomeDesc' => 'Tests are the amout of data colected in a test atempt',
+    'numbersHomeTitle' => 'Numbers',
+    'numbersHomeDescription' => 'Dash of numbers about objects created',
 
 
 
@@ -111,11 +118,5 @@ return [
     'btnNewResearch'  => 'Create new Research',
     'btnListResearch'  => 'See More Researches'
     
-
-
-
-
-
-
 
 ];

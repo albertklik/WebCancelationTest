@@ -22,7 +22,7 @@
                       <div class="card-body">
                           <h5 class="card-title">{{ __("interface.researchesHomeTitle") }}</h5>
                           <p class="card-text">{{ __("interface.researchesHomeDescription") }}</p>
-                          <button class="btn btn-primary" onclick=""><i class="fas fa-list"></i>  {{ __("interface.btnListResearch") }}</button>
+                          <a class="btn btn-primary" href="{{ route('researches') }}"><i class="fas fa-list"></i>  {{ __("interface.btnListResearch") }}</a>
                       </div>
                   </div>
                 </div>
@@ -57,7 +57,7 @@
                                 <h5 class="card-title"><i class="fas fa-book"></i>  {{__('interface.researchesNumberHomeTitle')}}</h5>
                                 <h1>{{$counts['researches']}}</h1>
                                 <p class="card-text">{{__('interface.researchesNumberHomeDesc')}}</p>
-                                <a class="btn btn-primary" href="{{ route('researches') }}">{{ __('interface.btnListResearches') }}</a>
+                                {{-- <a class="btn btn-primary" href="{{ route('researches') }}">{{ __('interface.btnListResearches') }}</a> --}}
                             </div>
                         </div>
                     </div>
@@ -72,11 +72,11 @@
                         </div>
                     </div>
                     <div class="col">
-                        <div class="card border-primary">
+                        <div class="card text-center border-primary">
                         <div class="card-body">
+                            <h5 class="card-title"><i class="fas fa-book"></i>  {{__('interface.testsNumberHomeTitle')}}</h5>
                             <h1>{{$counts['tests']}}</h1>
-                            <p><i class="fas fa-vial"></i> 56 Testes Realizados</p>
-                            <a href="#">ver</a>
+                            <p class="card-text">{{__('interface.testsNumberHomeDesc')}}</p>
                         </div>
                         </div>
                     </div>
@@ -147,6 +147,10 @@ function loadResearches() {
          console.log("request complete");
          loading(false);
      });
+}
+
+function listTestGroups(id) {
+    goToUrl("{{route('testGroups')}}?research_id="+id);
 }
 </script>
 
