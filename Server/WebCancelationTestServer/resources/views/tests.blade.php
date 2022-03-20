@@ -172,6 +172,7 @@ function loadResult(data) {
     resultData.forEach( (item,i) => {
         $('#testResultTable').find('tbody').append(getResultDataRow(item,i));
     });
+    setupBoard(data.test_group);
 }
  
 
@@ -179,6 +180,29 @@ function goToPage(page = 1) {
     if (actualPage==page) return;
     actualPage = page;
     loadTests();
+}
+
+function setupBoard(data) {
+    var bData = {
+        resolution : {width : 760, height: 500},
+        n_goals : data.targets,
+        n_distractors : (data.distractors != null ? data.distractors : 0),
+        aligned : (data.aligned == 1),
+        goal_id : data.target_id,
+        time_limit : data.time_limit,
+        board : JSON.parse(data.board),
+        callbacks : {
+            testFinished : function (result) {
+            },
+            error : function (ex) {
+            }
+        }
+    };
+    if (!data.board) {
+        bData.board = JSON.parse(JSON.stringify(new Board(3,bData.n_goals,bData.n_distractors,bData.goal_id,bData.resolution,bData.aligned).generateRandom()));
+    }
+    console.log(bData.board);
+    testControl = new TestControl(bData,'showBoardCanvasResult',true);
 }
 
 

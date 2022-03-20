@@ -19,7 +19,7 @@ function Board(size,n_goals,n_distractors,goal_id,resolution,aligned) {
     this.resolution = resolution;
     this.n_goals = n_goals;
     this.n_distractors = n_distractors;
-    this.goal = baseData.goalTypes.find(e => e.id == goal_id) || baseData.goalTypes.first();
+    this.goal = this.goalTypes.find(e => e.id == goal_id) || this.goalTypes.first();
     this.aligned = aligned || false;
     this.randomGridGenerator = new RandomGrid(this.size,this.resolution,this.n_goals,this.n_distractors,this.goal,this.goalTypes.filter(e => e.id != this.goal.id),this.aligned);
 }

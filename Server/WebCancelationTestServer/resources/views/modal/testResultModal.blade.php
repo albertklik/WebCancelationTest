@@ -1,5 +1,5 @@
 <div class="modal fade" id="testResultModal" tabindex="-1" role="dialog" aria-labelledby="testResultModal" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="testResultModalTitle">{{__('interface.testResult')}}</h5>
@@ -31,6 +31,16 @@
                 <tbody>
                 </tbody>
               </table>
+            </div>
+
+            <div id="result-graph">
+              <div class="row">
+                <div class="col">
+                    <div class="card card-body">
+                      <canvas id="showBoardCanvasResult" width="760" height="500"></canvas>
+                    </div>
+                </div>
+              </div>
             </div>
             
           </div>

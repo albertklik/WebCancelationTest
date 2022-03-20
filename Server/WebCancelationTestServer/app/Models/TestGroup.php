@@ -17,6 +17,7 @@ class TestGroup extends Model
         'aligned',
         'target_id',
         'time_limit',
+        'board',
         'researches_id'
     ];
 

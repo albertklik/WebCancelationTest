@@ -87,12 +87,13 @@ var generatedBoard = ""
     cleanTestGroupForm();
 
     $('#automaticDistractors').change(function() {
+        if (this.checked) $('#distractors').val('');
         $('#distractors').prop( "disabled",this.checked);
         $('#automaticDistractors').val(this.checked);        
     });
-    // $('input').on('change', function () {
-    //     updateBoardInsertEdit();
-    // });
+    $('input').on('change', function () {
+        updateBoardInsertEdit();
+    });
  }
 
  function saveTestGroup() {
@@ -101,6 +102,7 @@ var generatedBoard = ""
      data.researches_id = {{ $research->id ?? -1 }};
      data.aligned = $('#aligned').is( ":checked" ) ? 1 : 0
      data.distractors = $('#automaticDistractors').is( ":checked" ) ? 0 : data.distractors
+     data.board = generatedBoard
      console.log(data);
 
     if (data.id > 0) {
@@ -190,7 +192,7 @@ function loadTestGroupDataOnForm(data) {
     $('input[name="name"]').val(data.name);
     $('input[name="aligned"]').prop("checked",(data.aligned != null && data.aligned == 1));
     $('input[name="targets"]').val(data.targets);
-    if (data.distractors == null) {
+    if (data.distractors == null || data.distractors == 0) {
         $('#distractors').prop( "disabled",true);
         $('#automaticDistractors').val(1); 
         $('#automaticDistractors').prop("checked",true);
@@ -316,12 +318,9 @@ function updateBoardInsertEdit() {
 function setupBoard(data) {
     var bData = {
         resolution : {width : 760, height: 500},
-        n_goals : data.targets,
-        n_distractors : (data.distractors != null ? data.distractors : 0),
-        aligned : (data.aligned == 1),
         goal_id : data.target_id,
         time_limit : data.time_limit,
-        board : data.board,
+        board : JSON.parse(data.board),
         callbacks : {
             testFinished : function (result) {
             },
@@ -329,9 +328,6 @@ function setupBoard(data) {
             }
         }
     };
-    if (!data.board) {
-        bData.board = JSON.parse(JSON.stringify(new Board(3,bData.n_goals,bData.n_distractors,bData.goal_id,bData.resolution,bData.aligned).generateRandom()));
-    }
     console.log(bData.board);
     testControl = new TestControl(bData,'showBoardCanvas',true);
 }

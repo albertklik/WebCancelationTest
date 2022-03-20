@@ -36,10 +36,10 @@ function TestControl(data,canvasId,debug) {
     this.resolution = data.resolution;
     this.canvasId = canvasId;
     this.time_seconds = data.time_seconds || 20000;
-    this.n_goals = data.n_goals || 3;
-    this.n_distractors = data.n_distractors || 0;
+    //this.n_goals = data.n_goals || 3;
+    //this.n_distractors = data.n_distractors || 0;
     this.goal = baseData.goalTypes.find(e => e.id == data.goal_id) || baseData.goalTypes[0];
-    this.aligned = data.aligned || false;
+    //this.aligned = data.aligned || false;
     this.time_limit = data.time_limit || Math.max(data.time_limit,10);
     this.callbacks = data.callbacks;
     this.render = {};

@@ -97,7 +97,7 @@ function getTestGroupItem(data, interfaceStr = [], iconImgsUrl = []) {
     msgString += '</div>'
     msgString += '<div class="card-body"><small><table class="table table-borderless table-sm"><tbody>'
     msgString += '<tr><th scope="row">' + getLanguageStr(interfaceStr,'goals') + '</th><td>'+ data.targets + '</td></tr>'
-    msgString += '<tr><th scope="row">' + getLanguageStr(interfaceStr,'distractors') + '</th><td>'+ (data.distractors == null ? 'auto' : data.distractors) + '</td></tr>'
+    msgString += '<tr><th scope="row">' + getLanguageStr(interfaceStr,'distractors') + '</th><td>'+ ((data.distractors == null || data.distractors == 0) ? 'auto' : data.distractors) + '</td></tr>'
     msgString += '<tr><th scope="row">' + getLanguageStr(interfaceStr,'goalSymbol') + '</th><td>'+ getImgIconStr(data.target_id,iconImgsUrl) + '</td></tr>'
     msgString += '<tr><th scope="row">' + getLanguageStr(interfaceStr,'timeDesc') + '</th><td>'+ data.time_limit + '</td></tr>'
     msgString += '<tr><th scope="row">' + getLanguageStr(interfaceStr,'align') + '</th><td>'+ ((data.aligned != null && data.aligned == 1) ? getLanguageStr(interfaceStr,'aligned') : getLanguageStr(interfaceStr,'notAligned')) + '</td></tr>'
@@ -106,7 +106,7 @@ function getTestGroupItem(data, interfaceStr = [], iconImgsUrl = []) {
     msgString += '<div class="card-footer"><button ' + (data.tests_count > 0 ? '' : 'disabled') +' onclick="listTests(' + data.id + ')" class="btn btn-primary btn-sm mr-1"> <i class="fas fa-list"></i> ' + getLanguageStr(interfaceStr,'btnListTests') + '</button>'
     msgString += '<button onclick="playTest(' + data.id + ')" class="btn btn-secondary btn-sm mr-1"> <i class="fas fa-play"></i> ' + getLanguageStr(interfaceStr,'btnDoTheTest') + '</button>'
     msgString += '<button onclick="shareLink(' + data.id + ')" class="btn btn-secondary btn-sm mr-1"> <i class="fas fa-share"></i> ' + getLanguageStr(interfaceStr,'btnShareLink') + '</button>'
-    msgString += '<button onclick="showBoard(' + data.id + ')" class="btn btn-secondary btn-sm mr-1"> <i class="fas fa-table"></i> ' + getLanguageStr(interfaceStr,'btnShowBoard') + '</button>'
+    msgString += '<button ' + (data.board ? '' : 'disabled') +' onclick="showBoard(' + data.id + ')" class="btn btn-secondary btn-sm mr-1"> <i class="fas fa-table"></i> ' + getLanguageStr(interfaceStr,'btnShowBoard') + '</button>'
     msgString += '</div></div><br>'
     return msgString;
 }

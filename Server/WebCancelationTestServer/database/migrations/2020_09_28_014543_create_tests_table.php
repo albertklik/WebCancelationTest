@@ -19,6 +19,7 @@ class CreateTestsTable extends Migration
             $table->integer("seconds");
             $table->integer("hits");
             $table->integer("misses");
+            $table->json("board");
             $table->timestamps();
         });
     }
