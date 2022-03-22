@@ -1,5 +1,5 @@
 
-function Board(size,n_goals,n_distractors,goal_id,resolution,aligned) {
+function Board(boardData) {
     this.goalTypes = [
         { id : 1, name : "carro" },
         { id : 2, name : "casa" },
@@ -15,13 +15,40 @@ function Board(size,n_goals,n_distractors,goal_id,resolution,aligned) {
         { id : 12, name : "aviao" },
         { id : 13, name : "barco" }
     ]
-    this.size = size || 3;
-    this.resolution = resolution;
-    this.n_goals = n_goals;
-    this.n_distractors = n_distractors;
-    this.goal = this.goalTypes.find(e => e.id == goal_id) || this.goalTypes.first();
-    this.aligned = aligned || false;
-    this.randomGridGenerator = new RandomGrid(this.size,this.resolution,this.n_goals,this.n_distractors,this.goal,this.goalTypes.filter(e => e.id != this.goal.id),this.aligned);
+    this.defaultBoardData = {
+        size: 3,
+        resolution: {width: 1980, height: 7668 },
+        nTargets: 3,
+        nDistractors: 0,
+        goalId: this.goalTypes[0].id,
+        aligned: false
+    }
+    this.boardData = boardData || this.defaultBoardData;
+    this.goal = this.goalTypes.find(e => e.id == this.boardData.goalId) || this.goalTypes[0];
+    
+    //creating random grid object
+    this.randomGridGenerator = new RandomGrid(
+        this.boardData.size,
+        this.boardData.resolution,
+        this.boardData.nTargets,
+        this.boardData.nDistractors,
+        this.goal,
+        this.goalTypes.filter(e => e.id != this.boardData.goalId),
+        this.boardData.aligned
+    );
+}
+
+Board.prototype.updateBoardData = function(boardData) {
+    this.boardData = boardData || this.defaultBoardData;
+    this.randomGridGenerator = new RandomGrid(
+        this.boardData.size,
+        this.boardData.resolution,
+        this.boardData.nTargets,
+        this.boardData.nDistractors,
+        this.goal,
+        this.goalTypes.filter(e => e.id != this.boardData.goalId),
+        this.boardData.aligned
+    );
 }
 
 Board.prototype.generateRandom = function() {

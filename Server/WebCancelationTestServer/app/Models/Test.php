@@ -13,7 +13,8 @@ class Test extends Model
         'hits',
         'misses',
         'student_id',
-        'test_group_id'
+        'test_group_id',
+        'board'
     ];
     use HasFactory;
 

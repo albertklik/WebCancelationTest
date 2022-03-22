@@ -150,6 +150,7 @@ function showresultTest() {
 }
 
 function startTest() {
+  testControl.renderBoard();
   testControl.startTest();
 }
 
@@ -157,12 +158,13 @@ function finishTest(data) {
     showTestPanel(false);
     loading(true);
     saveTest({
-      result : JSON.stringify(data.result),
-      seconds : data.seconds,
-      hits : data.hits,
-      misses : data.misses,
-      student_id : testData.student.id,
-      test_group_id : testData.testGroup.id
+      result: JSON.stringify(data.result),
+      seconds: data.seconds,
+      hits: data.hits,
+      misses: data.misses,
+      student_id: testData.student.id,
+      test_group_id: testData.testGroup.id,
+      board: JSON.stringify(data.board)
     }, function() {
       showresultTest();
     }, function(data) {

@@ -76,15 +76,19 @@ var iconImgsUrl = [
 
 var actualPage = 1 
 var generatedBoard = ""   
+var testControlList = {}
+var testControlInsertEdit = {}
 
 
  $(function() {
     setupForm();
     loadTestGroups();
+    setupTestControlList();
  });
 
  function setupForm() {
     cleanTestGroupForm();
+    setupTestControlInsertEdit();
 
     $('#automaticDistractors').change(function() {
         if (this.checked) $('#distractors').val('');
@@ -235,6 +239,7 @@ function sendDeleteTestGroup(id) {
 
 function newTestGroup() {
     cleanTestGroupForm();
+    updateBoardInsertEdit();
     clearMsg('insertEditTestGroupsMsg');
     loadingModal(false,'insertEditTestGroupsModal');
     modal(true,'insertEditTestGroupsModal');
@@ -248,6 +253,7 @@ function editTestGroup(id) {
         loadTestGroupDataOnForm(data);
         loadingModal(false,'insertEditTestGroupsModal');
         modal(true,'insertEditTestGroupsModal');
+        updateBoardInsertEdit();
     });
 }
 
@@ -284,7 +290,7 @@ function showBoard(id) {
     loadTestGroup(id,
     function(data) {
         modal(true,'boardViewModal');
-        setupBoard(data);
+        renderBoard(data);
     });
 }
 
@@ -292,35 +298,30 @@ function updateBoardInsertEdit() {
     var data = serializeFormData('insertEditTestGroupsForm');
     data.aligned = $('#aligned').is( ":checked" ) ? 1 : 0
     console.log(data);
-    
-    var bData = {
-        resolution : {width : 760, height: 500},
-        n_goals : data.targets,
-        n_distractors : (data.distractors != null ? data.distractors : 0),
-        aligned : (data.aligned == 1),
-        goal_id : data.target_id,
-        time_limit : data.time_limit,
-        board : null,
-        callbacks : {
-            testFinished : function (result) {
-            },
-            error : function (ex) {
-            }
-        }
-    };
-    console.log(bData);
-    generatedBoard = JSON.stringify(new Board(3,bData.n_goals,bData.n_distractors,bData.goal_id,bData.resolution,bData.aligned).generateRandom());
-    bData.board = JSON.parse(generatedBoard);
-    testControl = new TestControl(bData,'showBoardCanvasInsertEdit',true);
+
+    var boardData = {
+        size: 3,
+        resolution: {width: 760, height: 500 },
+        nTargets: data.targets,
+        nDistractors: (data.distractors != null ? data.distractors : 0),
+        goalId: data.target_id,
+        aligned: (data.aligned == 1)
+    }
+
+    console.log(boardData);
+    generatedBoard = JSON.stringify(new Board(boardData).generateRandom());
+    var board = JSON.parse(generatedBoard);
+
+    console.log(board);
+    testControlInsertEdit.changeBoard(board);
+    testControlInsertEdit.renderBoard();
 }
 
 
-function setupBoard(data) {
+function setupTestControlList() {
     var bData = {
         resolution : {width : 760, height: 500},
-        goal_id : data.target_id,
-        time_limit : data.time_limit,
-        board : JSON.parse(data.board),
+        board : {},
         callbacks : {
             testFinished : function (result) {
             },
@@ -328,8 +329,27 @@ function setupBoard(data) {
             }
         }
     };
-    console.log(bData.board);
-    testControl = new TestControl(bData,'showBoardCanvas',true);
+    testControlList = new TestControl(bData,'showBoardCanvas',true);
+}
+
+function setupTestControlInsertEdit() {
+    var bData = {
+        resolution : {width : 760, height: 500},
+        board : {},
+        callbacks : {
+            testFinished : function (result) {
+            },
+            error : function (ex) {
+            }
+        }
+    };
+    testControlInsertEdit = new TestControl(bData,'showBoardCanvasInsertEdit',true);
+}
+
+function renderBoard(data) {
+    console.log(data.board);
+    testControlList.changeBoard(JSON.parse(data.board));
+    testControlList.renderBoard();
 }
 
 

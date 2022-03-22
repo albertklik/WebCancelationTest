@@ -30,18 +30,33 @@ function RandomGrid(size,resolution, nGoals, nDistractors, goal, distractors, al
    this.distractorsList = [];
 }
 
+RandomGrid.prototype.setupParameters = function () {
+  //generated parameters
+  this.cell_width =  0;
+  this.cell_height =  0;
+  this.width = 0;
+  this.height = 0;  
+  this.cell_map = [];
+  this.board = {};
+  this.automaticDistractors = !this.nDistractors || this.nDistractors == 0
+
+  //aux generating parameters
+  this.goalList = [];
+  this.distractorsList = [];
+}
+
 RandomGrid.prototype.getCellSize = function () {
-  if (this.nDistractors == 0) {
-    this.cell_height = Math.ceil(Math.sqrt(this.nGoals + 20));
+  if (this.automaticDistractors) {
+    this.cell_height = Math.ceil(Math.sqrt((this.nGoals + 10)));
   } else {
-    this.cell_height = Math.ceil(Math.sqrt(this.nGoals + this.nDistractors));
+    this.cell_height = Math.ceil(Math.sqrt((this.nGoals + this.nDistractors)));
   }
   this.cell_width = this.cell_height + Math.ceil(this.cell_height/2);
 }
 
 RandomGrid.prototype.getCellResolution = function() {
-  this.width = this.resolution.width / 3;
-  this.height = this.resolution.height / 3;
+  this.width = this.resolution.width / this.size;
+  this.height = this.resolution.height / this.size;
 }
 
 RandomGrid.prototype.checkIfVoid = function(x,y) {
@@ -75,7 +90,7 @@ RandomGrid.prototype.putObjects = function() {
   }
 
   //if the number of distractors is default, fill all empty spaces.
-  if (this.nDistractors == 0) {
+  if (this.automaticDistractors) {
     for (let i = 0; i < this.cell_width; i++) {
       for (let j = 0; j < this.cell_height; j++) {
         if (this.cell_map[i][j] == undefined) {
@@ -144,7 +159,9 @@ RandomGrid.prototype.generateCell = function() {
     map: this.cell_map 
   };
 }
+
 RandomGrid.prototype.generateBoard = function() {
+  this.setupParameters();
   this.getCellSize();
   this.getCellResolution();
 
@@ -152,7 +169,7 @@ RandomGrid.prototype.generateBoard = function() {
     size: this.size,
     ngoals: this.nGoals,
     nDistractors: this.nDistractors,
-    goalId: this.goal,
+    goal: this.goal,
     aligned: this.aligned,
     resolution : this.resolution,
     cells : Array(this.size).fill().map(() => Array(this.size).fill(this.generateCell())),

@@ -2,7 +2,7 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <!-- Scripts -->
-        <script src="https://code.createjs.com/1.0.0/easeljs.min.js"></script>
+        <script src="{{ asset('js/easeljs.min.js') }}"></script>
         <script src="{{ asset('js/app.js') }}" ></script>
         <script src="{{ asset('js/baseFunctions.js') }}" ></script>
         <script src="{{ asset('js/cell.js') }}"></script>

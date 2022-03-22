@@ -26,7 +26,7 @@ var baseData = {
 }
 
 
-function TestControl(data,canvasId,debug) {
+function TestControl(data,canvasId,debug,resultData) {
     
     this.clicks = [];
     this.startTime = 0;
@@ -36,16 +36,15 @@ function TestControl(data,canvasId,debug) {
     this.resolution = data.resolution;
     this.canvasId = canvasId;
     this.time_seconds = data.time_seconds || 20000;
-    //this.n_goals = data.n_goals || 3;
-    //this.n_distractors = data.n_distractors || 0;
     this.goal = baseData.goalTypes.find(e => e.id == data.goal_id) || baseData.goalTypes[0];
-    //this.aligned = data.aligned || false;
     this.time_limit = data.time_limit || Math.max(data.time_limit,10);
     this.callbacks = data.callbacks;
     this.render = {};
     this.testEnabled = false;
     this.debug = debug || false;
     this.board = data.board || {};
+    this.resultData = resultData || {};
+    this.renderConfig = data.renderConfig;
 
     this.setup();
  }
@@ -54,22 +53,35 @@ function TestControl(data,canvasId,debug) {
         var self = this;
         baseData.debug = this.debug;
         
-        //renderiza na tela
+        //inicialize render
         this.render = new Render(
+            this.renderConfig,
             this.canvasId,
             this.resolution,
-            this.board.cells,
+            this.board,
+            this.resultData,
             baseData.img_path,
             baseData.goalTypes, 
             function (item,event) {
                 self.onClickIcon(item,event);        
             });
-
-        this.render.startTest();
         
         createjs.Ticker.addEventListener("tick", function() {
             self.tick();
         });
+    }
+
+    TestControl.prototype.changeBoard = function (board) {
+        this.board = board;
+        this.render.board = board;
+    }
+
+    TestControl.prototype.renderBoard = function() {
+        this.render.renderBoard();
+    }
+
+    TestControl.prototype.renderResult = function() {
+        this.render.renderResult();
     }
 
     TestControl.prototype.startTest = function() {
@@ -113,10 +125,11 @@ function TestControl(data,canvasId,debug) {
         if (seconds >= this.time_limit) {
             this.testEnabled = false;
            this.callbacks.testFinished({
-                result : this.clicks,
-                seconds : seconds,
-                hits : this.hits,
-                misses : this.misses
+                result: this.clicks,
+                seconds: seconds,
+                hits: this.hits,
+                misses: this.misses,
+                board: this.board
             });
         baseData.log({
             message : "test finished",
@@ -124,4 +137,8 @@ function TestControl(data,canvasId,debug) {
             clicks : this.clicks
         });               
         }
+    }
+
+    TestControl.prototype.showResult = function() {
+
     }
