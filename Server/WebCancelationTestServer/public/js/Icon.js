@@ -44,5 +44,17 @@ this.CancelationTest = this.CancelationTest || {}
            self.onClickEvent(self.item,evt);
         });
         this.stage.addChild(this.bitmap);
-        this.stage.update();
+     }
+
+     Icon.prototype.markAsGoal = function() {
+        var circle = new createjs.Shape();
+        circle.graphics
+        .setStrokeStyle(3)
+        .beginStroke("green")
+        .drawCircle(
+            this.x + this.item.width/2, 
+            this.y + this.item.height/2, 
+            this.item.width
+        );
+        this.stage.addChild(circle);
      }

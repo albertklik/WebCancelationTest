@@ -59,13 +59,9 @@ this.CancelationTest = this.CancelationTest || {}
                 line.map.forEach((element,i) => {
                     element.forEach((item,j) => {
                         if (item) {
-                            new Icon(this.onClickEvent,this.stage,item,start_pos_x+item.x,start_pos_y+item.y,item.width,item.height,this.img_data);
+                            var icon = new Icon(this.onClickEvent,this.stage,item,start_pos_x+item.x,start_pos_y+item.y,item.width,item.height,this.img_data);
                             if (item.id == this.board.goal.id) {
-                                var circle = new createjs.Graphics();
-                                circle.setStrokeStyle(3);
-                                circle.beginStroke("red");
-                                circle.drawCircle(0,0,30);
-                                this.stage.addChild(circle);
+                                icon.markAsGoal();
                             }
                         }
                     })
