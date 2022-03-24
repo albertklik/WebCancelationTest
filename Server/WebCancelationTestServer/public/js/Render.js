@@ -84,7 +84,57 @@ this.CancelationTest = this.CancelationTest || {}
     }
 
     Render.prototype.renderResult = function() {
+        var resultArray = JSON.parse(this.resultData.result);
+        var lasPos = { x: 0, y: 0}
+    
+        resultArray.forEach((item,i) => {
+            var circleLengh = 2
+            var actualPos = {
+                x: (item.x * this.ratioX),
+                y: (item.y * this.ratioY)
+            }
+            if (i == 0) {
+                circleLengh = 4
+            } else if (i == resultArray.length - 1) {
+                circleLengh = 4
+                this.drawLine(lasPos,actualPos,1,"grey");
+            } else {
+                circleLengh = 2
+                this.drawLine(lasPos,actualPos,1,"grey");
+            }
 
+            this.drawStrokeCircle(
+                item.x * this.ratioX, 
+                item.y * this.ratioY, 
+                this.block_width/2,
+                item.hit ? "green" : "red",
+                circleLengh
+            );
+            lasPos = actualPos
+        });
+        this.stage.update();
+    }
+
+    Render.prototype.drawStrokeCircle = function(x,y,diameter,color,strokeWidth) {
+        var circle = new createjs.Shape();
+        circle.graphics
+        .setStrokeStyle(strokeWidth)
+        .beginStroke(color)
+        .drawCircle(
+        x, 
+        y, 
+        diameter
+        );
+        this.stage.addChild(circle);
+    }
+
+    Render.prototype.drawLine = function(point1,point2,width,color) {
+        var line = new createjs.Shape();
+        line.graphics.setStrokeStyle(width).beginStroke(color);
+        line.graphics.moveTo(point1.x, point1.y);
+        line.graphics.lineTo(point2.x, point2.y);
+        line.graphics.endStroke();
+        this.stage.addChild(line);
     }
 
     Render.prototype.loadImg = function() {

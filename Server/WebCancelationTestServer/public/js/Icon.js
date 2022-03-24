@@ -50,7 +50,7 @@ this.CancelationTest = this.CancelationTest || {}
         var circle = new createjs.Shape();
         circle.graphics
         .setStrokeStyle(3)
-        .beginStroke("green")
+        .beginStroke("grey")
         .drawCircle(
             this.x + this.width/2, 
             this.y + this.height/2, 

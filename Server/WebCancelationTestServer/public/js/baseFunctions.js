@@ -268,7 +268,7 @@ function getTests(data,success,error,complete) {
     executeAjaxRequest("test.list",[],data,success,error,complete);
  }
 
-function deleteTest(urlParams,success,error,complete) {
+function deleteTests(urlParams,success,error,complete) {
     executeAjaxRequest("test.destroy",urlParams,{},success,error,complete);
 }
 

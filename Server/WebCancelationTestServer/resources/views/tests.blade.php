@@ -87,6 +87,7 @@ var actualPage = 1
 
  $(function() {
      loadTests();
+     setupTestControlResult();
  });
 
  function loadTest(id,callback) {
@@ -135,7 +136,7 @@ var actualPage = 1
 
 function sendDeleteTest(id) {
     loading(true);
-    deleteTest(
+    deleteTests(
         [id],
         function(data) {
          loadTests()
@@ -172,7 +173,7 @@ function loadResult(data) {
     resultData.forEach( (item,i) => {
         $('#testResultTable').find('tbody').append(getResultDataRow(item,i));
     });
-    setupBoard(data.test_group);
+    renderBoardResult(data);
 }
  
 
@@ -182,15 +183,21 @@ function goToPage(page = 1) {
     loadTests();
 }
 
-function setupBoard(data) {
+function renderBoardResult(data) {
+    console.log(data.board);
+    testControlResult.changeBoard(JSON.parse(data.board));
+    testControlResult.setResult(data);
+    testControlResult.renderBoard();
+    testControlResult.renderResult();
+}
+
+function setupTestControlResult() {
     var bData = {
-        resolution : {width : 760, height: 500},
-        n_goals : data.targets,
-        n_distractors : (data.distractors != null ? data.distractors : 0),
-        aligned : (data.aligned == 1),
-        goal_id : data.target_id,
-        time_limit : data.time_limit,
-        board : JSON.parse(data.board),
+        renderConfig: {
+            showTargets: false
+        },
+        resolution : {width : 760, height: 450},
+        board : {},
         callbacks : {
             testFinished : function (result) {
             },
@@ -198,11 +205,7 @@ function setupBoard(data) {
             }
         }
     };
-    if (!data.board) {
-        bData.board = JSON.parse(JSON.stringify(new Board(3,bData.n_goals,bData.n_distractors,bData.goal_id,bData.resolution,bData.aligned).generateRandom()));
-    }
-    console.log(bData.board);
-    testControl = new TestControl(bData,'showBoardCanvasResult',true);
+    testControlResult = new TestControl(bData,'showBoardCanvasResult',true);
 }
 
 

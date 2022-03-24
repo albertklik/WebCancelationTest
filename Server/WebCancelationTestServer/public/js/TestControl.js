@@ -76,6 +76,11 @@ function TestControl(data,canvasId,debug,resultData) {
         this.render.board = board;
     }
 
+    TestControl.prototype.setResult = function (result) {
+        this.resultData = result
+        this.render.resultData = result
+    }
+
     TestControl.prototype.renderBoard = function() {
         this.render.renderBoard();
     }
@@ -106,8 +111,8 @@ function TestControl(data,canvasId,debug,resultData) {
         
         this.clicks.push({ 
             time : time, 
-            x : event.stageX, 
-            y : event.stageY, 
+            x : (event.stageX / this.render.ratioX), 
+            y : (event.stageY / this.render.ratioY), 
             item : item, 
             hit : hit
         });
@@ -130,6 +135,7 @@ function TestControl(data,canvasId,debug,resultData) {
                 hits: this.hits,
                 misses: this.misses,
                 board: this.board
+                
             });
         baseData.log({
             message : "test finished",
@@ -137,8 +143,4 @@ function TestControl(data,canvasId,debug,resultData) {
             clicks : this.clicks
         });               
         }
-    }
-
-    TestControl.prototype.showResult = function() {
-
     }

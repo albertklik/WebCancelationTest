@@ -14,7 +14,7 @@
             </div>
 
             <div id="studentData">
-              
+            </div>
 
             <div id="testResultTable">
               <table class="table table-sm">
