@@ -70,7 +70,7 @@ function setupTest() {
         aligned : (testData.testGroup.aligned == 1),
         goal_id : testData.testGroup.target_id,
         time_limit : testData.testGroup.time_limit,
-        //board : JSON.parse(testData.board),
+        board : JSON.parse(testData.testGroup.board),
         callbacks : {
             testFinished : function (result) {
               finishTest(result);
@@ -80,7 +80,7 @@ function setupTest() {
             }
         }
     };
-    data.board = JSON.parse(JSON.stringify(new Board(3,data.n_goals,data.n_distractors,data.goal_id,data.resolution,data.aligned).generateRandom()));
+    //data.board = JSON.parse(JSON.stringify(new Board(3,data.n_goals,data.n_distractors,data.goal_id,data.resolution,data.aligned).generateRandom()));
     console.log(data.board);
     testControl = new TestControl(data,'testCanvas',true);
 }

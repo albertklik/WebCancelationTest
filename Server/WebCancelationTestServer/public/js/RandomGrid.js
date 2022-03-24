@@ -16,6 +16,7 @@ function RandomGrid(size,resolution, nGoals, nDistractors, goal, distractors, al
    this.goal = goal || { id:1 };
    this.distractors = distractors || [];
    this.aligned = aligned || false;
+   this.automaticDistractors = !this.nDistractors || this.nDistractors == 0
 
    //generated parameters
    this.cell_width =  0;
@@ -47,11 +48,24 @@ RandomGrid.prototype.setupParameters = function () {
 
 RandomGrid.prototype.getCellSize = function () {
   if (this.automaticDistractors) {
-    this.cell_height = Math.ceil(Math.sqrt((this.nGoals + 10)));
+    var distractors = Math.pow(this.nGoals,2);
+    this.cell_height = this.findCellHeight(this.nGoals,distractors);
   } else {
-    this.cell_height = Math.ceil(Math.sqrt((this.nGoals + this.nDistractors)));
+    this.cell_height = this.findCellHeight(this.nGoals,this.nDistractors);
   }
-  this.cell_width = this.cell_height + Math.ceil(this.cell_height/2);
+  this.cell_width = this.cell_height + Math.ceil((this.cell_height/2));
+}
+
+RandomGrid.prototype.findCellHeight = function (nGoals,nDistractors) {
+  var height = -1.1;
+  var sum = nGoals + nDistractors ;
+  var incrementer = -1;
+  while (!(Number.isInteger(height) && height < (sum + incrementer))) {
+    incrementer ++;
+    height = Math.sqrt((sum + incrementer));
+  }
+  height = Math.max(height,4); 
+  return height;
 }
 
 RandomGrid.prototype.getCellResolution = function() {
@@ -144,11 +158,20 @@ RandomGrid.prototype.randomPosition = function (item,objWidth,objHeight) {
   item.y += variationY;
 }
 
+// RandomGrid.prototype.getRandomElementIndex = function (cellMap,filterByUndefined = false) {
+//   var filteredList = array
+//   if (filterByUndefined)
+// }
+
 RandomGrid.prototype.generateCell = function() {
   //starting parameters 
   this.distractorsList = [];
   this.goalList = [];
-  this.cell_map = Array(this.cell_width).fill().map(() => Array(this.cell_height).fill());
+  this.cell_map = Array(this.cell_width);
+  for (var i = 0; i < this.cell_width; i++) {
+    this.cell_map[i] = Array(this.cell_height);
+  }
+    
   this.putObjects();
   this.setObjPosition();
   return { 
@@ -172,7 +195,14 @@ RandomGrid.prototype.generateBoard = function() {
     goal: this.goal,
     aligned: this.aligned,
     resolution : this.resolution,
-    cells : Array(this.size).fill().map(() => Array(this.size).fill(this.generateCell())),
+    cells : [
+      Array(this.size),
+      Array(this.size),
+      Array(this.size),
+    ]
   };
+  for (var i = 0; i < this.size; i++)
+    for (var j = 0; j < this.size; j++)
+        this.board.cells[i][j] = this.generateCell();
   return this.board;
 }

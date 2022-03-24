@@ -52,9 +52,9 @@ this.CancelationTest = this.CancelationTest || {}
         .setStrokeStyle(3)
         .beginStroke("green")
         .drawCircle(
-            this.x + this.item.width/2, 
-            this.y + this.item.height/2, 
-            this.item.width
+            this.x + this.width/2, 
+            this.y + this.height/2, 
+            this.width
         );
         this.stage.addChild(circle);
      }

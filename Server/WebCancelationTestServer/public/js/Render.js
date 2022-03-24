@@ -18,17 +18,15 @@ this.CancelationTest = this.CancelationTest || {}
     function Render(renderConfig,canvasId,resolution,board,resultData,img_path,item_data,onclickEvent) 
     {
         this.defaultRenderConfig = {
-            showTargets: true
+            showTargets: false
         }
         this.renderConfig = renderConfig || this.defaultRenderConfig;
         this.stage = new createjs.Stage(canvasId);
-        //this.stage.canvas.width = this.resolution.width;
-        //this.stage.canvas.height = this.resolution.height;
         this.board = board || {}
         this.canvasId = canvasId
         this.imgPath = img_path;
-        this.board_width = resolution.width;
-        this.board_height = resolution.height;
+        this.cell_width = 0;
+        this.cell_height = 0;
         this.cell_width = 0;
         this.cell_height = 0;
         this.block_width = 0;
@@ -42,8 +40,14 @@ this.CancelationTest = this.CancelationTest || {}
     }
 
     Render.prototype.calcSizeBoard = function () {
+        this.stage.canvas.width = this.resolution.width;
+        this.stage.canvas.height = this.resolution.height;
+        this.board_width = this.board.resolution.width;
+        this.board_height = this.board.resolution.height;
         this.cell_width = this.board_width/3;
         this.cell_height = this.board_height/3;
+        this.ratioX = this.resolution.width/this.board_width
+        this.ratioY = this.resolution.height/this.board_height
         this.block_width = (this.cell_width)/this.board.cells[0][0].cell_width;
         this.block_height = (this.cell_height)/this.board.cells[0][0].cell_height;
     }
@@ -59,8 +63,16 @@ this.CancelationTest = this.CancelationTest || {}
                 line.map.forEach((element,i) => {
                     element.forEach((item,j) => {
                         if (item) {
-                            var icon = new Icon(this.onClickEvent,this.stage,item,start_pos_x+item.x,start_pos_y+item.y,item.width,item.height,this.img_data);
-                            if (item.id == this.board.goal.id) {
+                            var icon = new Icon(
+                                this.onClickEvent,
+                                this.stage,
+                                item,
+                                (start_pos_x+item.x) * this.ratioX,
+                                (start_pos_y+item.y) * this.ratioY,
+                                item.width * this.ratioX,
+                                item.height * this.ratioY,
+                                this.img_data);
+                            if (item.id == this.board.goal.id && this.renderConfig.showTargets) {
                                 icon.markAsGoal();
                             }
                         }

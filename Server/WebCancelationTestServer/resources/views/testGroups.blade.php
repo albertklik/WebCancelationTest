@@ -302,25 +302,32 @@ function updateBoardInsertEdit() {
     var boardData = {
         size: 3,
         resolution: {width: 760, height: 500 },
-        nTargets: data.targets,
-        nDistractors: (data.distractors != null ? data.distractors : 0),
-        goalId: data.target_id,
+        nTargets: parseInt(data.targets),
+        nDistractors: parseInt((data.distractors != null ? data.distractors : 0)),
+        goalId: parseInt(data.target_id),
         aligned: (data.aligned == 1)
     }
 
-    console.log(boardData);
-    generatedBoard = JSON.stringify(new Board(boardData).generateRandom());
-    var board = JSON.parse(generatedBoard);
+    try {
+        console.log(boardData);
+        generatedBoard = JSON.stringify(new Board(boardData).generateRandom());
+        var board = JSON.parse(generatedBoard);
 
-    console.log(board);
-    testControlInsertEdit.changeBoard(board);
-    testControlInsertEdit.renderBoard();
+        console.log(board);
+        testControlInsertEdit.changeBoard(board);
+        testControlInsertEdit.renderBoard();
+    } catch(e) {
+        console.log(e);
+    }
 }
 
 
 function setupTestControlList() {
     var bData = {
-        resolution : {width : 760, height: 500},
+        renderConfig: {
+            showTargets: true
+        },
+        resolution : {width : 760, height: 450},
         board : {},
         callbacks : {
             testFinished : function (result) {
@@ -334,7 +341,10 @@ function setupTestControlList() {
 
 function setupTestControlInsertEdit() {
     var bData = {
-        resolution : {width : 760, height: 500},
+        renderConfig: {
+            showTargets: true
+        },
+        resolution : {width : 760, height: 450},
         board : {},
         callbacks : {
             testFinished : function (result) {
