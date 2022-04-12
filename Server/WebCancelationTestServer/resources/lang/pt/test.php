@@ -19,6 +19,8 @@ return [
     'formDateOfBirth' => 'Em que dia você nasceu?',
     'formIcons' => 'Esses são os objetos que serão mostrados no teste.',
     'endMessage' => 'Obrigado por realizar o teste.',
+    'formTarget' => 'Você deve clicar nesse icone para completar o teste',
+    'formTime' => 'Você tem esse tempo para completar',
 
 
     //buttons

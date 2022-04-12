@@ -131,6 +131,32 @@
                 </div>
             </div>
 
+            <!-- presenting target and time -->
+            <div id="showTargetAndTime" class="d-none row">
+              <div class="col" style="margin-top: 5em">
+                <div class="row" style="padding: 2em">
+                    <p class="h1" style="font-size: 60px;">{{__("test.formTarget")}}</p>
+                </div>
+                <div class="row" style="padding-top: 2em">
+                  <div class="col">
+                    <img class="mx-auto d-block" src="{{ asset('assets/icons/carro.png')}} ">
+                  </div>
+                </div>
+                <div class="row" style="padding: 2em">
+                  <p class="h1" style="font-size: 60px;">{{__("test.formTime")}}</p>
+                </div>
+                <div class="row" style="padding-top: 2em">
+                  <div class="col">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                    <button id="showDistractors" style="margin-top: 2em" class="btn btn-lg btn-outline-primary pull-right" type="button">{{__("test.btnUnderstood")}}</button>
+                </div>
+              </div>
+            </div>
+
             <!-- presenting figures -->
             <div id="showFigures" class="d-none row">
                 <div class="col" style="margin-top: 5em">
