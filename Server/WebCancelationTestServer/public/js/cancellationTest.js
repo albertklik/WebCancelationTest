@@ -22,8 +22,9 @@ $(function(){
         findStudentByName(value,
             function(data) {
             if (data.exists) {
+                console.log(data);
                 testData.student = data.student;
-                showSimbols();
+                showTargetAndTime();
                 return;
             }
             showStudentForm(value); 
@@ -40,12 +41,16 @@ $(function(){
             name : $('#studentName').val(),
             birth_date : $('#studentBirthDate').val()
         }, function() {
-            showSimbols();
+            showTargetAndTime();
         }, function (data) {
             message(data);
         }, function () {
             loading(false);
         });
+     });
+
+     $('#showDistractors').on('click',function() {
+        showSimbols()
      });
 
      $('#startTest').on('click',function() {
@@ -61,7 +66,6 @@ function setTestGroupData(data) {
 }
 
 function setupTest() {
-    //testData.board = JSON.stringify(new Board(3,data.n_goals,data.n_distractors,data.goal_id,data.resolution,data.aligned).generateRandom());
     console.log(testData.testGroup);
     var data = {
         resolution : {width : 1920, height: 1080},
@@ -80,7 +84,6 @@ function setupTest() {
             }
         }
     };
-    //data.board = JSON.parse(JSON.stringify(new Board(3,data.n_goals,data.n_distractors,data.goal_id,data.resolution,data.aligned).generateRandom()));
     console.log(data.board);
     testControl = new TestControl(data,'testCanvas',true);
 }
@@ -133,19 +136,29 @@ function showStudentForm(name) {
     $('#studentName').val(name);
     $('#nameText').append(name.split(' ')[0]);
     showDiv('#formInsertName',false);
+    showDiv('#showTargetAndTime',false);
     showDiv('#formStudent',true);
 }
 
 function showSimbols() {
     showDiv('#formInsertName',false);
     showDiv('#formStudent',false);
+    showDiv('#showTargetAndTime',false);
     showDiv('#showFigures',true);
+}
+
+function showTargetAndTime() {
+    showDiv('#formInsertName',false);
+    showDiv('#formStudent',false);
+    showDiv('#showTargetAndTime',true);
+    showDiv('#showFigures',false);
 }
 
 function showresultTest() {
     showDiv('#formInsertName',false);
     showDiv('#formStudent',false);
     showDiv('#showFigures',false);
+    showDiv('#showTargetAndTime',false);
     showDiv('#showResult',true);
 }
 
