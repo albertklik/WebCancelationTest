@@ -9,9 +9,13 @@ $(function(){
         var value = $('#nomeDataList').val();
         if (value.length == 0)
             return;
-        searchStudentsNames(value,function(data) {
+        searchStudents(
+            { name : value },
+            function(data) {
            updateDataOptionsName(data)
-        });
+        }, function(data) {
+            message(data);
+        }, function() {});
     });
 
     showDiv('#formInsertName',true);
@@ -19,7 +23,8 @@ $(function(){
     $('#checkNameButton').on('click', function() {
         var value = $('#nomeDataList').val();
         loading(true);
-        findStudentByName(value,
+        studentExist(
+            { name : value },
             function(data) {
             if (data.exists) {
                 console.log(data);
@@ -58,6 +63,10 @@ $(function(){
         setupTest();
         startTest();
      });
+
+     var selected  = testData.imgs_url.find(e => e.id == testData.testGroup.target_id) || testData.imgs_url[0];
+     $('#targetImg').attr("src",selected.url)
+     $('#TestTimeSpan').html(secondsToDescription(testData.testGroup.time_limit,testData.interfaceStr))
 });
 
 function setTestGroupData(data) {
@@ -86,50 +95,6 @@ function setupTest() {
     };
     console.log(data.board);
     testControl = new TestControl(data,'testCanvas',true);
-}
-
-function searchStudentsNames(val,success,error,complete) {
-    $.ajax({
-        type: "POST",
-        url: "api/student/search",
-        data: { name : val },
-        success: success,
-        error: error,
-        complete: complete,
-    });
-}
-
-function findStudentByName(val, success, error, complete) {
-    $.ajax({
-        type: "POST",
-        url: "api/student/exists",
-        data: { name : val },
-        success: success,
-        error: error,
-        complete: complete
-    });
-}
-
-function saveStudent(data,success,error,complete) {
-    $.ajax({
-        type: "POST",
-        url: "api/student",
-        data: data,
-        success: success,
-        error: error,
-        complete: complete
-    });
-}
-
-function saveTest(data,success,error,complete) {
-    $.ajax({
-      type: "POST",
-      url: "api/test",
-      data: data,
-      success: success,
-      error: error,
-      complete: complete
-    });
 }
 
 function showStudentForm(name) {

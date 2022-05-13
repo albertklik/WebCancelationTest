@@ -8,13 +8,42 @@
         <script src="{{ asset('js/randomGrid.js') }}"></script>
         <script src="{{ asset('js/icon.js') }}"></script>
         <script src="{{ asset('js/render.js') }}"></script>
+        <script src="{{ asset('js/baseFunctions.js') }}"></script>
         <script src="{{ asset('js/testControl.js') }}"></script>
         <script src="{{ asset('js/app.js') }}" ></script>
         <script src="{{ asset('js/cancellationTest.js') }}"></script>
         <script src="{{ asset('js/boardGenerator.js') }}"></script>
+
         <script>
             setTestGroupData({!! json_encode($testGroup) !!});
             console.log(testData.testGroup);
+            
+
+            testData.interfaceStr = [];
+            testData.interfaceStr["thirtySeconds"] = '{{__("interface.thirtySeconds")}}'; 
+            testData.interfaceStr["oneMinute"] = '{{__("interface.oneMinute")}}'; 
+            testData.interfaceStr["twoMinutes"] = '{{__("interface.twoMinutes")}}'; 
+            testData.interfaceStr["threeMinutes"] = '{{__("interface.threeMinutes")}}'; 
+            testData.interfaceStr["fiveMinutes"] = '{{__("interface.fiveMinutes")}}'; 
+            testData.interfaceStr["TenMinutes"] = '{{__("interface.TenMinutes")}}'; 
+            testData.interfaceStr["thirtyMinutes"] = '{{__("interface.thirtyMinutes")}}'; 
+            testData.interfaceStr["oneHour"] = '{{__("interface.oneHour")}}'; 
+
+            testData.imgs_url = [
+              { id : 1, url : "{{ asset('assets/icons/carro.png') }}" },
+              { id : 2, url : "{{ asset('assets/icons/casa.png') }}" },
+              { id : 3, url : "{{ asset('assets/icons/arvore.png') }}" },
+              { id : 4, url : "{{ asset('assets/icons/bule.png') }}" },
+              { id : 5, url : "{{ asset('assets/icons/sol.png') }}" },
+              { id : 6, url : "{{ asset('assets/icons/galinha.png') }}" },
+              { id : 7, url : "{{ asset('assets/icons/coelho.png') }}" },
+              { id : 8, url : "{{ asset('assets/icons/gato.png') }}" },
+              { id : 9, url : "{{ asset('assets/icons/flor.png') }}" },
+              { id : 10, url : "{{ asset('assets/icons/peixe.png') }}" },
+              { id : 11, url : "{{ asset('assets/icons/estrela.png') }}" },
+              { id : 12, url : "{{ asset('assets/icons/aviao.png') }}" },
+              { id : 13, url : "{{ asset('assets/icons/barco.png') }}" }
+            ];
         </script>
         
         <!-- Styles -->
@@ -139,14 +168,15 @@
                 </div>
                 <div class="row" style="padding-top: 2em">
                   <div class="col">
-                    <img class="mx-auto d-block" src="{{ asset('assets/icons/carro.png')}} ">
+                    <img id="targetImg" class="mx-auto d-block">
                   </div>
                 </div>
                 <div class="row" style="padding: 2em">
                   <p class="h1" style="font-size: 60px;">{{__("test.formTime")}}</p>
                 </div>
                 <div class="row" style="padding-top: 2em">
-                  <div class="col">
+                  <div class="col text-center">
+                    <p class="h1" id="TestTimeSpan"></p>
                   </div>
                 </div>
               </div>
