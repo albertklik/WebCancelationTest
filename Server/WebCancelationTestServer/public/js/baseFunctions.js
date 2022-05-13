@@ -81,13 +81,13 @@ function getUrlParameter(sPageURL,sParam) {
 }
 
 function getLanguageStr(array,key) {
-    if (array[key] === undefined) return '';
+    if (array[key] === undefined) return key;
     return array[key]
 }
 
 function getImgIconStr(id,urls) {
   var selected  = urls.find(e => e.id == id) || urls[0];
-  return '<img style="width: 20px" src="'+selected.url+'" alt="Image"/>'
+  return '<img style="width: 20px" src="' + selected.url + '" alt="Image"/>'
 }
 
 function getTestGroupItem(data, interfaceStr = [], iconImgsUrl = []) {
@@ -182,6 +182,20 @@ function convertDatetime(dateTime) {
   return date[2] + '/' + date[1] + '/' + date[0] + ' às ' + time[0] + 'h:' + time[1] + 'min'
 }
 
+function secondsToDescription(seconds, interfaceStr = []) {
+  switch(seconds) {
+   case 30: return getLanguageStr(interfaceStr,'thirtySeconds')
+   case 60: return getLanguageStr(interfaceStr,'oneMinute')
+   case 120: return getLanguageStr(interfaceStr,'twoMinutes')
+   case 180: return getLanguageStr(interfaceStr,'threeMinutes')
+   case 300: return getLanguageStr(interfaceStr,'fiveMinutes')
+   case 600: return getLanguageStr(interfaceStr,'TenMinutes')
+   case 1800: return getLanguageStr(interfaceStr,'thirtyMinutes')
+   case 3600: return getLanguageStr(interfaceStr,'oneHour')
+   default: return ""
+  }
+}
+
 function timestampToDatetime(timestamp) {
     var dt = eval(timestamp);
     var myDate = new Date(dt);
@@ -227,7 +241,7 @@ REQUEST_PARAM["test.update"] = {type: "PUT",url: "api/test/"};
 REQUEST_PARAM["test.show"] = {type: "GET",url: "api/test/"};
 REQUEST_PARAM["test.list"] = {type: "GET",url: "api/test/list"};
 
-function executeAjaxRequest(requestName,urlParams,data,success,error,complete) {
+function executeAjaxRequest(requestName, urlParams, data, success, error, complete) {
     urlParamsStr = "";
     urlParams.forEach( (param,i) => {
       var isLastElement = i == urlParams.length -1;
@@ -244,54 +258,82 @@ function executeAjaxRequest(requestName,urlParams,data,success,error,complete) {
     });
 }
 
-function getTestGroups(data,success,error,complete) {
-   executeAjaxRequest("testGroup.list",[],data,success,error,complete);
+function getTestGroups(data, success, error, complete) {
+   executeAjaxRequest("testGroup.list", [], data, success, error, complete);
 }
 
-function saveTestGroups(data,success,error,complete) {
-    executeAjaxRequest("testGroup.store",[],data,success,error,complete);
+function saveTestGroups(data, success, error, complete) {
+    executeAjaxRequest("testGroup.store", [], data, success, error, complete);
 }
 
-function updateTestGroups(urlParams,data,success,error,complete) {
-    executeAjaxRequest("testGroup.update",urlParams,data,success,error,complete);
+function updateTestGroups(urlParams, data, success, error, complete) {
+    executeAjaxRequest("testGroup.update", urlParams, data, success, error, complete);
 }
 
-function deleteTestGroups(urlParams,success,error,complete) {
+function deleteTestGroups(urlParams, success, error, complete) {
     executeAjaxRequest("testGroup.destroy",urlParams,{},success,error,complete);
 }
 
-function getTestGroup(urlParams,success,error,complete) {
-    executeAjaxRequest("testGroup.show",urlParams,{},success,error,complete);
+function getTestGroup(urlParams, success, error, complete) {
+    executeAjaxRequest("testGroup.show", urlParams, {}, success, error, complete);
 }
 
-function getTests(data,success,error,complete) {
-    executeAjaxRequest("test.list",[],data,success,error,complete);
- }
-
-function deleteTests(urlParams,success,error,complete) {
-    executeAjaxRequest("test.destroy",urlParams,{},success,error,complete);
+function getTests(data, success, error, complete) {
+    executeAjaxRequest("test.list", [], data ,success, error, complete);
 }
 
-function getTest(urlParams,success,error,complete) {
-    executeAjaxRequest("test.show",urlParams,{},success,error,complete);
+function deleteTests(urlParams, success, error, complete) {
+    executeAjaxRequest("test.destroy", urlParams, {}, success, error, complete);
 }
 
-function getResearches(data,success,error,complete) {
-    executeAjaxRequest("research.list",[],data,success,error,complete);
+function getTest(urlParams, success, error, complete) {
+    executeAjaxRequest("test.show", urlParams, {}, success, error, complete);
+}
+
+function saveTest(data, success, error, complete) {
+    executeAjaxRequest("test.store",[], data, success, error, complete);
+}
+
+function getResearches(data, success, error, complete) {
+    executeAjaxRequest("research.list",[], data, success, error, complete);
  }
  
- function saveResearches(data,success,error,complete) {
-     executeAjaxRequest("research.store",[],data,success,error,complete);
+ function saveResearches(data, success, error, complete) {
+     executeAjaxRequest("research.store",[], data, success, error, complete);
  }
  
- function updateResearches(urlParams,data,success,error,complete) {
-     executeAjaxRequest("research.update",urlParams,data,success,error,complete);
+ function updateResearches(urlParams, data, success, error, complete) {
+     executeAjaxRequest("research.update", urlParams, data, success, error, complete);
  }
  
- function deleteResearches(urlParams,success,error,complete) {
+ function deleteResearches(urlParams, success, error, complete) {
      executeAjaxRequest("research.destroy",urlParams,{},success,error,complete);
  }
  
- function getResearch(urlParams,success,error,complete) {
-     executeAjaxRequest("research.show",urlParams,{},success,error,complete);
+ function getResearch(urlParams, success, error, complete) {
+     executeAjaxRequest("research.show", urlParams, {}, success, error, complete);
  }
+
+ function saveStudent(data, success, error, complete) {
+    executeAjaxRequest("student.store",[], data, success, error, complete);
+ }
+
+ function studentExist(data, success, error, complete) {
+    executeAjaxRequest("student.exists",[], data, success, error, complete);
+ }
+
+ function searchStudents(data, success, error, complete) {
+    executeAjaxRequest("student.search",[], data, success, error, complete);
+}
+
+function updateStudents(urlParams, data, success, error, complete) {
+    executeAjaxRequest("student.update", urlParams, data, success, error, complete);
+}
+
+function deleteStudents(urlParams, success, error, complete) {
+    executeAjaxRequest("student.destroy",urlParams,{},success,error,complete);
+}
+
+function getStudent(urlParams, success, error, complete) {
+    executeAjaxRequest("student.show", urlParams, {}, success, error, complete);
+}
