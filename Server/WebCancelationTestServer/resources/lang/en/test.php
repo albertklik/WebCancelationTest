@@ -26,7 +26,8 @@ return [
     'btnNext' => 'Next',
     'btnReady' => 'Ready!',
     'btnUnderstood' => 'Understood',
-    
+    'btnCancel' => 'Cancel',
+    'btnFinish' => 'Finish'
 
 
 ];

@@ -10,11 +10,14 @@
         <div class="modal-body">
           {{ view('base.loadingModal') }}
           <div class="modalContent">
+            <small class="text-muted">
+              {{__('interface.requiredTxt')}}
+            </small>
             <div id="insertEditResearchesModalMsg">
             </div>
             <form id="insertEditResearchesForm">
               <input type="hidden" maxlength="250" name="id" value="-1" class="form-control" id="id">
-              <div class="form-group">
+              <div class="form-group required">
                 <label for="title">{{__('interface.title')}}</label>
                 <input type="text" maxlength="250" name="title" class="form-control" id="title">
               </div>
@@ -22,7 +25,7 @@
                 <label for="instructor_name">{{__('interface.instructorName')}}</label>
                 <input type="text" maxlength="250" name="instructor_name" class="form-control" id="instructor_name">
               </div>
-              <div class="form-group">
+              <div class="form-group required">
                 <label for="description">{{__('interface.description')}}</label>
                 <textarea rows="8" class="form-control" name="description" id="description"></textarea>
                 <small id="researchDescriptionHelp" class="text-muted">

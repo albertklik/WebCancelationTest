@@ -3,7 +3,7 @@ var testData = {};
 var testControl = {};
 
 
-$(function(){
+$(function() {
     
     $("#nomeDataList").on("input", function(){
         var value = $('#nomeDataList').val();
@@ -63,6 +63,15 @@ $(function(){
         setupTest();
         startTest();
      });
+
+     $('#cancelTest').on('click',function() {
+        reloadTest();
+     });
+
+     $('#finishTest').on('click',function() {
+        testControl.finishTest();
+     });
+
 
      var selected  = testData.imgs_url.find(e => e.id == testData.testGroup.target_id) || testData.imgs_url[0];
      $('#targetImg').attr("src",selected.url)
@@ -127,6 +136,16 @@ function showresultTest() {
     showDiv('#showResult',true);
 }
 
+function reloadTest() {
+    showTestPanel(false);
+    showDiv('#formInsertName',true);
+    showDiv('#formStudent',false);
+    showDiv('#showFigures',false);
+    showDiv('#showTargetAndTime',false);
+    showDiv('#showResult',false);
+    $("#nomeDataList").val("");
+}
+
 function startTest() {
   testControl.renderBoard();
   testControl.startTest();
@@ -171,6 +190,7 @@ function showTestPanel(state) {
     showDiv('#logo',!state)
     showDiv('#formContent',!state);
     showDiv('#testCanvas',state);
+    showDiv('#testButtons',state)
 }
 
 function updateDataOptionsName(data) {

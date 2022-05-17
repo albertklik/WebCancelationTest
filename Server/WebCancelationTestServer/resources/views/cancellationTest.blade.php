@@ -68,6 +68,14 @@
                 position: relative;
                 align-self: center;
             } 
+            #testButtons {
+              width: 90%;
+              height: 10%;
+              margin-left: 5%;
+              margin-right: 5%;
+              position: relative;
+              align-self: center;
+            }
             .carousel-control-prev-icon,
             .carousel-control-next-icon {
               height: 100px;
@@ -295,5 +303,9 @@
             </div>
         </div>
         <canvas class="d-none canvas" id="testCanvas" width="1920" height="1080"></canvas>
+        <div class="d-none" id="testButtons">
+          <button id="cancelTest" class="btn btn-lg btn-outline-danger pull-left" type="button">{{__("test.btnCancel")}}</button>
+          <button id="finishTest" class="btn btn-lg btn-outline-success pull-right" type="button">{{__("test.btnFinish")}}</button>
+        </div>
     </body>
 </html>

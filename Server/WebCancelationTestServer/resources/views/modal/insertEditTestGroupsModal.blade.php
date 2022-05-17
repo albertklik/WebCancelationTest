@@ -10,11 +10,14 @@
         <div class="modal-body">
           {{ view('base.loadingModal') }}
           <div class="modalContent">
+            <small class="text-muted">
+              {{__('interface.requiredTxt')}}
+            </small>
             <div id="insertEditTestGroupsMsg">
             </div>
             <form id="insertEditTestGroupsForm">
               <input type="hidden" maxlength="250" name="id" value="-1" class="form-control" id="id">
-              <div class="form-group">
+              <div class="form-group required">
                 <label for="name">{{__('interface.name')}}</label>
                 <input type="text" maxlength="250" name="name" class="form-control" id="name">
               </div>
@@ -26,7 +29,7 @@
                   </label>
                 </div>
               </div>
-              <div class="form-group">
+              <div class="form-group required">
                 <label for="goals">{{__('interface.goals')}}</label>
                 <input type="number" maxlength="10" class="form-control" name="targets" id="goals">
               </div>

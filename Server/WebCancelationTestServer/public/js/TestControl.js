@@ -123,24 +123,29 @@ function TestControl(data,canvasId,debug,resultData) {
         });
     }
 
+    TestControl.prototype.finishTest = function() {
+        var seconds = ((new Date()).getTime() - this.startTime)/1000;
+        this.testEnabled = false;
+        this.callbacks.testFinished({
+            result: this.clicks,
+            seconds: seconds,
+            hits: this.hits,
+            misses: this.misses,
+            board: this.board
+            
+        });
+        baseData.log({
+        message : "test finished",
+        seconds : seconds,
+        clicks : this.clicks
+        });    
+    }
+
     TestControl.prototype.tick = function() {
         if (!this.testEnabled)
             return;
         var seconds = ((new Date()).getTime() - this.startTime)/1000;
         if (seconds >= this.time_limit) {
-            this.testEnabled = false;
-           this.callbacks.testFinished({
-                result: this.clicks,
-                seconds: seconds,
-                hits: this.hits,
-                misses: this.misses,
-                board: this.board
-                
-            });
-        baseData.log({
-            message : "test finished",
-            seconds : seconds,
-            clicks : this.clicks
-        });               
+               this.finishTest();        
         }
     }

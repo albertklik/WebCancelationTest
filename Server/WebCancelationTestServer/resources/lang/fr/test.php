@@ -27,6 +27,8 @@ return [
     'btnNext' => 'prochaine étape',
     'btnReady' => 'prêt!',
     'btnUnderstood' => 'entendu',
+    'btnCancel' => 'Résilier',
+    'btnFinish' => 'Terminer'
     
 
 

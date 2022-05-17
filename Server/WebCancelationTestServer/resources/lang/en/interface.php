@@ -25,11 +25,11 @@ return [
     'welcoming' => 'Hello, :name',
     'welcomingDesc' => 'welcome to the authenticated area',
     'testGroups' => 'Test Groups',
-    'testGroupsDescription' => 'Groups of tests with its configurations',
+    'testGroupsDescription' => 'Groups of tests with its settings',
     'tests' => 'Tests',
     'testsDescription' => 'Tests realized',
     'students' => 'Students',
-    'studentsDescription' => 'Students that aplied for this test group',
+    'studentsDescription' => 'Students that applied for this test group',
     'yes' => 'Yes',
     'no' => 'No',
     'goals' => 'Targets',
@@ -87,6 +87,7 @@ return [
     'testsNumberHomeDesc' => 'Tests are the amout of data colected in a test atempt',
     'numbersHomeTitle' => 'Numbers',
     'numbersHomeDescription' => 'Dash of numbers about objects created',
+    'requiredTxt' => 'the fields with \'*\' are required',
 
 
 
@@ -99,6 +100,8 @@ return [
     'eraseTestGroupMsg' => 'We need you confirmation to proceed the action. Are you sure?',
     'eraseTestTitle' => 'Erase Test',
     'eraseTestMsg' => 'We need you confirmation to proceed the action. Are you sure?',
+    'eraseResearchTitle' => 'Erase Research',
+    'eraseResearchMsg' => 'We need you confirmation to proceed the action. Are you sure?',
 
 
     //buttons 

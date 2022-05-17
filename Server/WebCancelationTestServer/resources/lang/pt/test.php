@@ -15,7 +15,7 @@ return [
 
     'formName' => 'Olá, Qual o seu nome?',
     'tooltipName' => 'Escreva seu nome...',
-    'formJoin' => 'Oi <span id="nameText"></span>, parece que você é novo(a) por aqui.',
+    'formJoin' => 'Olá, parece que você é novo(a) por aqui.',
     'formDateOfBirth' => 'Em que dia você nasceu?',
     'formIcons' => 'Esses são os objetos que serão mostrados no teste.',
     'endMessage' => 'Obrigado por realizar o teste.',
@@ -27,6 +27,8 @@ return [
     'btnNext' => 'Continuar',
     'btnReady' => 'Pronto!',
     'btnUnderstood' => 'Entendi',
+    'btnCancel' => 'Cancelar',
+    'btnFinish' => 'Finalizar'
     
 
 
