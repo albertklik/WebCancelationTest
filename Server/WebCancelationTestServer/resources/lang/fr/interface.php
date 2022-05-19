@@ -94,34 +94,34 @@ return [
  
  
      //messages or modals
-     'successTitle' => 'Sucesso',
-     'successMsg' => 'Operação realizada com sucesso',
-     'shareTestTitle' => 'Sucesso ao compartilhar teste',
-     'shareTestMsg' => 'O link foi copiado para a área de transferência e pode ser colado em qualquer lugar',
-     'eraseTestGroupTitle' => 'Apagar grupo de teste',
-     'eraseTestGroupMsg' => 'Voce tem certeza que deseja apagar o grupo de teste?',
-     'eraseTestTitle' => 'Apagar teste',
-     'eraseTestMsg' => 'Voce tem certeza que deseja apagar o teste?',
-     'eraseResearchTitle' => 'Erase Research',
-     'eraseResearchMsg' => 'We need you confirmation to proceed the action. Are you sure?',
+     'successTitle' => 'Succès',
+     'successMsg' => 'Opération effectuée avec succès',
+     'shareTestTitle' => 'Essai de partage de réussite',
+     'shareTestMsg' => 'Le lien a été copié dans le presse-papiers et peut être collé n\'importe où',
+     'eraseTestGroupTitle' => 'Supprimer le groupe de Essai',
+     'eraseTestGroupMsg' => 'Voulez-vous vraiment supprimer le groupe de Essai?',
+     'eraseTestTitle' => 'Supprimer l\'essai',
+     'eraseTestMsg' => 'Voulez-vous vraiment supprimer le Essai?',
+     'eraseResearchTitle' => 'Effacer la recherche',
+     'eraseResearchMsg' => 'Nous avons besoin de votre confirmation pour continuer l\'action. Es-tu sûr?',
  
  
      //buttons 
-     'btnNewTestGroup' => 'Novo Grupo de teste',
-     'btnNewTest' => 'Novo Teste',
-     'btnEdit' => 'Editar',
-     'btnErase' => 'Apagar',
-     'btnSave' => 'Salvar',
-     'btnClose' => 'Fechar',
-     'btnCancel' => 'Cancelar',
-     'btnConfirm' => 'Confirmar',
-     'btnListTests' => 'Listar testes',
-     'btnDoTheTest' => 'Realizar teste',
-     'btnShareLink' => 'Compartilhar Link',
-     'btnShowBoard' => 'Mostrar quadro de teste',
-     'btnManageResearch'  => 'Gerenciar Pesquisa',
-     'btnNewResearch'  => 'Criar nova Pesquisa',
-     'btnListResearch'  => 'Ver Mais Pesquisas'
+     'btnNewTestGroup' => 'Nouveau groupe d\'essai',
+     'btnNewTest' => 'Nouveau groupe de Essai',
+     'btnEdit' => 'Éditer',
+     'btnErase' => 'Effacer',
+     'btnSave' => 'Magasin',
+     'btnClose' => 'Proche',
+     'btnCancel' => 'Annuler',
+     'btnConfirm' => 'Confirmer',
+     'btnListTests' => 'Liste des essais',
+     'btnDoTheTest' => 'Effectuer un test',
+     'btnShareLink' => 'lien de partage',
+     'btnShowBoard' => 'Afficher le tableau de test',
+     'btnManageResearch'  => 'Gérer la recherche',
+     'btnNewResearch'  => 'Créer une nouvelle enquête',
+     'btnListResearch'  => 'Voir plus de recherche'
      
 
 
