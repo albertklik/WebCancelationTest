@@ -172,7 +172,7 @@
             <div id="showTargetAndTime" class="d-none row">
               <div class="col" style="margin-top: 5em">
                 <div class="row" style="padding: 2em">
-                    <p class="h1" style="font-size: 60px;">{{__("test.formTarget")}}</p>
+                    <p class="h1" style="font-size: 40px;">{{__("test.testInstructions")}}</p>
                 </div>
                 <div class="row" style="padding-top: 2em">
                   <div class="col">
@@ -180,13 +180,9 @@
                   </div>
                 </div>
                 <div class="row" style="padding: 2em">
-                  <p class="h1" style="font-size: 60px;">{{__("test.formTime")}}</p>
+                  <p class="h1" style="font-size: 40px;">{{__("test.timePart1")}} <span id="TestTimeSpan"></span> {{__("test.timePart2")}}</p>
                 </div>
-                <div class="row" style="padding-top: 2em">
-                  <div class="col text-center">
-                    <p class="h1" id="TestTimeSpan"></p>
-                  </div>
-                </div>
+                
               </div>
               <div class="row">
                 <div class="col">

@@ -35,7 +35,10 @@
                 </div> 
             </div>
             <br>
+            <div class="card border-light mb-2">
+                <div class="card-body">
             <div id="content">
+                
                <table class="table table-sm">
                <thead>
                    <tr>
@@ -52,8 +55,13 @@
                </tbody>
                </table>
             </div>
+                </div></div>
+            <div class="card border-light mb-2">
+                <div class="card-body">
             <div id="paginator">
             </div>
+                </div></div>
+
         </div>
     </div>
 </div>

@@ -32,6 +32,7 @@ return [
     'studentsDescription' => 'Students that applied for this test group',
     'yes' => 'Yes',
     'no' => 'No',
+    'board' => 'Board',
     'goals' => 'Targets',
     'goalType' => 'Target type',
     'distractors' => 'Distractors',

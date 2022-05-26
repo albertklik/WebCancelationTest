@@ -34,17 +34,18 @@ return [
     'studentsDescription' => 'Étudiants qui ont postulé pour ce groupe de essais',
      'yes' => 'Oui',
      'no' => 'Non',
+     'board' => 'Tableau',
      'goals' => 'Cibles (par quadrant)',
      'goalType' => 'Type de cible',
      'distractors' => 'Distracteurs (par quadrant)',
      'goalSymbol' => 'Icône cible',
-     'timeDesc' => 'Durée du test (en secondes)',
+     'timeDesc' => 'Durée du essai (en secondes)',
      'align' => 'Alignement des symboles',
      'loading' => 'Chargement en cours',
      'name' => 'Nom',
      'aligned' => 'Aligné',
      'notAligned' => 'Non aligné',
-     'timeLimit' => 'Durée du test (en secondes)',
+     'timeLimit' => 'Durée du essai (en secondes)',
      'car' => 'Auto',
      'house' => 'Maison',
      'tree' => 'Arbre',
@@ -122,7 +123,5 @@ return [
      'btnManageResearch'  => 'Gérer la recherche',
      'btnNewResearch'  => 'Créer une nouvelle enquête',
      'btnListResearch'  => 'Voir plus de recherche'
-     
-
 
 ];

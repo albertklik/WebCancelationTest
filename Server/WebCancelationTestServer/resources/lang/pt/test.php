@@ -22,6 +22,11 @@ return [
     'formTarget' => 'Você deve clicar nesse icone para completar o teste',
     'formTime' => 'Você tem esse tempo para completar',
 
+    //text
+    'testInstructions' => 'Você vai ver no monitor um quadro com várias figuras. Você deve clicar somente na figura indicada abaixo e apenas um clique é necessário, você pode clicar várias vezes na mesma figura, mas o mais importante é encontrar todas',
+    'timePart1' => 'Você tem no máximo',
+    'timePart2' => 'para finalizar o teste. você pode também cancelar ou finalizar antes do tempo limite clicando nos botões abaixo do quadro de teste',
+
 
     //buttons
     'btnNext' => 'Continuar',

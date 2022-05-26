@@ -75,7 +75,7 @@ $(function() {
 
      var selected  = testData.imgs_url.find(e => e.id == testData.testGroup.target_id) || testData.imgs_url[0];
      $('#targetImg').attr("src",selected.url)
-     $('#TestTimeSpan').html(secondsToDescription(testData.testGroup.time_limit,testData.interfaceStr))
+     $('#TestTimeSpan').html(secondsToDescription(testData.testGroup.time_limit,testData.interfaceStr).toLowerCase())
 });
 
 function setTestGroupData(data) {
