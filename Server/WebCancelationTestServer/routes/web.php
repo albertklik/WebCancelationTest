@@ -22,6 +22,7 @@ Route::get('/home', [ViewController::class,'home'])->name('home');
 Route::get('/publicHome', [ViewController::class,'publicHome'])->name('homePage');
 Route::get('/testGroups', [ViewController::class,'testGroups'])->name('testGroups');
 Route::get('/tests', [ViewController::class,'tests'])->name('tests');
+Route::get('/testResult', [ViewController::class,'testResult'])->name('testResult');
 Route::get('/researches', [ViewController::class,'researches'])->name('researches');
 Route::get('/changeLang', [langController::class,'change'])->name('changeLang');
 
