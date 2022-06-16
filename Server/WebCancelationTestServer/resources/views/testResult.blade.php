@@ -38,7 +38,42 @@
             <div class="card border-light mb-2">
                 <div class="card-body">
                     <div id="content">
-               
+                        <div class="card" id="studentData">
+                            <div class="card-body">
+                              <p class="card-title">{{__('interface.testInfoTitle')}}<p>
+                              <p><b>{{__('interface.studentName')}}:</b><span id="studentName"></span></p>
+                              <p><b>{{__('interface.hits')}}:</b><span id="hit"></span></p>
+                              <p><b>{{__('interface.misses')}}:</b><span id="misses"></span></p>
+                              <p><b>{{__('interface.realizedAt')}}:</b><span id="realizedAt"></span></p>
+                            </div>
+                          </div>
+              
+                          <div id="testResultTable">
+                            <table class="table table-sm">
+                              <thead>
+                                <tr>
+                                  <th>Nº</th>
+                                  <th>Tempo</th>
+                                  <th>posição</th>
+                                  <th>Icone</th>
+                                  <th>Nome</th>
+                                  <th>acerto</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                              </tbody>
+                            </table>
+                          </div>
+              
+                          <div id="result-graph">
+                            <div class="row">
+                              <div class="col">
+                                  <div class="card card-body">
+                                    <canvas id="showBoardCanvasResult" width="760" height="500"></canvas>
+                                  </div>
+                              </div>
+                            </div>
+                          </div>
                     </div>
                 </div>
             </div>

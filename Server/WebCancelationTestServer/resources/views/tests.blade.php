@@ -20,7 +20,7 @@
                   <li class="breadcrumb-item"><a href="{{ route('home') }}">{{__("interface.home")}}</a></li>
                   <li class="breadcrumb-item"><a href="{{ route('researches') }}">{{__("interface.researches")}}</a></li>
                   <li class="breadcrumb-item"><a href="{{ route('testGroups',['research_id' => $testGroup->researches_id ]) }}">{{__("interface.testGroups")}}</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">{{__("interface.testGroups")}}</li>
+                  <li class="breadcrumb-item active" aria-current="page">{{__("interface.tests")}}</li>
                 </ol>
             </nav>
 
@@ -172,7 +172,11 @@ function showResult(id) {
         loadResult(data);
         modal(true,'testResultModal');
     });
-    //goToUrl("{{ route('testResult') }}" + "?test_id=" + id)
+    
+}
+
+function gotToDetailsResult(id) {
+    goToUrl("{{ route('testResult') }}" + "?test_id=" + id)
 }
 
 function loadResult(data) {
@@ -181,6 +185,13 @@ function loadResult(data) {
     $('#testResultTable').find('tbody').html('')
     resultData.forEach( (item,i) => {
         $('#testResultTable').find('tbody').append(getResultDataRow(item,i));
+    });
+    $('#studentName').html(data.student.name);
+    $('#hits').html(data.hits);
+    $('#misses').html(data.misses);
+    $('#realizedAt').html(convertDatetime(data.created_at));
+    $('#seeMoreBtn').on('click',function () {
+        gotToDetailsResult(data.id);
     });
     renderBoardResult(data);
 }
@@ -205,7 +216,7 @@ function setupTestControlResult() {
         renderConfig: {
             showTargets: false
         },
-        resolution : {width : 760, height: 450},
+        resolution : {width : 700, height: 450},
         board : {},
         callbacks : {
             testFinished : function (result) {

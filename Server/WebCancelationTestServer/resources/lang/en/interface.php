@@ -91,6 +91,12 @@ return [
     'requiredTxt' => 'the fields with \'*\' are required',
 
 
+    'testInfoTitle' => 'Test informations',
+    'studentName' => 'Student Name',
+    'hits' => 'Hits',
+    'misses' => 'Misses',
+    'realizedAt' => 'Realized At',
+
 
     //messages or modals
     'successTitle' => 'Success',
@@ -120,6 +126,10 @@ return [
     'btnShowBoard' => 'Show Board',
     'btnManageResearch'  => 'Manage Research',
     'btnNewResearch'  => 'Create new Research',
+
+    'btnShareResult'  => 'Share Result',
+    'btnSeeMore'  => 'See Details',
+
     'btnListResearch'  => 'See More Researches'
     
 

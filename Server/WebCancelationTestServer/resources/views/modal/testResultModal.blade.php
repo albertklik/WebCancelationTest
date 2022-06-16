@@ -13,10 +13,19 @@
             <div id="testResultModalMsg">
             </div>
 
-            <div id="studentData">
+
+            <div class="card" id="studentData">
+              <div class="card-footer">
+                <h5>{{__('interface.testInfoTitle')}}<h5>
+              </div>
+              <div class="card-body">
+                <p><b>{{__('interface.studentName')}}: </b><span id="studentName"></span></p>
+                <p><b>{{__('interface.hits')}}: </b><span id="hits"></span><b>  {{__('interface.misses')}}: </b><span id="misses"></span></p>
+                <p><b>{{__('interface.realizedAt')}}: </b><span id="realizedAt"></span></p>
+              </div>
             </div>
 
-            <div id="testResultTable">
+            {{-- <div id="testResultTable">
               <table class="table table-sm">
                 <thead>
                   <tr>
@@ -31,13 +40,18 @@
                 <tbody>
                 </tbody>
               </table>
-            </div>
-
+            </div> --}}
+            <br/>
             <div id="result-graph">
               <div class="row">
                 <div class="col">
-                    <div class="card card-body">
-                      <canvas id="showBoardCanvasResult" width="760" height="500"></canvas>
+                    <div class="card">
+                      <div class="card-footer">
+                        <h5>{{__('interface.board')}}<h5>
+                      </div>
+                      <div class="card-body">
+                        <canvas id="showBoardCanvasResult" width="700" height="500"></canvas>
+                      </div>
                     </div>
                 </div>
               </div>
@@ -46,7 +60,10 @@
           </div>
         </div>
         <div class="modal-footer">
+
           <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('interface.btnClose') }}</button>
+          <button type="button" class="btn btn-success" >{{ __('interface.btnShareResult') }}</button>
+          <button type="button" class="btn btn-primary" id="seeMoreBtn" >{{ __('interface.btnSeeMore') }}</button>
         </div>
       </div>
     </div>
