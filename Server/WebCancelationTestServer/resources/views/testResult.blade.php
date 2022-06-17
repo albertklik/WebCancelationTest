@@ -19,7 +19,7 @@
                   <li class="breadcrumb-item"><a href="{{ route('home') }}">{{__("interface.home")}}</a></li>
                   <li class="breadcrumb-item"><a href="{{ route('researches') }}">{{__("interface.researches")}}</a></li>
                   <li class="breadcrumb-item"><a href="{{ route('testGroups') }}">{{__("interface.testGroups")}}</a></li>
-                  <li class="breadcrumb-item"><a href="{{ route('tests') }}">{{__("interface.tests")}}</a></li>
+                  <li class="breadcrumb-item"><a href="{{ route('tests',['testGroup_id' => $test->test_group_id]) }}">{{__("interface.tests")}}</a></li>
                   <li class="breadcrumb-item active" aria-current="page">{{__("interface.testResult")}}</li>
                 </ol>
             </nav>
@@ -29,8 +29,8 @@
                 </div>
                 <div class="card">
                     <div class="card-body">
-                        {{-- <button disabled class="btn btn-success btn-sm" onclick="" ><i class="fas fa-plus"></i> {{ __('interface.btnNewTest') }}</button>
-                        <a class="btn btn-primary btn-sm" href="{{ route('doTheTest',['id' => $testGroup->id ]) }}" target="_blank" ><i class="fas fa-play"></i> {{ __('interface.btnDoTheTest') }}</a> --}}
+                        <button class="btn btn-success btn-sm" onclick="window.print()" ><i class="fas fa-print"></i> {{ __('interface.btnPrint') }}</button>
+                        {{-- <a class="btn btn-primary btn-sm" href="{{ route('doTheTest',['id' => $testGroup->id ]) }}" target="_blank" ><i class="fas fa-play"></i> {{ __('interface.btnDoTheTest') }}</a> --}} 
                     </div>
                 </div> 
             </div>
@@ -39,36 +39,48 @@
                 <div class="card-body">
                     <div id="content">
                         <div class="card" id="studentData">
+                            <div class="card-header">
+                              <h5>{{__('interface.testInfoTitle')}}<h5>
+                            </div>
                             <div class="card-body">
-                              <p class="card-title">{{__('interface.testInfoTitle')}}<p>
-                              <p><b>{{__('interface.studentName')}}:</b><span id="studentName"></span></p>
-                              <p><b>{{__('interface.hits')}}:</b><span id="hit"></span></p>
-                              <p><b>{{__('interface.misses')}}:</b><span id="misses"></span></p>
-                              <p><b>{{__('interface.realizedAt')}}:</b><span id="realizedAt"></span></p>
+                              <p><b>{{__('interface.studentName')}}: </b><span id="studentName"></span></p>
+                              <p><b>{{__('interface.hits')}}: </b><span id="hits"></span><b>  {{__('interface.misses')}}: </b><span id="misses"></span></p>
+                              <p><b>{{__('interface.realizedAt')}}: </b><span id="realizedAt"></span></p>
                             </div>
                           </div>
               
+                          <br/>
+                          <div class="card" id="studentData">
+                            <div class="card-header">
+                              <h5>{{__('interface.clicksTableTitle')}}<h5>
+                            </div>
+                            <div class="card-body">
                           <div id="testResultTable">
                             <table class="table table-sm">
                               <thead>
                                 <tr>
                                   <th>Nº</th>
-                                  <th>Tempo</th>
-                                  <th>posição</th>
-                                  <th>Icone</th>
-                                  <th>Nome</th>
-                                  <th>acerto</th>
+                                  <th>{{__('interface.time')}}</th>
+                                  <th>{{__('interface.position')}}</th>
+                                  <th>{{__('interface.icon')}}</th>
+                                  <th>{{__('interface.iconName')}}</th>
+                                  <th>{{__('interface.Hit')}}</th>
                                 </tr>
                               </thead>
                               <tbody>
                               </tbody>
                             </table>
                           </div>
-              
+                        </div>
+                    </div>
+                    <br/>
                           <div id="result-graph">
                             <div class="row">
                               <div class="col">
-                                  <div class="card card-body">
+                                  <div class="card">
+                                    <div class="card-header">
+                                        <h5>{{__('interface.resultGraph')}}<h5>
+                                      </div>
                                     <canvas id="showBoardCanvasResult" width="760" height="500"></canvas>
                                   </div>
                               </div>
@@ -77,11 +89,7 @@
                     </div>
                 </div>
             </div>
-            <div class="card border-light mb-2">
-                <div class="card-body">
             
-                </div>
-            </div>
         </div>
     </div>
 </div>
@@ -110,13 +118,9 @@ var iconImgsUrl = [
         { id : 13, url : "{{ asset('assets/icons/barco.png') }}" }
     ];
 
-var actualPage = 1    
-
-
  $(function() {
-     //loadTests();
-     //setupTestControlResult();
-     loadResult(JSON.parse("{{ json_encode($test) }}"));
+     setupTestControlResult();
+     showResult("{{ $test->id }}"); 
  });
 
 function sendDeleteTest(id) {
@@ -144,10 +148,24 @@ function deleteTest(id) {
     );
 }
 
+function loadTest(id,callback) {
+     loading(true);
+     getTest(
+         [id],
+         callback,
+         function(error) {
+         console.log(error);
+         showMsg('danger','Error','Error on load test');
+     }, function() {
+         console.log("request complete");
+         loading(false);
+     }
+     );
+ }
+
 function showResult(id) {
     loadTest(id,function(data) {
-        
-        modal(true,'testResultModal');
+        loadResult(data);
     });
 }
 
@@ -155,12 +173,20 @@ function loadResult(data) {
     console.log(data);
     var resultData = JSON.parse(data.result)
     $('#testResultTable').find('tbody').html('')
+    if (typeof resultData !== 'undefined' && resultData.length > 0) {
     resultData.forEach( (item,i) => {
         $('#testResultTable').find('tbody').append(getResultDataRow(item,i));
     });
+    } else {
+        $('#testResultTable').find('table').hide();
+        showMsg('info','','The requested list is empty','testResultTable');
+    }
+    $('#studentName').html(data.student.name);
+    $('#hits').html(data.hits);
+    $('#misses').html(data.misses);
+    $('#realizedAt').html(convertDatetime(data.created_at));
     renderBoardResult(data);
 }
- 
 
 function renderBoardResult(data) {
     console.log(data.board);

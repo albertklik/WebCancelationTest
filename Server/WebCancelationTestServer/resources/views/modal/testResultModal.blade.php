@@ -15,7 +15,7 @@
 
 
             <div class="card" id="studentData">
-              <div class="card-footer">
+              <div class="card-header">
                 <h5>{{__('interface.testInfoTitle')}}<h5>
               </div>
               <div class="card-body">
@@ -46,12 +46,10 @@
               <div class="row">
                 <div class="col">
                     <div class="card">
-                      <div class="card-footer">
+                      <div class="card-header">
                         <h5>{{__('interface.board')}}<h5>
                       </div>
-                      <div class="card-body">
                         <canvas id="showBoardCanvasResult" width="700" height="500"></canvas>
-                      </div>
                     </div>
                 </div>
               </div>

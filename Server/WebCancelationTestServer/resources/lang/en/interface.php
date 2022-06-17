@@ -92,10 +92,21 @@ return [
 
 
     'testInfoTitle' => 'Test informations',
+    'clicksTableTitle' => 'Clicks Table',
     'studentName' => 'Student Name',
     'hits' => 'Hits',
     'misses' => 'Misses',
     'realizedAt' => 'Realized At',
+
+    'testsResult' => 'Test Result',
+    'testsResultDescription' => 'Details of the attempt and the tester',
+    'time' => 'Time',
+    'position' => 'Position',
+    'icon' => 'Icon',
+    'iconName' => 'Icon Name',
+    'Hit' => 'Hit',
+    'resultGraph' => 'Result Graph',
+    
 
 
     //messages or modals
@@ -129,6 +140,7 @@ return [
 
     'btnShareResult'  => 'Share Result',
     'btnSeeMore'  => 'See Details',
+    'btnPrint'  => 'Print',
 
     'btnListResearch'  => 'See More Researches'
     
