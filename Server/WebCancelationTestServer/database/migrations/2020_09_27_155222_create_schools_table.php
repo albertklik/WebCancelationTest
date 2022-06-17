@@ -17,6 +17,7 @@ class CreateSchoolsTable extends Migration
         //     $table->id();
         //     $table->string("name");
         //     $table->string("director_name");
+        //     $table->string("address");
         //     $table->string("phone");
         //     $table->timestamps();
         // });
@@ -29,6 +30,6 @@ class CreateSchoolsTable extends Migration
      */
     public function down()
     {
-        // Schema::dropIfExists('schools');
+       // Schema::dropIfExists('schools');
     }
 }

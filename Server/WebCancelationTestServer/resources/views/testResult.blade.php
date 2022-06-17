@@ -201,7 +201,7 @@ function setupTestControlResult() {
         renderConfig: {
             showTargets: false
         },
-        resolution : {width : 760, height: 450},
+        resolution : {width : 1140, height: 675},
         board : {},
         callbacks : {
             testFinished : function (result) {
