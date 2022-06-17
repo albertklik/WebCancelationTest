@@ -125,13 +125,13 @@ function getTestItem(data) {
     return msgString;
 }
 
-function getResultDataRow(data,index) {
+function getResultDataRow(data, index, iconImgsUrl = []) {
     var msgString = "";
-    msgString += '<tr><td>' + (index+1) + '</td><td>' + timestampToDatetime(data.time) + '</td><td> (' + ~~data.x +','+ ~~data.y + ') </td><td>' + data.item.id + '</td><td>' + data.item.name + '</td><td>' + (data.hit ? '<i style="color:green" class="fas fa-check"></i>' : '<i style="color:red" class="fas fa-close"></i>') + '</td></tr>'
+    msgString += '<tr><td>' + (index+1) + '</td><td>' + timestampToDatetime(data.time) + '</td><td> (' + ~~data.x +','+ ~~data.y + ') </td><td>' + getImgIconStr(data.item.id,iconImgsUrl) + '</td><td>' + data.item.name + '</td><td>' + (data.hit ? '<i style="color:green" class="fas fa-check"></i>' : '<i style="color:red" class="fas fa-close"></i>') + '</td></tr>'
     return msgString;
 }
 
-function getResearchItem(data,interfaceStr = [],resumed = false) {
+function getResearchItem(data, interfaceStr = [], resumed = false) {
     var msgString = "";
     msgString += '<div class="col-sm-4" style="margin-bottom: 1em"><div class="card"><div class="card-header" style="background-color: darkcyan"><div class="float-right">'
     if (!resumed) {

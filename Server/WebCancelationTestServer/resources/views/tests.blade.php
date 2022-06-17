@@ -181,11 +181,11 @@ function gotToDetailsResult(id) {
 
 function loadResult(data) {
     console.log(data);
-    var resultData = JSON.parse(data.result)
-    $('#testResultTable').find('tbody').html('')
-    resultData.forEach( (item,i) => {
-        $('#testResultTable').find('tbody').append(getResultDataRow(item,i));
-    });
+    // var resultData = JSON.parse(data.result)
+    // $('#testResultTable').find('tbody').html('')
+    // resultData.forEach( (item,i) => {
+    //     $('#testResultTable').find('tbody').append(getResultDataRow(item,i));
+    // });
     $('#studentName').html(data.student.name);
     $('#hits').html(data.hits);
     $('#misses').html(data.misses);
@@ -214,7 +214,10 @@ function renderBoardResult(data) {
 function setupTestControlResult() {
     var bData = {
         renderConfig: {
-            showTargets: false
+            showTargets: false,
+            hideIcons: true,
+            identifyCells: true,
+            identifyIcons: true,
         },
         resolution : {width : 700, height: 450},
         board : {},

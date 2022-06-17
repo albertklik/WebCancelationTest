@@ -18,7 +18,10 @@ this.CancelationTest = this.CancelationTest || {}
     function Render(renderConfig,canvasId,resolution,board,resultData,img_path,item_data,onclickEvent) 
     {
         this.defaultRenderConfig = {
-            showTargets: false
+            showTargets: false,
+            hideIcons: false,
+            identifyCells: false,
+            identifyIcons: false,
         }
         this.renderConfig = renderConfig || this.defaultRenderConfig;
         this.stage = new createjs.Stage(canvasId);
@@ -60,9 +63,26 @@ this.CancelationTest = this.CancelationTest || {}
             colunm.forEach((line,b) => {
                 let start_pos_x = this.cell_width * a;
                 let start_pos_y = this.cell_height * b;
+                if (this.renderConfig.identifyCells) {
+                    this.drawSquare(
+                    start_pos_x + 2,
+                    start_pos_y + 2,
+                    this.cell_width - 2,
+                    this.cell_height - 2,"red",1);
+                }
                 line.map.forEach((element,i) => {
                     element.forEach((item,j) => {
                         if (item) {
+                            if (this.renderConfig.identifyIcons) {
+                                this.drawSquare(
+                                ((start_pos_x+item.objX) * this.ratioX) + 1,
+                                ((start_pos_y+item.objY) * this.ratioY) + 1,
+                                (item.objWidth * this.ratioX) - 1,
+                                (item.objHeight * this.ratioY) - 1,"grey",1);
+                            }
+                            if (this.renderConfig.hideIcons)
+                                return; 
+
                             var icon = new Icon(
                                 this.onClickEvent,
                                 this.stage,
@@ -126,6 +146,13 @@ this.CancelationTest = this.CancelationTest || {}
         diameter
         );
         this.stage.addChild(circle);
+    }
+
+    Render.prototype.drawSquare = function(x,y,width,height,color,strokeWidth,text = "") {
+        var square = new createjs.Shape();
+        square.graphics.setStrokeStyle(strokeWidth).beginStroke(color);
+        square.graphics.drawRect(x, y, width, height);
+        this.stage.addChild(square);
     }
 
     Render.prototype.drawLine = function(point1,point2,width,color) {

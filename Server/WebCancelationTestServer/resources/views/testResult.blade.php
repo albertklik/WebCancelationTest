@@ -175,7 +175,7 @@ function loadResult(data) {
     $('#testResultTable').find('tbody').html('')
     if (typeof resultData !== 'undefined' && resultData.length > 0) {
     resultData.forEach( (item,i) => {
-        $('#testResultTable').find('tbody').append(getResultDataRow(item,i));
+        $('#testResultTable').find('tbody').append(getResultDataRow(item,i,iconImgsUrl));
     });
     } else {
         $('#testResultTable').find('table').hide();
