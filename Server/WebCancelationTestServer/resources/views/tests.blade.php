@@ -219,7 +219,7 @@ function setupTestControlResult() {
             identifyCells: false,
             identifyIcons: false,
             iconTransp: true,
-            showResultType: 1
+            showResultType: 2
         },
         resolution : {width : 700, height: 450},
         board : {},
