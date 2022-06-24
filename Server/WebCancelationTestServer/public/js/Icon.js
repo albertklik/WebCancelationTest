@@ -15,7 +15,7 @@ this.CancelationTest = this.CancelationTest || {}
      */
     
     //constructor
-    function Icon(onclick,stage,item,x,y,width,height,img_data) 
+    function Icon(onclick,stage,item,x,y,width,height,img_data,alpha = 1) 
     {
         this.stage          = stage;
         this.onClickEvent   = onclick;
@@ -25,6 +25,7 @@ this.CancelationTest = this.CancelationTest || {}
         this.width          = width;
         this.height         = height;
         this.img_data       = img_data;
+        this.alpha          = alpha;
         
 
         this.setup();
@@ -39,6 +40,7 @@ this.CancelationTest = this.CancelationTest || {}
         this.bitmap.height = this.height;
         this.bitmap.scaleX = this.width/150;
         this.bitmap.scaleY = this.height/150;
+        this.bitmap.alpha = this.alpha;
         var self = this;
         this.bitmap.on("click", function(evt) {
            self.onClickEvent(self.item,evt);

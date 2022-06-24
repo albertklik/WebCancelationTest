@@ -49,7 +49,7 @@
                       <div class="card-header">
                         <h5>{{__('interface.board')}}<h5>
                       </div>
-                        <canvas id="showBoardCanvasResult" width="700" height="500"></canvas>
+                        <canvas id="showBoardCanvasResult" width="700" height="500" style="margin: 5px"></canvas>
                     </div>
                 </div>
               </div>

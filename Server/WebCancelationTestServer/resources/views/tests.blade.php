@@ -215,9 +215,10 @@ function setupTestControlResult() {
     var bData = {
         renderConfig: {
             showTargets: false,
-            hideIcons: true,
-            identifyCells: true,
-            identifyIcons: true,
+            hideIcons: false,
+            identifyCells: false,
+            identifyIcons: false,
+            iconTransp: true
         },
         resolution : {width : 700, height: 450},
         board : {},

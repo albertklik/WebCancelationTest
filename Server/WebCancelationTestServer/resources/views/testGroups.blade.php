@@ -98,6 +98,9 @@ var testControlInsertEdit = {}
     $('input').on('change', function () {
         updateBoardInsertEdit();
     });
+    $('#target_id').on('change', function() {
+        updateBoardInsertEdit();
+    });
  }
 
  function saveTestGroup() {

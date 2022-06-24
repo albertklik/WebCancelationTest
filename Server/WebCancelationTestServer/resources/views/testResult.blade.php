@@ -199,7 +199,11 @@ function renderBoardResult(data) {
 function setupTestControlResult() {
     var bData = {
         renderConfig: {
-            showTargets: false
+            showTargets: false,
+            hideIcons: false,
+            identifyCells: true,
+            identifyIcons: true,
+            iconTransp: true
         },
         resolution : {width : 1140, height: 675},
         board : {},
