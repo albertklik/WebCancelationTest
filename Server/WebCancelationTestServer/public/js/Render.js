@@ -23,6 +23,7 @@ this.CancelationTest = this.CancelationTest || {}
             identifyCells: false,
             identifyIcons: false,
             iconTransp: false,
+            showResultType: 2 //0 - hit, 1 - misses, 2 - both
         }
         this.renderConfig = renderConfig || this.defaultRenderConfig;
         this.stage = new createjs.Stage(canvasId);
@@ -41,6 +42,11 @@ this.CancelationTest = this.CancelationTest || {}
         this.imgLoaded = false;
         this.resolution = resolution;
         this.resultData = resultData;
+    }
+
+    Render.prototype.clear = function() {
+        this.stage.removeAllChildren();
+        this.stage.update();
     }
 
     Render.prototype.calcSizeBoard = function () {
@@ -113,12 +119,26 @@ this.CancelationTest = this.CancelationTest || {}
         this.stage.update();
     }
 
+    Render.prototype.renderTimeGraphics = function() {
+
+    } 
+
     Render.prototype.renderResult = function() {
         var resultArray = JSON.parse(this.resultData.result);
         var lasPos = { x: 0, y: 0}
         var lastTime = 0;
         var maxTime = 0;
         var orderArr = [];
+
+        if (this.renderConfig.showResultType == 0) {
+            resultArray = resultArray.filter(function (item) {
+                return item.hit
+            });
+        } else if (this.renderConfig.showResultType == 1) {
+            resultArray = resultArray.filter(function (item) {
+                return item.hit == false
+            });
+        }
 
         //check what is the max time
         resultArray.forEach((item,i) => {

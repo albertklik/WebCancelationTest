@@ -96,6 +96,7 @@ return [
     'testsNumberHomeDesc' => 'Testes são os dados coletados em um teste realizado e válido',
     'numbersHomeTitle' => 'Numeros',
     'numbersHomeDescription' => 'Lista de numeros de objetos criados',
+    'requiredTxt' => 'Os campos com \'*\' são obrigatórios',
 
 
 
@@ -108,6 +109,8 @@ return [
     'eraseTestGroupMsg' => 'Voce tem certeza que deseja apagar o grupo de teste?',
     'eraseTestTitle' => 'Apagar teste',
     'eraseTestMsg' => 'Voce tem certeza que deseja apagar o teste?',
+    'eraseResearchTitle' => 'Erase Research',
+    'eraseResearchMsg' => 'We need you confirmation to proceed the action. Are you sure?',
 
 
     //buttons 

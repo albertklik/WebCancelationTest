@@ -97,10 +97,11 @@ RandomGrid.prototype.getRandomPos = function() {
   return new Array(x,y);
 }
 
-RandomGrid.prototype.putObjects = function() {
+RandomGrid.prototype.putObjects = function(id = 0) {
   while (this.goalList.length < this.nGoals) {
   var pos = this.getRandomPos();
-  this.putObj({id: this.goal.id, name: this.goal.name, item: this.goal },pos[0],pos[1]);
+  var b_id = id.toString() + pos[0].toString() + pos[1].toString();
+  this.putObj({board_id: b_id, id: this.goal.id, name: this.goal.name, item: this.goal },pos[0],pos[1]);
   }
 
   //if the number of distractors is default, fill all empty spaces.
@@ -108,8 +109,9 @@ RandomGrid.prototype.putObjects = function() {
     for (let i = 0; i < this.cell_width; i++) {
       for (let j = 0; j < this.cell_height; j++) {
         if (this.cell_map[i][j] == undefined) {
+          var b_id = id.toString() + i.toString() + j.toString();
           var distractor = this.distractors[Math.floor(Math.random() * this.distractors.length)];
-          this.cell_map[i][j] = {id: distractor.id, name: distractor.name, item: distractor};
+          this.cell_map[i][j] = {board_id: b_id, id: distractor.id, name: distractor.name, item: distractor};
         }
       }
     }
@@ -118,8 +120,9 @@ RandomGrid.prototype.putObjects = function() {
 
   while (this.distractorsList.length < this.nDistractors) {
   var pos = this.getRandomPos();
+  var b_id = id.toString() + pos[0].toString() + pos[1].toString();
   var distractor = this.distractors[Math.floor(Math.random() * this.distractors.length)];
-  this.putObj({id: distractor.id, name: distractor.name, item: distractor},pos[0],pos[1]);
+  this.putObj({board_id: b_id, id: distractor.id, name: distractor.name, item: distractor},pos[0],pos[1]);
   }
 
 } 
@@ -133,6 +136,10 @@ RandomGrid.prototype.setObjPosition = function() {
         //console.log("item coluna " + i + " linha " + j + " objeto " + item.name);
           item.width = objWidth/2;
           item.height = objHeight/2;
+          item.objWidth = objWidth;
+          item.objHeight = objHeight;
+          item.objX = objWidth * i;
+          item.objY = objHeight  * j;
 
           if (this.aligned) {
             item.x = (objWidth * i) + (objWidth/4);
@@ -163,7 +170,7 @@ RandomGrid.prototype.randomPosition = function (item,objWidth,objHeight) {
 //   if (filterByUndefined)
 // }
 
-RandomGrid.prototype.generateCell = function() {
+RandomGrid.prototype.generateCell = function(id = 0) {
   //starting parameters 
   this.distractorsList = [];
   this.goalList = [];
@@ -172,9 +179,10 @@ RandomGrid.prototype.generateCell = function() {
     this.cell_map[i] = Array(this.cell_height);
   }
     
-  this.putObjects();
+  this.putObjects(id);
   this.setObjPosition();
   return { 
+    id : id,
     width: this.width,
     height: this.height,
     cell_width: this.cell_width,
@@ -201,8 +209,11 @@ RandomGrid.prototype.generateBoard = function() {
       Array(this.size),
     ]
   };
+  var id = 1
   for (var i = 0; i < this.size; i++)
-    for (var j = 0; j < this.size; j++)
-        this.board.cells[i][j] = this.generateCell();
+    for (var j = 0; j < this.size; j++) {
+        this.board.cells[i][j] = this.generateCell(id);
+        id++;
+    }
   return this.board;
 }

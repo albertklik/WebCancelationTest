@@ -53,6 +53,11 @@ class ViewController extends Controller
         return view('tests',['testGroup' => $testGroup]);
     }
 
+    public function testResult(Request $request) {
+        $test = Test::findOrFail($request->input('test_id'));
+        return view('testResult',['test' => $test]);
+    }
+
     public function researches() {
         return view('researches');
     }

@@ -20,7 +20,7 @@
                   <li class="breadcrumb-item"><a href="{{ route('home') }}">{{__("interface.home")}}</a></li>
                   <li class="breadcrumb-item"><a href="{{ route('researches') }}">{{__("interface.researches")}}</a></li>
                   <li class="breadcrumb-item"><a href="{{ route('testGroups',['research_id' => $testGroup->researches_id ]) }}">{{__("interface.testGroups")}}</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">{{__("interface.testGroups")}}</li>
+                  <li class="breadcrumb-item active" aria-current="page">{{__("interface.tests")}}</li>
                 </ol>
             </nav>
 
@@ -35,7 +35,10 @@
                 </div> 
             </div>
             <br>
+            <div class="card border-light mb-2">
+                <div class="card-body">
             <div id="content">
+                
                <table class="table table-sm">
                <thead>
                    <tr>
@@ -52,8 +55,13 @@
                </tbody>
                </table>
             </div>
+                </div></div>
+            <div class="card border-light mb-2">
+                <div class="card-body">
             <div id="paginator">
             </div>
+                </div></div>
+
         </div>
     </div>
 </div>
@@ -164,14 +172,26 @@ function showResult(id) {
         loadResult(data);
         modal(true,'testResultModal');
     });
+    
+}
+
+function gotToDetailsResult(id) {
+    goToUrl("{{ route('testResult') }}" + "?test_id=" + id)
 }
 
 function loadResult(data) {
     console.log(data);
-    var resultData = JSON.parse(data.result)
-    $('#testResultTable').find('tbody').html('')
-    resultData.forEach( (item,i) => {
-        $('#testResultTable').find('tbody').append(getResultDataRow(item,i));
+    // var resultData = JSON.parse(data.result)
+    // $('#testResultTable').find('tbody').html('')
+    // resultData.forEach( (item,i) => {
+    //     $('#testResultTable').find('tbody').append(getResultDataRow(item,i));
+    // });
+    $('#studentName').html(data.student.name);
+    $('#hits').html(data.hits);
+    $('#misses').html(data.misses);
+    $('#realizedAt').html(convertDatetime(data.created_at));
+    $('#seeMoreBtn').on('click',function () {
+        gotToDetailsResult(data.id);
     });
     renderBoardResult(data);
 }
@@ -194,9 +214,13 @@ function renderBoardResult(data) {
 function setupTestControlResult() {
     var bData = {
         renderConfig: {
-            showTargets: false
+            showTargets: false,
+            hideIcons: false,
+            identifyCells: false,
+            identifyIcons: false,
+            iconTransp: true
         },
-        resolution : {width : 760, height: 450},
+        resolution : {width : 700, height: 450},
         board : {},
         callbacks : {
             testFinished : function (result) {

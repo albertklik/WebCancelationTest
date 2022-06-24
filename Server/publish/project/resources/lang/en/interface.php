@@ -25,13 +25,14 @@ return [
     'welcoming' => 'Hello, :name',
     'welcomingDesc' => 'welcome to the authenticated area',
     'testGroups' => 'Test Groups',
-    'testGroupsDescription' => 'Groups of tests with its configurations',
+    'testGroupsDescription' => 'Groups of tests with its settings',
     'tests' => 'Tests',
     'testsDescription' => 'Tests realized',
     'students' => 'Students',
-    'studentsDescription' => 'Students that aplied for this test group',
+    'studentsDescription' => 'Students that applied for this test group',
     'yes' => 'Yes',
     'no' => 'No',
+    'board' => 'Board',
     'goals' => 'Targets',
     'goalType' => 'Target type',
     'distractors' => 'Distractors',
@@ -87,7 +88,25 @@ return [
     'testsNumberHomeDesc' => 'Tests are the amout of data colected in a test atempt',
     'numbersHomeTitle' => 'Numbers',
     'numbersHomeDescription' => 'Dash of numbers about objects created',
+    'requiredTxt' => 'the fields with \'*\' are required',
 
+
+    'testInfoTitle' => 'Test informations',
+    'clicksTableTitle' => 'Clicks Table',
+    'studentName' => 'Student Name',
+    'hits' => 'Hits',
+    'misses' => 'Misses',
+    'realizedAt' => 'Realized At',
+
+    'testsResult' => 'Test Result',
+    'testsResultDescription' => 'Details of the attempt and the tester',
+    'time' => 'Time',
+    'position' => 'Position',
+    'icon' => 'Icon',
+    'iconName' => 'Icon Name',
+    'Hit' => 'Hit',
+    'resultGraph' => 'Result Graph',
+    
 
 
     //messages or modals
@@ -99,6 +118,8 @@ return [
     'eraseTestGroupMsg' => 'We need you confirmation to proceed the action. Are you sure?',
     'eraseTestTitle' => 'Erase Test',
     'eraseTestMsg' => 'We need you confirmation to proceed the action. Are you sure?',
+    'eraseResearchTitle' => 'Erase Research',
+    'eraseResearchMsg' => 'We need you confirmation to proceed the action. Are you sure?',
 
 
     //buttons 
@@ -116,6 +137,11 @@ return [
     'btnShowBoard' => 'Show Board',
     'btnManageResearch'  => 'Manage Research',
     'btnNewResearch'  => 'Create new Research',
+
+    'btnShareResult'  => 'Share Result',
+    'btnSeeMore'  => 'See Details',
+    'btnPrint'  => 'Print',
+
     'btnListResearch'  => 'See More Researches'
     
 

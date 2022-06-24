@@ -3,15 +3,19 @@ var testData = {};
 var testControl = {};
 
 
-$(function(){
+$(function() {
     
     $("#nomeDataList").on("input", function(){
         var value = $('#nomeDataList').val();
         if (value.length == 0)
             return;
-        searchStudentsNames(value,function(data) {
+        searchStudents(
+            { name : value },
+            function(data) {
            updateDataOptionsName(data)
-        });
+        }, function(data) {
+            message(data);
+        }, function() {});
     });
 
     showDiv('#formInsertName',true);
@@ -19,11 +23,13 @@ $(function(){
     $('#checkNameButton').on('click', function() {
         var value = $('#nomeDataList').val();
         loading(true);
-        findStudentByName(value,
+        studentExist(
+            { name : value },
             function(data) {
             if (data.exists) {
+                console.log(data);
                 testData.student = data.student;
-                showSimbols();
+                showTargetAndTime();
                 return;
             }
             showStudentForm(value); 
@@ -40,7 +46,7 @@ $(function(){
             name : $('#studentName').val(),
             birth_date : $('#studentBirthDate').val()
         }, function() {
-            showSimbols();
+            showTargetAndTime();
         }, function (data) {
             message(data);
         }, function () {
@@ -48,11 +54,28 @@ $(function(){
         });
      });
 
+     $('#showDistractors').on('click',function() {
+        showSimbols()
+     });
+
      $('#startTest').on('click',function() {
         showTestPanel(true);
         setupTest();
         startTest();
      });
+
+     $('#cancelTest').on('click',function() {
+        reloadTest();
+     });
+
+     $('#finishTest').on('click',function() {
+        testControl.finishTest();
+     });
+
+
+     var selected  = testData.imgs_url.find(e => e.id == testData.testGroup.target_id) || testData.imgs_url[0];
+     $('#targetImg').attr("src",selected.url)
+     $('#TestTimeSpan').html(secondsToDescription(testData.testGroup.time_limit,testData.interfaceStr).toLowerCase())
 });
 
 function setTestGroupData(data) {
@@ -61,7 +84,6 @@ function setTestGroupData(data) {
 }
 
 function setupTest() {
-    //testData.board = JSON.stringify(new Board(3,data.n_goals,data.n_distractors,data.goal_id,data.resolution,data.aligned).generateRandom());
     console.log(testData.testGroup);
     var data = {
         resolution : {width : 1920, height: 1080},
@@ -80,73 +102,48 @@ function setupTest() {
             }
         }
     };
-    //data.board = JSON.parse(JSON.stringify(new Board(3,data.n_goals,data.n_distractors,data.goal_id,data.resolution,data.aligned).generateRandom()));
     console.log(data.board);
     testControl = new TestControl(data,'testCanvas',true);
-}
-
-function searchStudentsNames(val,success,error,complete) {
-    $.ajax({
-        type: "POST",
-        url: "api/student/search",
-        data: { name : val },
-        success: success,
-        error: error,
-        complete: complete,
-    });
-}
-
-function findStudentByName(val, success, error, complete) {
-    $.ajax({
-        type: "POST",
-        url: "api/student/exists",
-        data: { name : val },
-        success: success,
-        error: error,
-        complete: complete
-    });
-}
-
-function saveStudent(data,success,error,complete) {
-    $.ajax({
-        type: "POST",
-        url: "api/student",
-        data: data,
-        success: success,
-        error: error,
-        complete: complete
-    });
-}
-
-function saveTest(data,success,error,complete) {
-    $.ajax({
-      type: "POST",
-      url: "api/test",
-      data: data,
-      success: success,
-      error: error,
-      complete: complete
-    });
 }
 
 function showStudentForm(name) {
     $('#studentName').val(name);
     $('#nameText').append(name.split(' ')[0]);
     showDiv('#formInsertName',false);
+    showDiv('#showTargetAndTime',false);
     showDiv('#formStudent',true);
 }
 
 function showSimbols() {
     showDiv('#formInsertName',false);
     showDiv('#formStudent',false);
+    showDiv('#showTargetAndTime',false);
     showDiv('#showFigures',true);
+}
+
+function showTargetAndTime() {
+    showDiv('#formInsertName',false);
+    showDiv('#formStudent',false);
+    showDiv('#showTargetAndTime',true);
+    showDiv('#showFigures',false);
 }
 
 function showresultTest() {
     showDiv('#formInsertName',false);
     showDiv('#formStudent',false);
     showDiv('#showFigures',false);
+    showDiv('#showTargetAndTime',false);
     showDiv('#showResult',true);
+}
+
+function reloadTest() {
+    showTestPanel(false);
+    showDiv('#formInsertName',true);
+    showDiv('#formStudent',false);
+    showDiv('#showFigures',false);
+    showDiv('#showTargetAndTime',false);
+    showDiv('#showResult',false);
+    $("#nomeDataList").val("");
 }
 
 function startTest() {
@@ -193,6 +190,7 @@ function showTestPanel(state) {
     showDiv('#logo',!state)
     showDiv('#formContent',!state);
     showDiv('#testCanvas',state);
+    showDiv('#testButtons',state)
 }
 
 function updateDataOptionsName(data) {

@@ -17,7 +17,12 @@ class CreateStudentsTable extends Migration
             $table->id();
             $table->string("name");
             $table->date("birth_date");
-            $table->timestamps();
+            //$table->string("class_name");
+            //$table->string("grade");
+            //$table->string("shift");
+            //$table->string("responsible_name");
+            //$table->string("phone");
+            //$table->timestamps();
         });
     }
 

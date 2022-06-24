@@ -242,6 +242,8 @@ REQUEST_PARAM["test.show"] = {type: "GET",url: "api/test/"};
 REQUEST_PARAM["test.list"] = {type: "GET",url: "api/test/list"};
 
 function executeAjaxRequest(requestName, urlParams, data, success, error, complete) {
+    var username = "umbler";
+    var password = "testehospedagem";
     urlParamsStr = "";
     urlParams.forEach( (param,i) => {
       var isLastElement = i == urlParams.length -1;
@@ -254,6 +256,9 @@ function executeAjaxRequest(requestName, urlParams, data, success, error, comple
         data: data,
         success: success,
         error: error,
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader ("Authorization", "Basic " + btoa(username + ":" + password));
+        },
         complete: complete
     });
 }

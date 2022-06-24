@@ -8,13 +8,42 @@
         <script src="{{ asset('js/randomGrid.js') }}"></script>
         <script src="{{ asset('js/icon.js') }}"></script>
         <script src="{{ asset('js/render.js') }}"></script>
+        <script src="{{ asset('js/baseFunctions.js') }}"></script>
         <script src="{{ asset('js/testControl.js') }}"></script>
         <script src="{{ asset('js/app.js') }}" ></script>
         <script src="{{ asset('js/cancellationTest.js') }}"></script>
         <script src="{{ asset('js/boardGenerator.js') }}"></script>
+
         <script>
             setTestGroupData({!! json_encode($testGroup) !!});
             console.log(testData.testGroup);
+            
+
+            testData.interfaceStr = [];
+            testData.interfaceStr["thirtySeconds"] = '{{__("interface.thirtySeconds")}}'; 
+            testData.interfaceStr["oneMinute"] = '{{__("interface.oneMinute")}}'; 
+            testData.interfaceStr["twoMinutes"] = '{{__("interface.twoMinutes")}}'; 
+            testData.interfaceStr["threeMinutes"] = '{{__("interface.threeMinutes")}}'; 
+            testData.interfaceStr["fiveMinutes"] = '{{__("interface.fiveMinutes")}}'; 
+            testData.interfaceStr["TenMinutes"] = '{{__("interface.TenMinutes")}}'; 
+            testData.interfaceStr["thirtyMinutes"] = '{{__("interface.thirtyMinutes")}}'; 
+            testData.interfaceStr["oneHour"] = '{{__("interface.oneHour")}}'; 
+
+            testData.imgs_url = [
+              { id : 1, url : "{{ asset('assets/icons/carro.png') }}" },
+              { id : 2, url : "{{ asset('assets/icons/casa.png') }}" },
+              { id : 3, url : "{{ asset('assets/icons/arvore.png') }}" },
+              { id : 4, url : "{{ asset('assets/icons/bule.png') }}" },
+              { id : 5, url : "{{ asset('assets/icons/sol.png') }}" },
+              { id : 6, url : "{{ asset('assets/icons/galinha.png') }}" },
+              { id : 7, url : "{{ asset('assets/icons/coelho.png') }}" },
+              { id : 8, url : "{{ asset('assets/icons/gato.png') }}" },
+              { id : 9, url : "{{ asset('assets/icons/flor.png') }}" },
+              { id : 10, url : "{{ asset('assets/icons/peixe.png') }}" },
+              { id : 11, url : "{{ asset('assets/icons/estrela.png') }}" },
+              { id : 12, url : "{{ asset('assets/icons/aviao.png') }}" },
+              { id : 13, url : "{{ asset('assets/icons/barco.png') }}" }
+            ];
         </script>
         
         <!-- Styles -->
@@ -39,6 +68,14 @@
                 position: relative;
                 align-self: center;
             } 
+            #testButtons {
+              width: 90%;
+              height: 10%;
+              margin-left: 5%;
+              margin-right: 5%;
+              position: relative;
+              align-self: center;
+            }
             .carousel-control-prev-icon,
             .carousel-control-next-icon {
               height: 100px;
@@ -129,6 +166,29 @@
                         </div>
                     </div>
                 </div>
+            </div>
+
+            <!-- presenting target and time -->
+            <div id="showTargetAndTime" class="d-none row">
+              <div class="col" style="margin-top: 5em">
+                <div class="row" style="padding: 2em">
+                    <p class="h1" style="font-size: 40px;">{{__("test.testInstructions")}}</p>
+                </div>
+                <div class="row" style="padding-top: 2em">
+                  <div class="col">
+                    <img id="targetImg" class="mx-auto d-block">
+                  </div>
+                </div>
+                <div class="row" style="padding: 2em">
+                  <p class="h1" style="font-size: 40px;">{{__("test.timePart1")}} <span id="TestTimeSpan"></span> {{__("test.timePart2")}}</p>
+                </div>
+                
+              </div>
+              <div class="row">
+                <div class="col">
+                    <button id="showDistractors" style="margin-top: 2em" class="btn btn-lg btn-outline-primary pull-right" type="button">{{__("test.btnUnderstood")}}</button>
+                </div>
+              </div>
             </div>
 
             <!-- presenting figures -->
@@ -239,5 +299,9 @@
             </div>
         </div>
         <canvas class="d-none canvas" id="testCanvas" width="1920" height="1080"></canvas>
+        <div class="d-none" id="testButtons">
+          <button id="cancelTest" class="btn btn-lg btn-outline-danger pull-left" type="button">{{__("test.btnCancel")}}</button>
+          <button id="finishTest" class="btn btn-lg btn-outline-success pull-right" type="button">{{__("test.btnFinish")}}</button>
+        </div>
     </body>
 </html>
