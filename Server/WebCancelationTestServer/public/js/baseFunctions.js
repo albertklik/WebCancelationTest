@@ -215,29 +215,29 @@ var REQUEST_PARAM = []
 REQUEST_PARAM["testGroup.index"] = {type: "GET",url: "api/testGroup"};
 REQUEST_PARAM["testGroup.store"] = {type: "POST",url: "api/testGroup"};
 REQUEST_PARAM["testGroup.list"] = {type: "GET",url: "api/testGroup/list"};
-REQUEST_PARAM["testGroup.update"] = {type: "PUT",url: "api/testGroup/"};
-REQUEST_PARAM["testGroup.destroy"] = {type: "DELETE",url: "api/testGroup/"};
+REQUEST_PARAM["testGroup.update"] = {type: "POST",url: "api/testGroup/update/"};
+REQUEST_PARAM["testGroup.destroy"] = {type: "POST",url: "api/testGroup/delete/"};
 REQUEST_PARAM["testGroup.show"] = {type: "GET",url: "api/testGroup/"};
 
 REQUEST_PARAM["student.store"] = {type: "POST",url: "api/student"};
 REQUEST_PARAM["student.index"] = {type: "GET",url: "api/student"};
 REQUEST_PARAM["student.exists"] = {type: "POST",url: "api/student/exists"};
 REQUEST_PARAM["student.search"] = {type: "POST",url: "api/student/search"};
-REQUEST_PARAM["student.update"] = {type: "PUT",url: "api/student/"};
+REQUEST_PARAM["student.update"] = {type: "POST",url: "api/student/update/"};
 REQUEST_PARAM["student.show"] = {type: "GET",url: "api/student/"};
-REQUEST_PARAM["student.destroy"] = {type: "DELETE",url: "api/student/"};
+REQUEST_PARAM["student.destroy"] = {type: "POST",url: "api/student/delete/"};
 
 REQUEST_PARAM["research.store"] = {type: "POST",url: "api/research"};
 REQUEST_PARAM["research.index"] = {type: "GET",url: "api/research"};
 REQUEST_PARAM["research.list"] = {type: "GET",url: "api/research/list"};
-REQUEST_PARAM["research.destroy"] = {type: "DELETE",url: "api/research/"};
+REQUEST_PARAM["research.destroy"] = {type: "POST",url: "api/research/delete/"};
 REQUEST_PARAM["research.show"] = {type: "GET",url: "api/research/"};
-REQUEST_PARAM["research.update"] = {type: "PUT",url: "api/research/"};
+REQUEST_PARAM["research.update"] = {type: "POST",url: "api/research/update/"};
 
 REQUEST_PARAM["test.index"] = {type: "GET",url: "api/test"};
 REQUEST_PARAM["test.store"] = {type: "POST",url: "api/test"};
-REQUEST_PARAM["test.destroy"] = {type: "DELETE",url: "api/test/"};
-REQUEST_PARAM["test.update"] = {type: "PUT",url: "api/test/"};
+REQUEST_PARAM["test.destroy"] = {type: "POST",url: "api/test/delete/"};
+REQUEST_PARAM["test.update"] = {type: "POST",url: "api/test/update/"};
 REQUEST_PARAM["test.show"] = {type: "GET",url: "api/test/"};
 REQUEST_PARAM["test.list"] = {type: "GET",url: "api/test/list"};
 
