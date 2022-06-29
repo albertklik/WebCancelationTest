@@ -275,12 +275,13 @@ function listTests(id) {
 }
 
 function playTest(id) {
-    window.open("{{ route('doTheTest') }}?id=" + id, '_blank');
+    window.open("{{ route('doTheTest') }}?id=" + id + "&lang={{ session()->get('locale') }}", '_blank');
 }
 
 function shareLink(id) {
-    copyToClipboard("{{ route('doTheTest') }}?id=" + id);
-    showMsg('success','{{__("interface.shareTestTitle")}}','{{__("interface.shareTestMsg")}}');
+    //copyToClipboard("{{ route('doTheTest') }}?id=" + id);
+    //showMsg('success','{{__("interface.shareTestTitle")}}','{{__("interface.shareTestMsg")}}');
+    share("{{ route('doTheTest') }}?id=" + id + "&lang={{ session()->get('locale') }}","{{ __('interface.doTheTestShareTitle') }}","{{ __('interface.doTheTestShareDescription') }}");
 }
 
 function goToPage(page = 1) {

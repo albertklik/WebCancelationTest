@@ -27,18 +27,20 @@
             <div class="content">
                 <div id="msg">
                 </div>
-                <div class="card">
-                    <div class="card-body">
-                        <button class="btn btn-primary btn-sm" onclick="window.print()" ><i class="fas fa-print"></i> {{ __('interface.btnPrint') }}</button>
-                        <button class="btn btn-success btn-sm" onclick="window.print()" ><i class="fas fa-print"></i> {{ __('interface.btnPrint') }}</button>
-                        {{-- <a class="btn btn-primary btn-sm" href="{{ route('doTheTest',['id' => $testGroup->id ]) }}" target="_blank" ><i class="fas fa-play"></i> {{ __('interface.btnDoTheTest') }}</a> --}} 
-                    </div>
-                </div> 
             </div>
-            <br>
+            
             <div class="card border-light mb-2">
                 <div class="card-body">
                     <div id="content">
+                        <div class="card">
+                            <div class="card-body">
+                                <a class="btn btn-primary btn-sm" href="{{ route('tests',['testGroup_id' => $test->test_group_id]) }}" ><i class="fas fa-arrow-left"></i> {{ __('interface.btnBack') }}</a>
+                                <button class="btn btn-success btn-sm" onclick="window.print()" ><i class="fas fa-print"></i> {{ __('interface.btnPrint') }}</button>
+                                <button type="button" id="shareResultBtn" class="btn btn-secondary btn-sm" ><i class="fas fa-share"></i> {{ __('interface.btnShareResult') }}</button>
+                                {{-- <a class="btn btn-primary btn-sm" href="{{ route('doTheTest',['id' => $testGroup->id ]) }}" target="_blank" ><i class="fas fa-play"></i> {{ __('interface.btnDoTheTest') }}</a> --}} 
+                            </div>
+                        </div> 
+                        <br>
                         <div class="card" id="studentData">
                             <div class="card-header">
                               <h5>{{__('interface.testInfoTitle')}}<h5>
@@ -56,41 +58,54 @@
                               <h5>{{__('interface.clicksTableTitle')}}<h5>
                             </div>
                             <div class="card-body">
-                          <div id="testResultTable">
-                            <table class="table table-sm">
-                              <thead>
-                                <tr>
-                                  <th>Nº</th>
-                                  <th>{{__('interface.time')}}</th>
-                                  <th>{{__('interface.position')}}</th>
-                                  <th>{{__('interface.icon')}}</th>
-                                  <th>{{__('interface.iconName')}}</th>
-                                  <th>{{__('interface.Hit')}}</th>
-                                </tr>
-                              </thead>
-                              <tbody>
-                              </tbody>
-                            </table>
-                          </div>
-                        </div>
-                    </div>
-                    <br/>
-                          <div id="result-graph">
-                            <div class="row">
-                              <div class="col">
-                                  <div class="card">
-                                    <div class="card-header">
-                                        <h5>{{__('interface.resultGraph')}}<h5>
-                                      </div>
-                                    <canvas id="showBoardCanvasResult" width="760" height="500"></canvas>
-                                  </div>
-                              </div>
+                                <div id="testResultTable">
+                                    <table class="table table-sm">
+                                        <thead >
+                                            <tr>
+                                                <th>Nº</th>
+                                                <th>{{__('interface.time')}}</th>
+                                                <th>{{__('interface.section')}}</th>
+                                                <th>{{__('interface.position')}}</th>
+                                                <th>{{__('interface.icon')}}</th>
+                                                <th>{{__('interface.iconName')}}</th>
+                                                <th>{{__('interface.Hit')}}</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
-                          </div>
+                        </div>
+                        <br/>
+                        <div id="result-graph">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h5>{{__('interface.resultGraph')}}<h5>
+                                        </div>
+                                        <canvas id="showBoardCanvasResult" width="760" height="500"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <br/>
+                        <div id="result-graph2">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h5>{{__('interface.missesResultGraph')}}<h5>
+                                        </div>
+                                        <canvas id="showBoardCanvasMissesResult" width="760" height="500"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            
         </div>
     </div>
 </div>
@@ -182,6 +197,11 @@ function loadResult(data) {
         $('#testResultTable').find('table').hide();
         showMsg('info','','The requested list is empty','testResultTable');
     }
+    $('#shareResultBtn').on('click',function () {
+        var url = "{{ route('testResult') }}" + "?test_id=" + data.id;
+        var title = "{{ __('interface.testsResult') }} " +  data.student.name;
+        share(url,title,"{{ __('interface.testsResultDescription') }}");
+    });
     $('#studentName').html(data.student.name);
     $('#hits').html(data.hits);
     $('#misses').html(data.misses);
@@ -195,6 +215,11 @@ function renderBoardResult(data) {
     testControlResult.setResult(data);
     testControlResult.renderBoard();
     testControlResult.renderResult();
+    
+    testControlMissesResult.changeBoard(JSON.parse(data.board));
+    testControlMissesResult.setResult(data);
+    testControlMissesResult.renderBoard();
+    testControlMissesResult.renderResult();
 }
 
 function setupTestControlResult() {
@@ -204,9 +229,28 @@ function setupTestControlResult() {
             hideIcons: false,
             identifyCells: true,
             identifyIcons: true,
-            iconTransp: true
+            iconTransp: true,
+            showResultType: 2
         },
-        resolution : {width : 1140, height: 675},
+        resolution : {width : 912, height: 540},
+        board : {},
+        callbacks : {
+            testFinished : function (result) {
+            },
+            error : function (ex) {
+            }
+        }
+    };
+    var bData2 = {
+        renderConfig: {
+            showTargets: false,
+            hideIcons: false,
+            identifyCells: true,
+            identifyIcons: true,
+            iconTransp: true,
+            showResultType: 1
+        },
+        resolution : {width : 912, height: 540},
         board : {},
         callbacks : {
             testFinished : function (result) {
@@ -216,9 +260,8 @@ function setupTestControlResult() {
         }
     };
     testControlResult = new TestControl(bData,'showBoardCanvasResult',true);
+    testControlMissesResult = new TestControl(bData2,'showBoardCanvasMissesResult',true);
 }
-
-
 </script>
 {{ view('modal.testResultModal') }}
 {{ view('modal.confirmationModal') }}

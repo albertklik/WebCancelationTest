@@ -60,7 +60,7 @@
         <div class="modal-footer">
 
           <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('interface.btnClose') }}</button>
-          <button type="button" class="btn btn-success" >{{ __('interface.btnShareResult') }}</button>
+          <button type="button" id="shareResultBtn" class="btn btn-success" >{{ __('interface.btnShareResult') }}</button>
           <button type="button" class="btn btn-primary" id="seeMoreBtn" >{{ __('interface.btnSeeMore') }}</button>
         </div>
       </div>

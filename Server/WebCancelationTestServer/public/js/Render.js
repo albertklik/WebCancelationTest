@@ -37,7 +37,7 @@ this.CancelationTest = this.CancelationTest || {}
         this.block_width = 0;
         this.block_height = 0;
         this.item_data = item_data;
-        this.img_data = []
+        this.img_data = [];
         this.onClickEvent = onclickEvent;
         this.imgLoaded = false;
         this.resolution = resolution;
@@ -338,7 +338,7 @@ this.CancelationTest = this.CancelationTest || {}
     }
 
     Render.prototype.loadImg = function() {
-        self = this;
+        var self = this;
         if (!this.imgLoaded) {
             this.item_data.forEach(element => {
                 var img_item = { id: element.id }

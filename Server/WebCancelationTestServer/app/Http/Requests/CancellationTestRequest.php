@@ -24,7 +24,7 @@ class CancellationTestRequest extends FormRequest
     public function rules()
     {
         return [
-            'id' => 'required|numeric|min:0' 
+            'id' => 'required|numeric|min:0'
         ];
     }
 }

@@ -45,7 +45,9 @@ $(function() {
         saveStudent({
             name : $('#studentName').val(),
             birth_date : $('#studentBirthDate').val()
-        }, function() {
+        }, function(data) {
+            console.log(data);
+            testData.student = data;
             showTargetAndTime();
         }, function (data) {
             message(data);

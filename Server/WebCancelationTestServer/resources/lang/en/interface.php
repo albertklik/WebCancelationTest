@@ -89,15 +89,12 @@ return [
     'numbersHomeTitle' => 'Numbers',
     'numbersHomeDescription' => 'Dash of numbers about objects created',
     'requiredTxt' => 'the fields with \'*\' are required',
-
-
     'testInfoTitle' => 'Test informations',
     'clicksTableTitle' => 'Clicks Table',
     'studentName' => 'Student Name',
     'hits' => 'Hits',
     'misses' => 'Misses',
     'realizedAt' => 'Realized At',
-
     'testsResult' => 'Test Result',
     'testsResultDescription' => 'Details of the attempt and the tester',
     'time' => 'Time',
@@ -106,6 +103,14 @@ return [
     'iconName' => 'Icon Name',
     'Hit' => 'Hit',
     'resultGraph' => 'Result Graph',
+    'missesResultGraph' => 'Misses result Graph',
+    'section' => 'Section',
+    'doTheTestShareTitle' => 'Cancellation Test Invitation',
+    'doTheTestShareDescription' => 'Realize a cancellation test now',
+    'showBoardCanvasMissesResult' => 'Misses Graph',
+    'id' => 'Id',
+    'actions' => 'Actions',
+    'testsTableTitle' => 'Tests List',
     
 
 
@@ -137,12 +142,11 @@ return [
     'btnShowBoard' => 'Show Board',
     'btnManageResearch'  => 'Manage Research',
     'btnNewResearch'  => 'Create new Research',
-
     'btnShareResult'  => 'Share Result',
     'btnSeeMore'  => 'See Details',
     'btnPrint'  => 'Print',
-
-    'btnListResearch'  => 'See More Researches'
+    'btnListResearch'  => 'See More Researches',
+    'btnBack'  => 'Back'
     
 
 ];

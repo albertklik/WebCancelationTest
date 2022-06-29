@@ -23,45 +23,46 @@
                   <li class="breadcrumb-item active" aria-current="page">{{__("interface.tests")}}</li>
                 </ol>
             </nav>
-
-            <div class="content">
-                <div id="msg">
-                </div>
-                <div class="card">
-                    <div class="card-body">
-                        <button disabled class="btn btn-success btn-sm" onclick="" ><i class="fas fa-plus"></i> {{ __('interface.btnNewTest') }}</button>
-                        <a class="btn btn-primary btn-sm" href="{{ route('doTheTest',['id' => $testGroup->id ]) }}" target="_blank" ><i class="fas fa-play"></i> {{ __('interface.btnDoTheTest') }}</a>
+            
+            <div class="card border-light mb-2">
+                <div class="card-body">
+                    <div class="card">
+                        <div class="card-body">
+                            <button disabled class="btn btn-success btn-sm" onclick="" ><i class="fas fa-plus"></i> {{ __('interface.btnNewTest') }}</button>
+                            <a class="btn btn-primary btn-sm" href="{{ route('doTheTest',['id' => $testGroup->id ]) }}" target="_blank" ><i class="fas fa-play"></i> {{ __('interface.btnDoTheTest') }}</a>
+                        </div>
+                    </div> 
+                    <br>
+                    <div id="content">
+                        <div id="msg">
+                        </div>
+                        <div class="card">
+                            <div class="card-header">
+                                <h5>{{__('interface.testsTableTitle')}}<h5>
+                            </div>
+                            <div class="card-body">
+                                <table class="table table-sm">
+                                    <thead >
+                                        <tr>
+                                            <th>{{__('interface.id')}}</th>
+                                            <th>{{__('interface.studentName')}}</th>
+                                            <th>{{__('interface.hits')}}</th>
+                                            <th>{{__('interface.misses')}}</th>
+                                            <th>{{__('interface.time')}}</th>
+                                            <th>{{__('interface.realizedAt')}}</th>
+                                            <th>{{__('interface.actions')}}</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody> 
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
-                </div> 
+                </div>
             </div>
-            <br>
-            <div class="card border-light mb-2">
-                <div class="card-body">
-            <div id="content">
-                
-               <table class="table table-sm">
-               <thead>
-                   <tr>
-                        <th>Id</th>
-                        <th>Student Name</th>
-                        <th>Hits</th>
-                        <th>Misses</th>
-                        <th>Seconds</th>
-                        <th>Realized at</th>
-                        <th>actions</th>
-                   </tr>
-               </thead>
-               <tbody> 
-               </tbody>
-               </table>
-            </div>
-                </div></div>
-            <div class="card border-light mb-2">
-                <div class="card-body">
             <div id="paginator">
             </div>
-                </div></div>
-
         </div>
     </div>
 </div>
@@ -192,6 +193,11 @@ function loadResult(data) {
     $('#realizedAt').html(convertDatetime(data.created_at));
     $('#seeMoreBtn').on('click',function () {
         gotToDetailsResult(data.id);
+    });
+    $('#shareResultBtn').on('click',function () {
+        var url = "{{ route('testResult') }}" + "?test_id=" + data.id;
+        var title = "{{ __('interface.testsResult') }} " +  data.student.name;
+        share(url,title,"{{ __('interface.testsResultDescription') }}");
     });
     renderBoardResult(data);
 }
