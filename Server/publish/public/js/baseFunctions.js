@@ -7,6 +7,10 @@ function loading(value) {
    modal(value, 'loadingModal');
 }
 
+function back() {
+    window.history.back();
+}
+
 function loadingModal(value,id) {
     if (value) {
         $('#' + id).find('.loadingModal').show();
@@ -127,7 +131,7 @@ function getTestItem(data) {
 
 function getResultDataRow(data, index, iconImgsUrl = []) {
     var msgString = "";
-    msgString += '<tr><td>' + (index+1) + '</td><td>' + timestampToDatetime(data.time) + '</td><td> (' + ~~data.x +','+ ~~data.y + ') </td><td>' + getImgIconStr(data.item.id,iconImgsUrl) + '</td><td>' + data.item.name + '</td><td>' + (data.hit ? '<i style="color:green" class="fas fa-check"></i>' : '<i style="color:red" class="fas fa-close"></i>') + '</td></tr>'
+    msgString += '<tr><td>' + (index+1) + '</td><td>' + timestampToDatetime(data.time) + '</td><td> ' + data.item.board_id.substring(0,1) + '</td><td> ' + data.item.board_id + ' </td><td>' + getImgIconStr(data.item.id,iconImgsUrl) + '</td><td>' + data.item.name + '</td><td>' + (data.hit ? '<i style="color:green" class="fas fa-check"></i>' : '<i style="color:red" class="fas fa-close"></i>') + '</td></tr>'
     return msgString;
 }
 
@@ -173,6 +177,19 @@ function getMessageErrors(error) {
 
 function copyToClipboard(element) {
     navigator.clipboard.writeText(element);
+}
+
+function share(url,title,text) {
+    if (typeof navigator.share === 'function') {
+    let data = {
+        url: url,
+        title: title,
+        text: text,
+      }
+    navigator.share(data)
+    } else {
+        console.log("Error: Browser dont support share action");
+    }
 }
 
 function convertDatetime(dateTime) {

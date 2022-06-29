@@ -16,6 +16,15 @@ class ViewController extends Controller
         if (session()->get('locale') === null) {
             session()->put('locale', 'en');
         }
+
+        
+    }
+
+    private function checkLang($req) {
+        if ($req->has('lang')) {
+            App::setLocale($req->lang);
+            session()->put('locale', $req->lang);
+        }
     }
 
     public function index() {
@@ -23,6 +32,7 @@ class ViewController extends Controller
     }
 
     public function test(CancellationTestRequest $request) {
+        $this->checkLang($request);
         $testGroup = TestGroup::findOrFail($request->input('id'));
         return view('cancellationTest',['testGroup' => $testGroup]);
     }
@@ -31,7 +41,7 @@ class ViewController extends Controller
 
     }
 
-    public function publicHome() {
+    public function publicHome(Request $request) {
        return view('publicHome');
     }
 

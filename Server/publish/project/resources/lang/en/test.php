@@ -15,7 +15,7 @@ return [
 
     'formName' => 'Hi, What\'s your name?',
     'tooltipName' => 'write yout name...',
-    'formJoin' => 'Hi :studentName, Seems like you\'re new here',
+    'formJoin' => 'Hi! Seems like you\'re new here',
     'formDateOfBirth' => 'Whats your date of birth?',
     'formIcons' => 'These are the objects that will be used on the test.',
     'endMessage' => 'Thank you for attempt this test.',

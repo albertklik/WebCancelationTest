@@ -23,7 +23,7 @@ this.CancelationTest = this.CancelationTest || {}
             identifyCells: false,
             identifyIcons: false,
             iconTransp: false,
-            showResultType: 2, //0 - hit, 1 - misses, 2 - both
+            showResultType: 2 //0 - hit, 1 - misses, 2 - both
         }
         this.renderConfig = renderConfig || this.defaultRenderConfig;
         this.stage = new createjs.Stage(canvasId);
@@ -37,7 +37,7 @@ this.CancelationTest = this.CancelationTest || {}
         this.block_width = 0;
         this.block_height = 0;
         this.item_data = item_data;
-        this.img_data = []
+        this.img_data = [];
         this.onClickEvent = onclickEvent;
         this.imgLoaded = false;
         this.resolution = resolution;
@@ -129,6 +129,16 @@ this.CancelationTest = this.CancelationTest || {}
         var lastTime = 0;
         var maxTime = 0;
         var orderArr = [];
+
+        if (this.renderConfig.showResultType == 0) {
+            resultArray = resultArray.filter(function (item) {
+                return item.hit
+            });
+        } else if (this.renderConfig.showResultType == 1) {
+            resultArray = resultArray.filter(function (item) {
+                return item.hit == false
+            });
+        }
 
         //check what is the max time
         resultArray.forEach((item,i) => {
@@ -328,7 +338,7 @@ this.CancelationTest = this.CancelationTest || {}
     }
 
     Render.prototype.loadImg = function() {
-        self = this;
+        var self = this;
         if (!this.imgLoaded) {
             this.item_data.forEach(element => {
                 var img_item = { id: element.id }

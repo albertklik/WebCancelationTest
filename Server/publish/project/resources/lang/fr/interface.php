@@ -11,8 +11,7 @@ return [
     |
     */
 
-    //menu
-
+    //menus
     'home' => 'Accueil',
     'language' => 'Langue',
     'portuguese' => 'Portuguese',
@@ -91,7 +90,28 @@ return [
      'numbersHomeTitle' => 'Nombre',
      'numbersHomeDescription' => 'Liste des numéros d\'objets créés',
      'requiredTxt' => 'Les champs avec \'*\' sont obligatoires',
- 
+     
+     'testInfoTitle' => 'Test informations',
+     'clicksTableTitle' => 'Clicks Table',
+     'studentName' => 'Student Name',
+     'hits' => 'Hits',
+     'misses' => 'Misses',
+     'realizedAt' => 'Realized At',
+     'testsResult' => 'Test Result',
+     'testsResultDescription' => 'Details of the attempt and the tester',
+     'time' => 'Time',
+     'position' => 'Position',
+     'icon' => 'Icon',
+     'iconName' => 'Icon Name',
+     'Hit' => 'Hit',
+     'resultGraph' => 'Result Graph',
+     'missesResultGraph' => 'Misses result Graph',
+     'section' => 'Section',
+     'doTheTestShareTitle' => 'Cancellation Test Invitation',
+     'doTheTestShareDescription' => 'Realize a cancellation test now',
+     'id' => 'Id',
+     'actions' => 'Actions',
+     'testsTableTitle' => 'Tests List',
  
  
      //messages or modals
@@ -122,6 +142,12 @@ return [
      'btnShowBoard' => 'Afficher le tableau de test',
      'btnManageResearch'  => 'Gérer la recherche',
      'btnNewResearch'  => 'Créer une nouvelle enquête',
-     'btnListResearch'  => 'Voir plus de recherche'
+     'btnListResearch'  => 'Voir plus de recherche',
+     
+     'btnShareResult'  => 'Share Result',
+     'btnSeeMore'  => 'See Details',
+     'btnPrint'  => 'Print',
+     'btnListResearch'  => 'See More Researches',
+     'btnBack'  => 'Back'
 
 ];

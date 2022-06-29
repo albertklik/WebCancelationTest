@@ -203,6 +203,7 @@ RandomGrid.prototype.generateBoard = function() {
     goal: this.goal,
     aligned: this.aligned,
     resolution : this.resolution,
+    showResultType : 0,
     cells : [
       Array(this.size),
       Array(this.size),
