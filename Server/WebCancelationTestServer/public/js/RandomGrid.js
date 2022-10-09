@@ -17,6 +17,7 @@ function RandomGrid(size,resolution, nGoals, nDistractors, goal, distractors, al
    this.distractors = distractors || [];
    this.aligned = aligned || false;
    this.automaticDistractors = !this.nDistractors || this.nDistractors == 0
+   this.type = "RANDOM_GRID"
 
    //generated parameters
    this.cell_width =  0;
@@ -197,6 +198,7 @@ RandomGrid.prototype.generateBoard = function() {
   this.getCellResolution();
 
   this.board = {
+    type: this.type,
     size: this.size,
     ngoals: this.nGoals,
     nDistractors: this.nDistractors,
