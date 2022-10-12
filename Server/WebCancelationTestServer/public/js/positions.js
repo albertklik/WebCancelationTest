@@ -5,10 +5,10 @@ this.positions = [{
     goals:3,
     distractors:3,
     aligned: true,
-    size: [20.00,20.00],
     cells: [
       {
         cell_id: 030301,
+        size: [20.00,20.00],
         positions: [
             {
                 type:'g',

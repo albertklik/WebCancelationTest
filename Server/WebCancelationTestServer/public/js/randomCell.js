@@ -55,75 +55,31 @@
 
  
  RandomCell.prototype.putObjects = function(id = 0) {
-   var randomCell = this.positions.getRandomCell(this.ngoals,this.nDistractors);
-   while (this.goalList.length < this.nGoals) {
-   var pos = this.getRandomPos();
-   var b_id = id.toString() + pos[0].toString() + pos[1].toString();
-   this.putObj({board_id: b_id, id: this.goal.id, name: this.goal.name, item: this.goal },pos[0],pos[1]);
-   }
- 
-   //if the number of distractors is default, fill all empty spaces.
-   if (this.automaticDistractors) {
-     for (let i = 0; i < this.cell_width; i++) {
-       for (let j = 0; j < this.cell_height; j++) {
-         if (this.cell_map[i][j] == undefined) {
-           var b_id = id.toString() + i.toString() + j.toString();
-           var distractor = this.distractors[Math.floor(Math.random() * this.distractors.length)];
-           this.cell_map[i][j] = {board_id: b_id, id: distractor.id, name: distractor.name, item: distractor};
-         }
-       }
-     }
-     return;
-   }
- 
-   while (this.distractorsList.length < this.nDistractors) {
-   var pos = this.getRandomPos();
-   var b_id = id.toString() + pos[0].toString() + pos[1].toString();
-   var distractor = this.distractors[Math.floor(Math.random() * this.distractors.length)];
-   this.putObj({board_id: b_id, id: distractor.id, name: distractor.name, item: distractor},pos[0],pos[1]);
-   }
- 
- } 
- 
- RandomCell.prototype.setObjPosition = function() {
-   var objWidth = this.width/this.cell_width;
-   var objHeight = this.height/this.cell_height; 
-   this.cell_map.forEach((element,i) => {
-     element.forEach((item,j) => {
-         if (item) {
-         //console.log("item coluna " + i + " linha " + j + " objeto " + item.name);
-           item.width = objWidth/2;
-           item.height = objHeight/2;
-           item.objWidth = objWidth;
-           item.objHeight = objHeight;
-           item.objX = objWidth * i;
-           item.objY = objHeight  * j;
- 
-           if (this.aligned) {
-             item.x = (objWidth * i) + (objWidth/4);
-             item.y = (objHeight  * j) + (objHeight/4);
-             
-           } else {
-             item.x = (objWidth * i);
-             item.y = (objHeight  * j);
-             this.randomPosition(item,objWidth,objHeight);
-           }
-           
-         }
-     })
+   var randomCell = this.positions.getRandomCell(this.ngoals, this.nDistractors);
+   
+   randomCell.positions.forEach((element,i) => {
+      var b_id = id.toString() + i;
+      var obj = {};
+      if (element.type == 'g') {
+        obj = {
+          board_id: b_id, 
+          id: this.goal.id, 
+          name: this.goal.name, 
+          item: this.goal
+        };
+      } else {
+        var distractor = this.distractors[Math.floor(Math.random() * this.distractors.length)];
+        obj = {
+          board_id: b_id, 
+          id: distractor.id, 
+          name: distractor.name, 
+          item: distractor
+        };
+      }
+      this.cell_map.push({ item : obj, position : [this.width * element.px, this.height * element.py], size: randomCell.size[0] * this.width});
    });
  }
- 
- RandomCell.prototype.randomPosition = function (item,objWidth,objHeight) {
-   var maxVariationX = objWidth/2;
-   var maxVariationY = objHeight/2;
-   var variationX = Math.random() * maxVariationX;
-   var variationY = Math.random() * maxVariationY;
-   item.x += variationX;
-   item.y += variationY;
- }
-
- 
+   
  RandomCell.prototype.generateCell = function(id = 0) {
    //starting parameters 
    this.distractorsList = [];
