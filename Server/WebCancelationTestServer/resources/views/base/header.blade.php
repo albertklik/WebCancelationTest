@@ -6,7 +6,9 @@
         <script src="{{ asset('js/app.js') }}" ></script>
         <script src="{{ asset('js/baseFunctions.js') }}" ></script>
         <script src="{{ asset('js/cell.js') }}"></script>
+        <script src="{{ asset('js/positions.js') }}"></script>
         <script src="{{ asset('js/randomGrid.js') }}"></script>
+        <script src="{{ asset('js/randomCell.js') }}"></script>
         <script src="{{ asset('js/icon.js') }}"></script>
         <script src="{{ asset('js/render.js') }}"></script>
         <script src="{{ asset('js/testControl.js') }}"></script>

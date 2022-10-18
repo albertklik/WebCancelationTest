@@ -66,6 +66,68 @@ this.CancelationTest = this.CancelationTest || {}
         this.loadImg();
         this.calcSizeBoard();
         this.stage.removeAllChildren();
+        if (this.board.type == null || this.board.type == "RANDOM_GRID") {
+            this.renderBoardGrid();
+        } else if (this.board.type == "RANDOM_CELL") {
+            this.renderBoardPercent();
+        }
+    }
+
+    Render.prototype.renderBoardPercent = function () {
+        this.board.cells.forEach((colunm,a) => {
+                let start_pos_y = this.cell_height * a
+            colunm.forEach((line,b) => {
+                let start_pos_x = this.cell_width * b
+                if (this.renderConfig.identifyCells) {
+                    this.drawSquare(
+                    start_pos_x * this.ratioX + 2,
+                    start_pos_y * this.ratioY + 2,
+                    (this.cell_width * this.ratioX) - 2,
+                    (this.cell_height * this.ratioY) - 2,"red",1,line.id.toString());
+                }
+                line.map.forEach((item) => {
+                    if (this.renderConfig.identifyIcons) {
+                        this.drawSquare(
+                        ((start_pos_x+item.objX) * this.ratioX) + 1,
+                        ((start_pos_y+item.objY) * this.ratioY) + 1,
+                        (item.objWidth * this.ratioX) - 1,
+                        (item.objHeight * this.ratioY) - 1,"grey",1);
+                        var textY = ((start_pos_y+item.objY) + item.objHeight) * this.ratioY;
+                        var textX = ((start_pos_x+item.objX) + (item.width/2)) * this.ratioX
+                        this.drawText(textX,textY,item.board_id.toString(),"10px Arial","grey");
+                    }
+
+                    if (this.renderConfig.hideIcons)
+                        return; 
+
+                    if (this.renderConfig.iconTransp) {
+                        var alpha = .5
+                    }    else {
+                        var alpha = 1
+                    }
+
+                    var icon = new Icon(
+                        this.onClickEvent,
+                        this.stage,
+                        item,
+                        (start_pos_x+item.objX) * this.ratioX,
+                        (start_pos_y+item.objY) * this.ratioY,
+                        item.objWidth * this.ratioX,
+                        item.objHeight * this.ratioY,
+                        this.img_data,
+                        alpha);
+                    if (item.id == this.board.goal.id && this.renderConfig.showTargets) {
+                        icon.markAsGoal();
+                    }
+
+                });
+
+            });
+        });
+    }
+
+    Render.prototype.renderBoardGrid = function() {    
+        
         this.board.cells.forEach((colunm,a) => {
             colunm.forEach((line,b) => {
                 let start_pos_x = this.cell_width * a;

@@ -314,7 +314,7 @@ function updateBoardInsertEdit() {
 
     try {
         console.log(boardData);
-        generatedBoard = JSON.stringify(new Board(boardData).generateRandom());
+        generatedBoard = JSON.stringify(new Board(boardData).generateRandomCell());
         var board = JSON.parse(generatedBoard);
 
         console.log(board);
@@ -346,7 +346,12 @@ function setupTestControlList() {
 function setupTestControlInsertEdit() {
     var bData = {
         renderConfig: {
-            showTargets: true
+            showTargets: false,
+            hideIcons: false,
+            identifyCells: false,
+            identifyIcons: false,
+            iconTransp: false,
+            showResultType: 0
         },
         resolution : {width : 760, height: 450},
         board : {},

@@ -36,6 +36,15 @@ function Board(boardData) {
         this.goalTypes.filter(e => e.id != this.boardData.goalId),
         this.boardData.aligned
     );
+    this.randomCellGenerator = new RandomCell(
+        this.boardData.size,
+        this.boardData.resolution,
+        this.boardData.nTargets,
+        this.boardData.nDistractors,
+        this.goal,
+        this.goalTypes.filter(e => e.id != this.boardData.goalId),
+        this.boardData.aligned
+    );
 }
 
 Board.prototype.updateBoardData = function(boardData) {
@@ -49,8 +58,21 @@ Board.prototype.updateBoardData = function(boardData) {
         this.goalTypes.filter(e => e.id != this.boardData.goalId),
         this.boardData.aligned
     );
+    this.randomCellGenerator = new RandomCell(
+        this.boardData.size,
+        this.boardData.resolution,
+        this.boardData.nTargets,
+        this.boardData.nDistractors,
+        this.goal,
+        this.goalTypes.filter(e => e.id != this.boardData.goalId),
+        this.boardData.aligned
+    );
 }
 
 Board.prototype.generateRandom = function() {
      return this.randomGridGenerator.generateBoard();
+}
+
+Board.prototype.generateRandomCell = function() {
+    return this.randomCellGenerator.generateBoard();
 }
