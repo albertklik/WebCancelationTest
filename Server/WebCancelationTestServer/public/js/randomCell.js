@@ -55,7 +55,7 @@
 
  
  RandomCell.prototype.putObjects = function(id = 0) {
-   var randomCell = this.positions.getRandomCell(this.nGoals, this.nDistractors);
+   var randomCell = this.positions.getRandomCell(4, 24);
    
    randomCell.positions.forEach((element,i) => {
       var b_id = id.toString() + i;
