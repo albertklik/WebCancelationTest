@@ -60,3 +60,16 @@ this.CancelationTest = this.CancelationTest || {}
         );
         this.stage.addChild(circle);
      }
+
+     Icon.prototype.markAsGoal2 = function() {
+        var circle = new createjs.Shape();
+        circle.graphics
+        .setStrokeStyle(3)
+        .beginStroke("grey")
+        .drawCircle(
+            this.x + this.width/2,
+            this.y + this.height/2,
+            this.width/2
+        );
+        this.stage.addChild(circle);
+     }

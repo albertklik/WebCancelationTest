@@ -117,7 +117,7 @@ this.CancelationTest = this.CancelationTest || {}
                         this.img_data,
                         alpha);
                     if (item.id == this.board.goal.id && this.renderConfig.showTargets) {
-                        icon.markAsGoal();
+                        icon.markAsGoal2();
                     }
 
                 });
